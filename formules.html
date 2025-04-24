@@ -27,14 +27,18 @@
             background-color: var(--light-color);
             color: var(--text-color);
             line-height: 1.6;
+            padding-top: 80px; /* Ajoute un padding-top pour éviter que le contenu passe sous le header */
         }
         
         header {
             background-color: var(--bg-light);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: fixed;
+            top: 0; /* Fixe le header tout en haut */
+            left: 0;
             width: 100%;
             z-index: 1000;
+            height: 80px; /* Hauteur fixe */
         }
         
         .header-container {
@@ -43,24 +47,42 @@
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 0 2rem;
+            height: 100%; /* Utilise toute la hauteur du header */
         }
         
         .logo {
             width: 180px;
             height: auto;
+            display: block;
+        }
+        
+        nav {
+            height: 100%;
+            display: flex;
+            align-items: center;
         }
         
         nav ul {
             display: flex;
             list-style: none;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            align-items: center;
         }
         
         nav ul li {
             margin-left: 2rem;
+            height: 100%;
+            display: flex;
+            align-items: center;
         }
         
         nav ul li a {
+            display: flex;
+            align-items: center;
+            height: 100%;
             color: var(--dark-color);
             text-decoration: none;
             font-weight: 600;
@@ -103,7 +125,7 @@
         }
         
         .page-banner {
-            background-image: url('images/banner-formules.jpg');
+            background-image: url('images/banniere.png');
             background-size: cover;
             background-position: center;
             height: 50vh;
@@ -111,7 +133,7 @@
             align-items: center;
             position: relative;
             color: white;
-            margin-top: 70px;
+            margin-top: 0; /* Supprime la marge car le body a déjà un padding-top */
         }
         
         .page-banner::before {
@@ -417,7 +439,7 @@
         }
         
         .cta {
-            background-image: url('images/cta-background.jpg');
+            background-image: url('images/banniere.png');
             background-size: cover;
             background-position: center;
             position: relative;
@@ -557,7 +579,7 @@
         
         @media (max-width: 768px) {
             .header-container {
-                padding: 1rem;
+                padding: 0 1rem;
             }
             
             .mobile-menu-btn {
@@ -566,10 +588,10 @@
             
             nav {
                 position: fixed;
-                top: 70px;
+                top: 80px; /* Correspond à la hauteur du header */
                 left: -100%;
                 width: 100%;
-                height: calc(100vh - 70px);
+                height: calc(100vh - 80px);
                 background-color: var(--bg-light);
                 transition: left 0.3s ease;
                 z-index: 1000;
@@ -582,12 +604,20 @@
             nav ul {
                 flex-direction: column;
                 padding: 2rem;
-                height: 100%;
+                height: auto;
                 overflow-y: auto;
+                align-items: flex-start;
             }
             
             nav ul li {
                 margin: 1rem 0;
+                height: auto;
+                width: 100%;
+            }
+            
+            nav ul li a {
+                height: auto;
+                width: 100%;
             }
             
             .section {
@@ -596,7 +626,6 @@
             
             .page-banner {
                 height: 40vh;
-                margin-top: 70px;
             }
             
             .page-banner h1 {
@@ -612,7 +641,7 @@
 <body>
     <header>
         <div class="header-container">
-            <img src="images/logo-laserbay.png" alt="LaserBay Logo" class="logo">
+            <img src="images/logolaserbay.png" alt="LaserBay Logo" class="logo">
             <button class="mobile-menu-btn">☰</button>
             <nav id="main-nav">
                 <ul>
@@ -656,14 +685,15 @@
                     <div class="pricing-card">
                         <div class="pricing-header">
                             <h3>Pack Découverte</h3>
-                            <div class="pricing-price">12€ <span>/pers</span></div>
+                            <div class="pricing-price">15€ <span>/pers</span></div>
                         </div>
                         <div class="pricing-features">
                             <ul>
-                                <li>1 partie (15 minutes)</li>
+                                <li>1 partie (20 minutes)</li>
+                                <li>Brief (10 minutes) et déséquipement (10 minutes)</li>
+                                <li>Durée totale : 40 minutes sur place</li>
                                 <li>Équipement inclus</li>
                                 <li>Terrain balisé et sécurisé</li>
-                                <li>Brief et débrief avec animateur</li>
                                 <li>Accessible dès 7 ans</li>
                             </ul>
                             <a href="reservation.html" class="btn pricing-btn">Réserver</a>
@@ -674,15 +704,15 @@
                         <div class="price-tag">Populaire</div>
                         <div class="pricing-header">
                             <h3>Pack Aventurier</h3>
-                            <div class="pricing-price">18€ <span>/pers</span></div>
+                            <div class="pricing-price">25€ <span>/pers</span></div>
                         </div>
                         <div class="pricing-features">
                             <ul>
-                                <li>2 parties (30 minutes)</li>
+                                <li>2 parties</li>
+                                <li>Brief, déséquipement et pause inclus</li>
+                                <li>Durée totale : 1 heure sur place</li>
                                 <li>Équipement inclus</li>
                                 <li>Terrain balisé et sécurisé</li>
-                                <li>Brief et débrief avec animateur</li>
-                                <li>1 boisson offerte</li>
                                 <li>Accessible dès 7 ans</li>
                             </ul>
                             <a href="reservation.html" class="btn pricing-btn">Réserver</a>
@@ -692,15 +722,15 @@
                     <div class="pricing-card">
                         <div class="pricing-header">
                             <h3>Pack Expert</h3>
-                            <div class="pricing-price">25€ <span>/pers</span></div>
+                            <div class="pricing-price">32€ <span>/pers</span></div>
                         </div>
                         <div class="pricing-features">
                             <ul>
-                                <li>3 parties (45 minutes)</li>
+                                <li>3 parties</li>
+                                <li>Brief, déséquipement et pauses inclus</li>
+                                <li>Durée totale : 1h30 sur place</li>
                                 <li>Équipement inclus</li>
                                 <li>Terrain balisé et sécurisé</li>
-                                <li>Brief et débrief avec animateur</li>
-                                <li>1 boisson + 1 snack offerts</li>
                                 <li>Accès aux modes de jeu avancés</li>
                                 <li>Accessible dès 7 ans</li>
                             </ul>
@@ -715,7 +745,7 @@
                     <div class="pricing-card">
                         <div class="pricing-header">
                             <h3>Groupe Mini</h3>
-                            <div class="pricing-price">110€</div>
+                            <div class="pricing-price">150€</div>
                             <p>Pour 10 personnes maximum</p>
                         </div>
                         <div class="pricing-features">
@@ -735,7 +765,7 @@
                         <div class="price-tag">Populaire</div>
                         <div class="pricing-header">
                             <h3>Groupe Medium</h3>
-                            <div class="pricing-price">160€</div>
+                            <div class="pricing-price">190€</div>
                             <p>Pour 10 personnes maximum</p>
                         </div>
                         <div class="pricing-features">
@@ -756,7 +786,7 @@
                     <div class="pricing-card">
                         <div class="pricing-header">
                             <h3>Groupe Premium</h3>
-                            <div class="pricing-price">220€</div>
+                            <div class="pricing-price">250€</div>
                             <p>Pour 10 personnes maximum</p>
                         </div>
                         <div class="pricing-features">
@@ -765,9 +795,8 @@
                                 <li>Équipement inclus</li>
                                 <li>Terrain balisé et sécurisé</li>
                                 <li>Brief et débrief avec animateur</li>
-                                <li>Espace privatisé entre les parties</li>
                                 <li>Boissons et snacks inclus</li>
-                                <li>Photos et vidéos souvenirs offertes</li>
+                                <li>Photos souvenirs offertes</li>
                                 <li>Accessible dès 7 ans</li>
                             </ul>
                             <a href="reservation.html" class="btn pricing-btn">Réserver</a>
@@ -873,7 +902,7 @@
                 <div class="faq-item">
                     <div class="faq-question">Combien de temps dure une partie ?</div>
                     <div class="faq-answer">
-                        <p>Une partie standard dure environ 15 minutes de jeu effectif. Nous prévoyons également un temps de briefing avant la partie (5-10 minutes) et un débrief après. Au total, comptez environ 20-25 minutes par partie.</p>
+                        <p>Une partie standard dure environ 20 minutes de jeu effectif. Nous prévoyons également un temps de briefing avant la partie (10 minutes) et un temps de déséquipement après (10 minutes). Au total, comptez environ 40 minutes sur place pour une partie.</p>
                     </div>
                 </div>
                 

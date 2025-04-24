@@ -1,3 +1,13 @@
+<div class="info-box" style="margin-bottom: 2rem;">
+    <h3 style="color: var(--accent-color); font-weight: bold;">Important !</h3>
+    <p>
+        <strong>Avant de choisir votre formule, merci de nous contacter par mail, SMS ou téléphone afin de connaître la disponibilité des sessions.</strong>
+    </p>
+    <p style="margin-top: 0.5rem;">
+        <span style="display: inline-block; margin-right: 1rem;"><span class="footer-contact-icon">📞</span> 02 44 84 99 96</span>
+        <span style="display: inline-block;"><span class="footer-contact-icon">📧</span> laserbayagon@gmail.com</span>
+    </p>
+</div>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -27,14 +37,18 @@
             background-color: var(--light-color);
             color: var(--text-color);
             line-height: 1.6;
+            padding-top: 80px; /* Compense la hauteur du header fixe */
         }
         
         header {
             background-color: var(--bg-light);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: fixed;
+            top: 0; /* Fixe le header tout en haut */
+            left: 0;
             width: 100%;
             z-index: 1000;
+            height: 80px; /* Hauteur fixe */
         }
         
         .header-container {
@@ -43,24 +57,42 @@
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 0 2rem;
+            height: 100%; /* Utilise toute la hauteur du header */
         }
         
         .logo {
             width: 180px;
             height: auto;
+            display: block;
+        }
+        
+        nav {
+            height: 100%;
+            display: flex;
+            align-items: center;
         }
         
         nav ul {
             display: flex;
             list-style: none;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            align-items: center;
         }
         
         nav ul li {
             margin-left: 2rem;
+            height: 100%;
+            display: flex;
+            align-items: center;
         }
         
         nav ul li a {
+            display: flex;
+            align-items: center;
+            height: 100%;
             color: var(--dark-color);
             text-decoration: none;
             font-weight: 600;
@@ -111,7 +143,7 @@
         }
         
         .page-banner {
-            background-image: url('/api/placeholder/1920/600');
+            background-image: url('images/banniere.png');
             background-size: cover;
             background-position: center;
             height: 50vh;
@@ -119,7 +151,7 @@
             align-items: center;
             position: relative;
             color: white;
-            margin-top: 70px;
+            margin-top: 0; /* Supprime la marge car le body a déjà un padding-top */
         }
         
         .page-banner::before {
@@ -389,6 +421,13 @@
             color: var(--dark-color);
         }
         
+        /* Style pour les options désactivées */
+        select option:disabled {
+            color: #999;
+            font-style: italic;
+            background-color: #f2f2f2;
+        }
+        
         footer {
             background-color: var(--dark-color);
             color: white;
@@ -503,7 +542,7 @@
         
         @media (max-width: 768px) {
             .header-container {
-                padding: 1rem;
+                padding: 0 1rem;
             }
             
             .mobile-menu-btn {
@@ -512,10 +551,10 @@
             
             nav {
                 position: fixed;
-                top: 70px;
+                top: 80px; /* Correspond à la hauteur du header */
                 left: -100%;
                 width: 100%;
-                height: calc(100vh - 70px);
+                height: calc(100vh - 80px);
                 background-color: var(--bg-light);
                 transition: left 0.3s ease;
                 z-index: 1000;
@@ -528,12 +567,20 @@
             nav ul {
                 flex-direction: column;
                 padding: 2rem;
-                height: 100%;
+                height: auto;
                 overflow-y: auto;
+                align-items: flex-start;
             }
             
             nav ul li {
                 margin: 1rem 0;
+                height: auto;
+                width: 100%;
+            }
+            
+            nav ul li a {
+                height: auto;
+                width: 100%;
             }
             
             .section {
@@ -542,7 +589,6 @@
             
             .page-banner {
                 height: 40vh;
-                margin-top: 70px;
             }
             
             .page-banner h1 {
@@ -558,7 +604,7 @@
 <body>
     <header>
         <div class="header-container">
-            <img src="/api/placeholder/180/60" alt="LaserBay Logo" class="logo">
+            <img src="images/logolaserbay.png" alt="LaserBay Logo" class="logo">
             <button class="mobile-menu-btn">☰</button>
             <nav id="main-nav">
                 <ul>
@@ -592,108 +638,100 @@
             </div>
             
             <div class="reservation-container">
-                <div class="booking-form">
-                    <form id="reservation-form">
-                        <div class="form-group">
-                            <label for="package">Choisissez votre formule</label>
-                            <select id="package" name="package" required>
-                                <option value="">Sélectionnez une formule</option>
-                                <optgroup label="Formules Individuelles">
-                                    <option value="decouverte">Pack Découverte (12€/pers)</option>
-                                    <option value="aventurier">Pack Aventurier (18€/pers)</option>
-                                    <option value="expert">Pack Expert (25€/pers)</option>
-                                </optgroup>
-                                <optgroup label="Formules Groupes">
-                                    <option value="groupe-mini">Groupe Mini (110€ - 10 pers max)</option>
-                                    <option value="groupe-medium">Groupe Medium (160€ - 10 pers max)</option>
-                                    <option value="groupe-premium">Groupe Premium (220€ - 10 pers max)</option>
-                                </optgroup>
-                                <optgroup label="Événements">
-                                    <option value="anniversaire">Anniversaire Enfant (160€ - 10 enfants max)</option>
-                                    <option value="evg-evjf">EVG/EVJF (190€ - 10 pers max)</option>
-                                    <option value="team-building">Team Building (à partir de 250€)</option>
-                                </optgroup>
-                            </select>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="date">Date</label>
-                                <input type="date" id="date" name="date" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="time">Heure</label>
-                                <select id="time" name="time" required>
-                                    <option value="">Sélectionnez une heure</option>
-                                    <option value="10:00">10:00</option>
-                                    <option value="11:00">11:00</option>
-                                    <option value="12:00">12:00</option>
-                                    <option value="14:00">14:00</option>
-                                    <option value="15:00">15:00</option>
-                                    <option value="16:00">16:00</option>
-                                    <option value="17:00">17:00</option>
-                                    <option value="18:00">18:00</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="participants">Nombre de participants</label>
-                            <input type="number" id="participants" name="participants" min="2" max="30" required>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="name">Nom complet</label>
-                                <input type="text" id="name" name="name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="phone">Téléphone</label>
-                                <input type="tel" id="phone" name="phone" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="code-promo">Code promo (optionnel)</label>
-                                <input type="text" id="code-promo" name="code-promo">
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Message / Demandes spéciales (optionnel)</label>
-                            <textarea id="message" name="message" rows="4" placeholder="Précisez si vous souhaitez organiser un anniversaire, un EVG/EVJF ou toute autre demande spéciale"></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Mode de paiement</label>
-                            <div class="payment-options">
-                                <div class="payment-option">
-                                    <input type="radio" id="paypal" name="payment_method" value="paypal" required>
-                                    <label for="paypal">Paiement en ligne</label>
-                                    <img src="/api/placeholder/100/30" alt="PayPal & Cartes" class="payment-logo">
-                                </div>
-                                <div class="payment-option">
-                                    <input type="radio" id="onsite" name="payment_method" value="onsite" required>
-                                    <label for="onsite">Paiement sur place</label>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="checkbox-container">
-                            <input type="checkbox" id="terms" name="terms" required>
-                            <label for="terms">J'accepte les <a href="#" target="_blank">conditions générales de vente</a> et la <a href="#" target="_blank">politique de confidentialité</a></label>
-                        </div>
-                        
-                        <div class="form-group" style="margin-top: 2rem;">
-                            <button type="submit" class="btn" style="width: 100%;">Confirmer ma réservation</button>
-                        </div>
-                    </form>
+               <div class="booking-form">
+    <!-- Message d'avertissement -->
+    <div class="info-box" style="margin-bottom: 2rem;">
+        <h3 style="color: var(--accent-color); font-weight: bold;">Important !</h3>
+        <p>
+            <strong>Avant de choisir votre formule, merci de nous contacter par mail, SMS ou téléphone afin de connaître la disponibilité des sessions.</strong>
+        </p>
+        <p style="margin-top: 0.5rem;">
+            <span style="display: inline-block; margin-right: 1rem;"><span class="footer-contact-icon">📞</span> 02 44 84 99 96</span>
+            <span style="display: inline-block;"><span class="footer-contact-icon">📧</span> laserbayagon@gmail.com</span>
+        </p>
+    </div>
+    
+    <!-- Formulaire simplifié -->
+    <form id="reservation-form">
+        <div class="form-group">
+            <label for="package">Choisissez votre formule</label>
+            <select id="package" name="package" required>
+                <option value="">Sélectionnez une formule</option>
+                <optgroup label="Formules Individuelles">
+                    <option value="decouverte">Pack Découverte (15€/pers)</option>
+                    <option value="aventurier">Pack Aventurier (25€/pers)</option>
+                    <option value="expert">Pack Expert (32€/pers)</option>
+                </optgroup>
+                <optgroup label="Formules Groupes">
+                    <option value="groupe-mini">Groupe Mini (150€ - 10 pers max)</option>
+                    <option value="groupe-medium">Groupe Medium (190€ - 10 pers max)</option>
+                    <option value="groupe-premium">Groupe Premium (250€ - 10 pers max)</option>
+                </optgroup>
+                <optgroup label="Événements">
+                    <option value="anniversaire">Anniversaire Enfant (160€ - 10 enfants max)</option>
+                    <option value="evg-evjf">EVG/EVJF (190€ - 10 pers max)</option>
+                    <option value="team-building">Team Building (à partir de 250€)</option>
+                </optgroup>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="participants">Nombre de participants</label>
+            <input type="number" id="participants" name="participants" min="2" max="30" required>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="name">Nom complet</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="phone">Téléphone</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="code-promo">Code promo (optionnel)</label>
+                <input type="text" id="code-promo" name="code-promo">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="message">Message / Demandes spéciales (optionnel)</label>
+            <textarea id="message" name="message" rows="4" placeholder="Précisez vos disponibilités, dates et horaires souhaités, ainsi que toute autre demande spéciale"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label>Mode de paiement</label>
+            <div class="payment-options">
+                <div class="payment-option">
+                    <input type="radio" id="paypal" name="payment_method" value="paypal" required>
+                    <label for="paypal">Paiement en ligne</label>
+                    <img src="/api/placeholder/100/30" alt="PayPal & Cartes" class="payment-logo">
                 </div>
+                <div class="payment-option">
+                    <input type="radio" id="onsite" name="payment_method" value="onsite" required>
+                    <label for="onsite">Paiement sur place</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="checkbox-container">
+            <input type="checkbox" id="terms" name="terms" required>
+            <label for="terms">J'accepte les <a href="#" target="_blank">conditions générales de vente</a> et la <a href="#" target="_blank">politique de confidentialité</a></label>
+        </div>
+        
+        <div class="form-group" style="margin-top: 2rem;">
+            <button type="submit" class="btn" style="width: 100%;">Confirmer ma pré-réservation</button>
+        </div>
+    </form>
+</div>
                 
                 <div class="booking-summary">
                     <h3 class="summary-title">Récapitulatif</h3>
@@ -757,4 +795,214 @@
                         <p>Présentez-vous 15 minutes avant votre session pour le briefing et l'équipement.</p>
                     </div>
                     <div class="step">
-                        <div class="step-
+                        <div class="step-number">4</div>
+                        <h3>Profitez du jeu</h3>
+                        <p>Équipez-vous et vivez une expérience de jeu inoubliable en plein air.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>LaserBay</h3>
+                <p>Le LaserTag en plein air à Agon-Coutainville. Une aventure laser en bord de mer accessible dès 7 ans, sans projectiles, sans douleur et 100% adrénaline !</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">f</a>
+                    <a href="#" class="social-icon">i</a>
+                    <a href="#" class="social-icon">t</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Navigation</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="experience.html">Notre Expérience</a></li>
+                    <li><a href="formules.html">Formules & Tarifs</a></li>
+                    <li><a href="evenements.html">Événements</a></li>
+                    <li><a href="reservation.html">Réservation</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-contact">
+                <h3>Contact</h3>
+                <p><span class="footer-contact-icon">📍</span> 56 Charrière du Commerce, 50230 Agon-Coutainville</p>
+                <p><span class="footer-contact-icon">📞</span> 02 44 84 99 96</p>
+                <p><span class="footer-contact-icon">📧</span> <a href="mailto:laserbayagon@gmail.com" style="color: #ccc; text-decoration: none;">laserbayagon@gmail.com</a></p>
+                <p><span class="footer-contact-icon">🕒</span> Mercredi - Vendredi: 14h - 19h<br>Samedi - Dimanche: 10h - 19h<br>Tous les jours pendant les vacances scolaires</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 LaserBay. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mainNav = document.getElementById('main-nav');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+            this.textContent = mainNav.classList.contains('active') ? '✕' : '☰';
+        });
+        
+        // Système de blocage de créneaux horaires
+        document.addEventListener('DOMContentLoaded', function() {
+            // Liste des créneaux bloqués (format: 'YYYY-MM-DD': ['HH:MM', 'HH:MM'])
+            // MODIFIEZ CETTE SECTION POUR BLOQUER VOS CRÉNEAUX
+            const blockedSlots = {
+                '2025-04-20': ['10:00', '11:00'], // 20 avril : bloquer 10h et 11h
+                '2025-04-21': ['14:00', '15:00'], // 21 avril : bloquer 14h et 15h
+                '2025-04-25': ['16:00', '17:00', '18:00'] // 25 avril : bloquer l'après-midi
+            };
+            
+            // Définir la date minimale au jour actuel
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const dd = String(today.getDate()).padStart(2, '0');
+            const formattedToday = `${yyyy}-${mm}-${dd}`;
+            
+            const dateInput = document.getElementById('date');
+            const timeSelect = document.getElementById('time');
+            
+            // Définir la date minimale pour empêcher les réservations dans le passé
+            dateInput.min = formattedToday;
+            
+            // Mise à jour des créneaux disponibles
+            function updateAvailableSlots() {
+                const selectedDate = dateInput.value;
+                
+                // Récupérer les créneaux bloqués pour cette date
+                const blockedHours = blockedSlots[selectedDate] || [];
+                
+                // Mettre à jour les options d'heures
+                Array.from(timeSelect.options).forEach(option => {
+                    if (option.value === '') return; // Ignorer l'option vide
+                    
+                    // Vérifier si ce créneau est bloqué
+                    if (blockedHours.includes(option.value)) {
+                        option.disabled = true;
+                        option.text = `${option.value} (Non disponible)`;
+                    } else {
+                        option.disabled = false;
+                        option.text = option.value;
+                    }
+                });
+            }
+            
+            // Mettre à jour les créneaux lors du changement de date
+            dateInput.addEventListener('change', updateAvailableSlots);
+            
+            // Mettre à jour lors du chargement initial
+            if (dateInput.value) {
+                updateAvailableSlots();
+            }
+            
+            // Récapitulatif de réservation
+            const packageSelect = document.getElementById('package');
+            const participantsInput = document.getElementById('participants');
+            
+            const summaryPackage = document.getElementById('summary-package');
+            const summaryDatetime = document.getElementById('summary-datetime');
+            const summaryParticipants = document.getElementById('summary-participants');
+            const summaryTotal = document.getElementById('summary-total');
+            
+            // Mise à jour du récapitulatif
+            function updateSummary() {
+                // Formule
+                const selectedOption = packageSelect.options[packageSelect.selectedIndex];
+                summaryPackage.textContent = selectedOption ? selectedOption.text : '-';
+                
+                // Date et heure
+                const selectedDate = dateInput.value;
+                const selectedTime = timeSelect.value;
+                if (selectedDate && selectedTime) {
+                    const formattedDate = new Date(selectedDate).toLocaleDateString('fr-FR');
+                    summaryDatetime.textContent = `${formattedDate} à ${selectedTime}`;
+                } else {
+                    summaryDatetime.textContent = '-';
+                }
+                
+                // Participants
+                const participantsCount = participantsInput.value;
+                summaryParticipants.textContent = participantsCount ? participantsCount : '-';
+                
+                // Total (simulation basique)
+                if (selectedOption && selectedOption.value && participantsCount) {
+                    let total = 0;
+                    
+                    // Calculer le prix selon la formule
+                    if (selectedOption.value === 'decouverte') {
+                        total = 15 * participantsCount;
+                    } else if (selectedOption.value === 'aventurier') {
+                        total = 25 * participantsCount;
+                    } else if (selectedOption.value === 'expert') {
+                        total = 32 * participantsCount;
+                    } else if (selectedOption.value.startsWith('groupe-')) {
+                        // Prix fixes pour les groupes
+                        if (selectedOption.value === 'groupe-mini') total = 150;
+                        else if (selectedOption.value === 'groupe-medium') total = 190;
+                        else if (selectedOption.value === 'groupe-premium') total = 250;
+                    } else if (selectedOption.value === 'anniversaire') {
+                        total = 160;
+                    } else if (selectedOption.value === 'evg-evjf') {
+                        total = 190;
+                    } else if (selectedOption.value === 'team-building') {
+                        // Base + supplément par personne au-delà de 10
+                        total = 250;
+                        if (participantsCount > 10) {
+                            total += (participantsCount - 10) * 20;
+                        }
+                    }
+                    
+                    summaryTotal.textContent = `${total}€`;
+                } else {
+                    summaryTotal.textContent = '-';
+                }
+            }
+            
+            // Mettre à jour le récapitulatif lors des changements
+            packageSelect.addEventListener('change', updateSummary);
+            dateInput.addEventListener('change', updateSummary);
+            timeSelect.addEventListener('change', updateSummary);
+            participantsInput.addEventListener('change', updateSummary);
+            participantsInput.addEventListener('input', updateSummary);
+            
+            // Soumettre le formulaire
+            document.getElementById('reservation-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Vérifier si une heure est sélectionnée
+                if (!timeSelect.value) {
+                    alert('Veuillez sélectionner une heure disponible.');
+                    return;
+                }
+                
+                // Vérifier si l'heure est bloquée
+                const selectedDate = dateInput.value;
+                const selectedTime = timeSelect.value;
+                const blockedHours = blockedSlots[selectedDate] || [];
+                
+                if (blockedHours.includes(selectedTime)) {
+                    alert('Désolé, ce créneau n\'est pas disponible. Veuillez en choisir un autre.');
+                    return;
+                }
+                
+                // Simulation de soumission - remplacer par votre logique d'envoi
+                alert('Réservation enregistrée avec succès! Vous recevrez une confirmation par e-mail.');
+                
+                // En production, envoyez les données au serveur ici
+                // fetch('/api/reservations', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify(formData)
+                // })
+            });
+        });
+    </script>
+</body>
+</html>
