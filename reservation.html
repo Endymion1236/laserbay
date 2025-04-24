@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Réservez en ligne votre session de LaserTag en plein air à LaserBay Agon-Coutainville. Système de réservation rapide et paiement sécurisé.">
+    <title>Réservation - LaserBay</title>
+    <style>
+        :root {
+            --primary-color: #2b97a8;
+            --secondary-color: #0e3b55;
+            --accent-color: #e0523a;
+            --dark-color: #0e3b55;
+            --light-color: #f5f0e3;
+            --text-color: #333333;
+            --bg-light: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--bg-light);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+        
+        .logo {
+            width: 180px;
+            height: auto;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--accent-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #f06348;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(224, 82, 58, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #125070;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+        }
+        
+        .page-banner {
+            background-image: url('/api/placeholder/1920/600');
+            background-size: cover;
+            background-position: center;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            color: white;
+            margin-top: 70px;
+        }
+        
+        .page-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(14, 59, 85, 0.6);
+        }
+        
+        .banner-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .page-banner h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        .breadcrumb li {
+            margin: 0 0.5rem;
+        }
+        
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .section {
+            padding: 5rem 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .reservation-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+        }
+        
+        .booking-form {
+            background-color: var(--bg-light);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(43, 151, 168, 0.1);
+            outline: none;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .payment-options {
+            margin-top: 1rem;
+        }
+        
+        .payment-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .payment-option input[type="radio"] {
+            width: auto;
+            margin-right: 0.5rem;
+        }
+        
+        .payment-logo {
+            height: 30px;
+            margin-left: 0.5rem;
+        }
+        
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 1.5rem;
+        }
+        
+        .checkbox-container input {
+            width: auto;
+            margin-right: 0.5rem;
+            margin-top: 0.3rem;
+        }
+        
+        .booking-summary {
+            background-color: var(--bg-light);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 100px;
+        }
+        
+        .summary-title {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .summary-total {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .payment-secure {
+            display: block;
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .payment-badges {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1rem;
+            gap: 1rem;
+        }
+        
+        .payment-badge {
+            height: 30px;
+        }
+        
+        .how-it-works {
+            margin-top: 5rem;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .step {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--bg-light);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .step:hover {
+            transform: translateY(-10px);
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+        
+        .step h3 {
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .info-box {
+            background-color: rgba(43, 151, 168, 0.1);
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .info-box h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .footer-col h3 {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .footer-contact p {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-contact-icon {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-icon {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 992px) {
+            .reservation-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .booking-summary {
+                position: static;
+                margin-top: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .page-banner h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 1rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--bg-light);
+                transition: left 0.3s ease;
+                z-index: 1000;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 2rem;
+                height: 100%;
+                overflow-y: auto;
+            }
+            
+            nav ul li {
+                margin: 1rem 0;
+            }
+            
+            .section {
+                padding: 3rem 1rem;
+            }
+            
+            .page-banner {
+                height: 40vh;
+                margin-top: 70px;
+            }
+            
+            .page-banner h1 {
+                font-size: 2rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img src="/api/placeholder/180/60" alt="LaserBay Logo" class="logo">
+            <button class="mobile-menu-btn">☰</button>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="experience.html">Notre Expérience</a></li>
+                    <li><a href="formules.html">Formules & Tarifs</a></li>
+                    <li><a href="evenements.html">Événements</a></li>
+                    <li><a href="reservation.html" class="active">Réservation</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-banner">
+        <div class="banner-content">
+            <h1>Réservation</h1>
+            <ul class="breadcrumb">
+                <li><a href="index.html">Accueil</a></li>
+                <li>></li>
+                <li>Réservation</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Réservez votre aventure LaserBay</h2>
+                <p>Quelques clics suffisent pour organiser votre prochaine session de LaserTag en plein air</p>
+            </div>
+            
+            <div class="reservation-container">
+                <div class="booking-form">
+                    <form id="reservation-form">
+                        <div class="form-group">
+                            <label for="package">Choisissez votre formule</label>
+                            <select id="package" name="package" required>
+                                <option value="">Sélectionnez une formule</option>
+                                <optgroup label="Formules Individuelles">
+                                    <option value="decouverte">Pack Découverte (12€/pers)</option>
+                                    <option value="aventurier">Pack Aventurier (18€/pers)</option>
+                                    <option value="expert">Pack Expert (25€/pers)</option>
+                                </optgroup>
+                                <optgroup label="Formules Groupes">
+                                    <option value="groupe-mini">Groupe Mini (110€ - 10 pers max)</option>
+                                    <option value="groupe-medium">Groupe Medium (160€ - 10 pers max)</option>
+                                    <option value="groupe-premium">Groupe Premium (220€ - 10 pers max)</option>
+                                </optgroup>
+                                <optgroup label="Événements">
+                                    <option value="anniversaire">Anniversaire Enfant (160€ - 10 enfants max)</option>
+                                    <option value="evg-evjf">EVG/EVJF (190€ - 10 pers max)</option>
+                                    <option value="team-building">Team Building (à partir de 250€)</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="date">Date</label>
+                                <input type="date" id="date" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="time">Heure</label>
+                                <select id="time" name="time" required>
+                                    <option value="">Sélectionnez une heure</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="12:00">12:00</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="17:00">17:00</option>
+                                    <option value="18:00">18:00</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="participants">Nombre de participants</label>
+                            <input type="number" id="participants" name="participants" min="2" max="30" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Nom complet</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Téléphone</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="code-promo">Code promo (optionnel)</label>
+                                <input type="text" id="code-promo" name="code-promo">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message / Demandes spéciales (optionnel)</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Précisez si vous souhaitez organiser un anniversaire, un EVG/EVJF ou toute autre demande spéciale"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Mode de paiement</label>
+                            <div class="payment-options">
+                                <div class="payment-option">
+                                    <input type="radio" id="paypal" name="payment_method" value="paypal" required>
+                                    <label for="paypal">Paiement en ligne</label>
+                                    <img src="/api/placeholder/100/30" alt="PayPal & Cartes" class="payment-logo">
+                                </div>
+                                <div class="payment-option">
+                                    <input type="radio" id="onsite" name="payment_method" value="onsite" required>
+                                    <label for="onsite">Paiement sur place</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">J'accepte les <a href="#" target="_blank">conditions générales de vente</a> et la <a href="#" target="_blank">politique de confidentialité</a></label>
+                        </div>
+                        
+                        <div class="form-group" style="margin-top: 2rem;">
+                            <button type="submit" class="btn" style="width: 100%;">Confirmer ma réservation</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="booking-summary">
+                    <h3 class="summary-title">Récapitulatif</h3>
+                    <div id="summary-details">
+                        <div class="summary-item">
+                            <span>Formule</span>
+                            <span id="summary-package">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Date & Heure</span>
+                            <span id="summary-datetime">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Participants</span>
+                            <span id="summary-participants">-</span>
+                        </div>
+                        <div class="summary-item summary-total">
+                            <span>Total</span>
+                            <span id="summary-total">-</span>
+                        </div>
+                    </div>
+                    
+                    <span class="payment-secure">🔒 Paiement 100% sécurisé</span>
+                    <div class="payment-badges">
+                        <img src="/api/placeholder/50/30" alt="Visa" class="payment-badge">
+                        <img src="/api/placeholder/50/30" alt="Mastercard" class="payment-badge">
+                        <img src="/api/placeholder/50/30" alt="PayPal" class="payment-badge">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <h3>Informations importantes</h3>
+                <p>
+                    Nous vous recommandons d'arriver 15 minutes avant l'heure de votre réservation pour le briefing. 
+                    Portez des vêtements confortables et des chaussures fermées. En cas d'intempéries sévères, 
+                    nous vous contacterons pour reporter votre session sans frais supplémentaires.
+                </p>
+            </div>
+            
+            <div class="how-it-works">
+                <div class="section-title">
+                    <h2>Comment ça marche ?</h2>
+                    <p>Un processus simple pour réserver votre session de LaserTag</p>
+                </div>
+                
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Réservez en ligne</h3>
+                        <p>Choisissez votre formule, date et créneau horaire via notre système de réservation.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Confirmation immédiate</h3>
+                        <p>Recevez votre confirmation par email avec tous les détails de votre réservation.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Arrivez 15 min avant</h3>
+                        <p>Présentez-vous 15 minutes avant votre session pour le briefing et l'équipement.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-

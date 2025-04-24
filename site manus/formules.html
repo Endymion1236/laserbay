@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez les formules et tarifs de LaserBay à Agon-Coutainville - LaserTag en plein air accessible dès 7 ans, avec des offres adaptées à tous.">
+    <title>Formules & Tarifs - LaserBay</title>
+    <style>
+        :root {
+            --primary-color: #2b97a8;
+            --secondary-color: #0e3b55;
+            --accent-color: #e0523a;
+            --dark-color: #0e3b55;
+            --light-color: #f5f0e3;
+            --text-color: #333333;
+            --bg-light: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-top: 80px; /* Ajoute un padding-top pour éviter que le contenu passe sous le header */
+        }
+        
+        header {
+            background-color: var(--bg-light);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0; /* Fixe le header tout en haut */
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            height: 80px; /* Hauteur fixe */
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 100%; /* Utilise toute la hauteur du header */
+        }
+        
+        .logo {
+            width: 180px;
+            height: auto;
+            display: block;
+        }
+        
+        nav {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+        
+        nav ul li a {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--accent-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #f06348;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(224, 82, 58, 0.3);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+        }
+        
+        .page-banner {
+            background-image: url('images/banniere.png');
+            background-size: cover;
+            background-position: center;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            color: white;
+            margin-top: 0; /* Supprime la marge car le body a déjà un padding-top */
+        }
+        
+        .page-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(14, 59, 85, 0.6);
+        }
+        
+        .banner-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .page-banner h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        .breadcrumb li {
+            margin: 0 0.5rem;
+        }
+        
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .section {
+            padding: 5rem 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .pricing-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .pricing-tab {
+            flex: 1;
+            padding: 1rem;
+            text-align: center;
+            background-color: var(--bg-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            color: var(--dark-color);
+            border: none;
+        }
+        
+        .pricing-tab.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .pricing-content {
+            display: none;
+        }
+        
+        .pricing-content.active {
+            display: block;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-card {
+            background-color: var(--bg-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .pricing-header {
+            padding: 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+        }
+        
+        .pricing-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+        
+        .pricing-price span {
+            font-size: 1rem;
+            font-weight: normal;
+        }
+        
+        .pricing-features {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .pricing-features ul {
+            list-style: none;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+        
+        .pricing-features li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .pricing-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+        
+        .price-tag {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            font-weight: bold;
+            font-size: 0.9rem;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .pricing-btn {
+            display: block;
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        .pricing-note {
+            margin-top: 3rem;
+            background-color: rgba(43, 151, 168, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary-color);
+        }
+        
+        .pricing-note h3 {
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .pricing-note p {
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-note ul {
+            list-style: none;
+            margin-left: 1rem;
+        }
+        
+        .pricing-note li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .pricing-note li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .faq-section {
+            background-color: var(--light-color);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            background-color: var(--bg-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background-color: rgba(43, 151, 168, 0.05);
+        }
+        
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            flex-shrink: 0;
+            margin-left: 10px;
+        }
+        
+        .faq-item.active .faq-question::after {
+            content: '-';
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 1000px;
+        }
+        
+        .cta {
+            background-image: url('images/banniere.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            color: white;
+            text-align: center;
+        }
+        
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(14, 59, 85, 0.7);
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta p {
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .footer-col h3 {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .footer-contact p {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-contact-icon {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-icon {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 992px) {
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .page-banner h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 1rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px; /* Correspond à la hauteur du header */
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--bg-light);
+                transition: left 0.3s ease;
+                z-index: 1000;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 2rem;
+                height: auto;
+                overflow-y: auto;
+                align-items: flex-start;
+            }
+            
+            nav ul li {
+                margin: 1rem 0;
+                height: auto;
+                width: 100%;
+            }
+            
+            nav ul li a {
+                height: auto;
+                width: 100%;
+            }
+            
+            .section {
+                padding: 3rem 1rem;
+            }
+            
+            .page-banner {
+                height: 40vh;
+            }
+            
+            .page-banner h1 {
+                font-size: 2rem;
+            }
+            
+            .pricing-tabs {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img src="images/logolaserbay.png" alt="LaserBay Logo" class="logo">
+            <button class="mobile-menu-btn">☰</button>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="experience.html">Notre Expérience</a></li>
+                    <li><a href="formules.html" class="active">Formules & Tarifs</a></li>
+                    <li><a href="evenements.html">Événements</a></li>
+                    <li><a href="reservation.html">Réservation</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-banner">
+        <div class="banner-content">
+            <h1>Formules & Tarifs</h1>
+            <ul class="breadcrumb">
+                <li><a href="index.html">Accueil</a></li>
+                <li>></li>
+                <li>Formules & Tarifs</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos Formules</h2>
+                <p>Des offres adaptées à tous les groupes et toutes les occasions</p>
+            </div>
+            
+            <div class="pricing-tabs">
+                <button class="pricing-tab active" data-target="individuals">Individuels</button>
+                <button class="pricing-tab" data-target="groups">Groupes</button>
+                <button class="pricing-tab" data-target="events">Événements</button>
+            </div>
+            
+            <div class="pricing-content active" id="individuals">
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3>Pack Découverte</h3>
+                            <div class="pricing-price">15€ <span>/pers</span></div>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li>1 partie (20 minutes)</li>
+                                <li>Brief (10 minutes) et déséquipement (10 minutes)</li>
+                                <li>Durée totale : 40 minutes sur place</li>
+                                <li>Équipement inclus</li>
+                                <li>Terrain balisé et sécurisé</li>
+                                <li>Accessible dès 7 ans</li>
+                            </ul>
+                            <a href="reservation.html" class="btn pricing-btn">Réserver</a>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-card">
+                        <div class="price-tag">Populaire</div>
+                        <div class="pricing-header">
+                            <h3>Pack Aventurier</h3>
+                            <div class="pricing-price">25€ <span>/pers</span></div>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li>2 parties</li>
+                                <li>Brief, déséquipement et pause inclus</li>
+                                <li>Durée totale : 1 heure sur place</li>
+                                <li>Équipement inclus</li>
+                                <li>Terrain balisé et sécurisé</li>
+                                <li>Accessible dès 7 ans</li>
+                            </ul>
+                            <a href="reservation.html" class="btn pricing-btn">Réserver</a>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3>Pack Expert</h3>
+                            <div class="pricing-price">32€ <span>/pers</span></div>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li>3 parties</li>
+                                <li>Brief, déséquipement et pauses inclus</li>
+                                <li>Durée totale : 1h30 sur place</li>
+                                <li>Équipement inclus</li>
+                                <li>Terrain balisé et sécurisé</li>
+                                <li>Accès aux modes de jeu avancés</li>
+                                <li>Accessible dès 7 ans</li>
+                            </ul>
+                            <a href="reservation.html" class="btn pricing-btn">Réserver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pricing-content" id="groups">
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3>Groupe Mini</h3>
+                            <div class="pricing-price">150€</div>
+                            <p>Pour 10 personnes maximum</p>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li>2 parties (30 minutes)</li>
+                                <li>Équipement inclus</li>
+                                <li>Terrain balisé et sécurisé</li>
+                                <li>Brief et débrief avec animateur</li>
+                                <li>Espace privatisé entre les parties</li>
+                                <li>Accessible dès 7 ans</li>
+                            </ul>
+                            <a href="reservation.html" class="btn pricing-btn">Réserver</a>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-card">
+                        <div class="price-tag">Populaire</div>
+                        <div class="pricing-header">
+                            <h3>Groupe Medium</h3>
+                            <div class="pricing-price">190€</div>
+                            <p>Pour 10 personnes maximum</p>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li>2 parties (30 minutes)</li>
+                                <li>Équipement inclus</li>
+                                <li>Terrain balisé et sécurisé</li>
+                                <li>Brief et débrief avec animateur</li>
+                                <li>Espace privatisé entre les parties</li>
+                                <li>Boissons incluses</li>
+                                <li>Photos souvenirs offertes</li>
+                                <li>Accessible dès 7 ans</li>
+                            </ul>
+                            <a href="reservation.html" class="btn pricing-btn">Réserver</a>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3>Groupe Premium</h3>
+                            <div class="pricing-price">250€</div>
+                            <p>Pour 10 personnes maximum</p>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li>3 parties (45 minutes)</li>
+                                <li>Équipement inclus</li>
+                                <li>Terrain balisé et sécurisé</li>
+                                <li>Brief et débrief avec animateur</li>
+                                <li>Boissons et snacks inclus</li>
+                                <li>Photos souvenirs offertes</li>
+                                <li>Accessible dès 7 ans</li>
+                            </ul>
+                            <a href="reservation.html" class="btn pricing-btn">Réserver</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pricing-note">
+                    <h3>Groupes de plus de 10 personnes</h3>
+                    <p>Pour les groupes de plus de 10 personnes, nous proposons des tarifs dégressifs. Contactez-nous pour obtenir un devis personnalisé.</p>
+                    <ul>
+                        <li>11-20 personnes : tarif spécial avec accompagnateur dédié</li>
+                        <li>Plus de 20 personnes : offres sur mesure pour entreprises et grands groupes</li>
+                    </ul>
+                    <p>Pour plus d'informations ou pour obtenir un devis, contactez-nous au <strong>02 44 84 99 96</strong> ou par email à <strong><a href="mailto:laserbayagon@gmail.com">laserbayagon@gmail.com</a></strong>.</p>
+                </div>
+            </div>
+            
+            <div class="pricing-content" id="events">
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3>Anniversaire Enfant</h3>
+                            <div class="pricing-price">160€</div>
+                            <p>Pour 10 enfants maximum</p>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li>2 parties (30 minutes)</li>
+                                <li>Équipement inclus</li>
+                                <li>Terrain balisé et sécurisé</li>
+                                <li>Brief et débrief avec animateur</li>
+                                <li>Espace privatisé pour le goûter</li>
+                                <li>Boissons incluses pour les enfants</li>
+                                <li>Cadeau pour l'enfant fêté</li>
+                                <li>À partir de 7 ans</li>
+                            </ul>
+                            <a href="evenements.html#anniversaire" class="btn pricing-btn">En savoir plus</a>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3>EVG/EVJF</h3>
+                            <div class="pricing-price">190€</div>
+                            <p>Pour 10 personnes maximum</p>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li>2 parties (30 minutes)</li>
+                                <li>Équipement inclus</li>
+                                <li>Terrain balisé et sécurisé</li>
+                                <li>Brief et débrief avec animateur</li>
+                                <li>Espace privatisé</li>
+                                <li>Boissons incluses</li>
+                                <li>Défi spécial pour le/la futur(e) marié(e)</li>
+                                <li>Photos souvenirs offertes</li>
+                            </ul>
+                            <a href="evenements.html#evg-evjf" class="btn pricing-btn">En savoir plus</a>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3>Team Building</h3>
+                            <div class="pricing-price">À partir de 250€</div>
+                            <p>Tarif pour 10 personnes</p>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li>Sessions adaptées à vos objectifs</li>
+                                <li>Équipement inclus</li>
+                                <li>Terrain balisé et sécurisé</li>
+                                <li>Animateur professionnel</li>
+                                <li>Exercices de cohésion d'équipe</li>
+                                <li>Espace de réunion disponible</li>
+                                <li>Collation et boissons incluses</li>
+                                <li>Personnalisation possible</li>
+                            </ul>
+                            <a href="evenements.html#team-building" class="btn pricing-btn">En savoir plus</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Questions Fréquentes</h2>
+                <p>Tout ce que vous devez savoir avant de réserver</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">À partir de quel âge peut-on jouer au LaserTag ?</div>
+                    <div class="faq-answer">
+                        <p>Notre activité est accessible dès l'âge de 7 ans. Les enfants de 7 à 10 ans doivent être accompagnés d'au moins un adulte. Pour les groupes d'enfants (anniversaires), nous recommandons un adulte pour 5 enfants.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Combien de temps dure une partie ?</div>
+                    <div class="faq-answer">
+                        <p>Une partie standard dure environ 20 minutes de jeu effectif. Nous prévoyons également un temps de briefing avant la partie (10 minutes) et un temps de déséquipement après (10 minutes). Au total, comptez environ 40 minutes sur place pour une partie.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Faut-il réserver à l'avance ?</div>
+                    <div class="faq-answer">
+                        <p>Oui, la réservation est fortement recommandée, surtout pendant les week-ends et les vacances scolaires. Vous pouvez réserver en ligne via notre plateforme de réservation ou par téléphone au 02 44 84 99 96.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Peut-on jouer en cas de pluie ?</div>
+                    <div class="faq-answer">
+                        <p>Oui, l'activité peut se dérouler sous une pluie légère, notre équipement étant résistant à l'eau. En cas de fortes intempéries ou d'orage, nous reportons les sessions pour des raisons de sécurité, sans frais supplémentaires.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Quelle tenue vestimentaire est recommandée ?</div>
+                    <div class="faq-answer">
+                        <p>Nous recommandons des vêtements confortables et adaptés aux conditions météo. Des chaussures fermées sont obligatoires. Des vêtements sombres peuvent être un avantage tactique pour mieux se camoufler !</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Proposez-vous des formules pour les écoles ?</div>
+                    <div class="faq-answer">
+                        <p>Oui, nous proposons des formules spéciales pour les groupes scolaires et centres de loisirs. Ces formules comprennent des tarifs adaptés et des sessions pédagogiques axées sur la coopération et la stratégie. Contactez-nous pour plus d'informations.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Comment se déroule le paiement ?</div>
+                    <div class="faq-answer">
+                        <p>Vous pouvez payer en ligne lors de votre réservation (PayPal, carte bancaire) ou sur place le jour de votre venue (espèces, carte bancaire). Pour les groupes et événements, un acompte de 30% est demandé à la réservation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section cta">
+        <div class="container cta-content">
+            <h2>Prêt à vivre l'aventure LaserBay ?</h2>
+            <p>Réservez dès maintenant votre session de LaserTag en plein air à Agon-Coutainville et profitez d'une expérience inoubliable en bord de mer.</p>
+            <a href="reservation.html" class="btn">Réserver maintenant</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>LaserBay</h3>
+                <p>Le LaserTag en plein air à Agon-Coutainville. Une aventure laser en bord de mer accessible dès 7 ans, sans projectiles, sans douleur et 100% adrénaline !</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">f</a>
+                    <a href="#" class="social-icon">i</a>
+                    <a href="#" class="social-icon">t</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Navigation</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="experience.html">Notre Expérience</a></li>
+                    <li><a href="formules.html">Formules & Tarifs</a></li>
+                    <li><a href="evenements.html">Événements</a></li>
+                    <li><a href="reservation.html">Réservation</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-contact">
+                <h3>Contact</h3>
+                <p><span class="footer-contact-icon">📍</span> 56 Charrière du Commerce, 50230 Agon-Coutainville</p>
+                <p><span class="footer-contact-icon">📞</span> 02 44 84 99 96</p>
+                <p><span class="footer-contact-icon">📧</span> <a href="mailto:laserbayagon@gmail.com" style="color: #ccc; text-decoration: none;">laserbayagon@gmail.com</a></p>
+                <p><span class="footer-contact-icon">🕒</span> Mercredi - Vendredi: 14h - 19h<br>Samedi - Dimanche: 10h - 19h<br>Tous les jours pendant les vacances scolaires</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 LaserBay. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mainNav = document.getElementById('main-nav');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+            this.textContent = mainNav.classList.contains('active') ? '✕' : '☰';
+        });
+        
+        // Pricing tabs - Script corrigé
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM chargé, initialisation des onglets');
+            
+            const pricingTabs = document.querySelectorAll('.pricing-tab');
+            const pricingContents = document.querySelectorAll('.pricing-content');
+            
+            console.log('Nombre d\'onglets trouvés:', pricingTabs.length);
+            console.log('Nombre de contenus trouvés:', pricingContents.length);
+            
+            // S'assurer que le premier onglet est actif par défaut
+            if (pricingTabs.length > 0 && pricingContents.length > 0) {
+                pricingTabs[0].classList.add('active');
+                pricingContents[0].classList.add('active');
+                
+                // Ajouter des écouteurs d'événements à chaque onglet
+                pricingTabs.forEach(tab => {
+                    tab.addEventListener('click', function() {
+                        console.log('Onglet cliqué:', this.textContent);
+                        
+                        // Récupérer l'ID cible
+                        const targetId = this.getAttribute('data-target');
+                        console.log('ID cible:', targetId);
+                        
+                        // Désactiver tous les onglets
+                        pricingTabs.forEach(t => t.classList.remove('active'));
+                        
+                        // Activer l'onglet cliqué
+                        this.classList.add('active');
+                        
+                        // Masquer tous les contenus
+                        pricingContents.forEach(content => content.classList.remove('active'));
+                        
+                        // Afficher le contenu cible
+                        const targetContent = document.getElementById(targetId);
+                        if (targetContent) {
+                            targetContent.classList.add('active');
+                        } else {
+                            console.error('Contenu cible non trouvé:', targetId);
+                        }
+                    });
+                });
+            }
+        });
+        
+        // FAQ Accordion
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', function() {
+                    // Fermer les autres items
+                    faqItems.forEach(i => {
+                        if (i !== item) {
+                            i.classList.remove('active');
+                        }
+                    });
+                    
+                    // Basculer l'item actuel
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
