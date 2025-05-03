@@ -608,7 +608,7 @@
                     <li><a href="experience.html">Notre Expérience</a></li>
                     <li><a href="formules.html">Formules & Tarifs</a></li>
                     <li><a href="evenements.html" class="active">Événements</a></li>
-                    <li><a href="https://www.centreequestre-reservation.com/laserbay" target="_blank">Réservation</a></li>
+                    <li><a href="reservation.html">Réservation</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
@@ -620,7 +620,7 @@
             <h1>Événements Spéciaux<br>LaserBay</h1>
             <p>Des moments inoubliables en bord de mer. Organisez votre événement sur mesure et vivez une expérience unique de LaserTag en plein air à Agon-Coutainville.</p>
             <div class="hero-buttons">
-                <a href="https://www.centreequestre-reservation.com/laserbay" target="_blank" class="btn">Réserver maintenant</a>
+                <a href="reservation.html" class="btn">Réserver maintenant</a>
                 <a href="#evenements" class="btn btn-outline">Découvrir nos offres</a>
             </div>
         </div>
@@ -647,7 +647,7 @@
                 <div class="event-price">160€ pour 10 enfants maximum</div>
                 <p class="price-note">5€ par enfant supplémentaire (maximum 15 enfants au total)</p>
                 <p>Notre formule anniversaire est accessible dès 7 ans. Un adulte accompagnateur gratuit est obligatoire.</p>
-                <a href="https://www.centreequestre-reservation.com/laserbay" target="_blank" class="btn">Réserver</a>
+                <a href="reservation.html" class="btn">Réserver</a>
             </div>
             
             <div class="event-detail" id="evg-evjf">
@@ -664,7 +664,7 @@
                 <div class="event-price">190€ pour 10 personnes maximum</div>
                 <p class="price-note">15€ par personne supplémentaire</p>
                 <p>Possibilité d'ajouter des options : goodies personnalisés, cocktails, etc. Contactez-nous pour une offre sur mesure !</p>
-                <a href="https://www.centreequestre-reservation.com/laserbay" target="_blank" class="btn">Réserver</a>
+                <a href="reservation.html" class="btn">Réserver</a>
             </div>
             
             <div class="event-detail" id="team-building">
@@ -801,7 +801,7 @@
                     <li><a href="experience.html">Notre Expérience</a></li>
                     <li><a href="formules.html">Formules & Tarifs</a></li>
                     <li><a href="evenements.html">Événements</a></li>
-                    <li><a href="https://www.centreequestreagon.com/Reservation-lasertag.html" target="_blank">Réservation</a></li>
+                    <li><a href="reservation.html">Réservation</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
@@ -810,4 +810,23 @@
                 <p><span class="footer-contact-icon">📍</span> 56 Charrière du Commerce, 50230 Agon-Coutainville</p>
                 <p><span class="footer-contact-icon">📞</span> 02 44 84 99 96</p>
                 <p><span class="footer-contact-icon">📧</span> <a href="mailto:laserbayagon@gmail.com" style="color: #ccc; text-decoration: none;">laserbayagon@gmail.com</a></p>
-                <p><span class="footer-contact-icon">🕒</span> Hors saison: Mercredi - Vendredi: 14h - 19h<br>
+                <p><span class="footer-contact-icon">🕒</span> Hors saison: Mercredi - Vendredi: 14h - 19h<br>Samedi - Dimanche: 10h - 19h<br>Tous les jours pendant les vacances scolaires</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 LaserBay. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mainNav = document.getElementById('main-nav');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+            this.textContent = mainNav.classList.contains('active') ? '✕' : '☰';
+        });
+    </script>
+</body>
+</html>

@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="5;url=https://www.centreequestreagon.com/Reservation-lasertag.html">
-    <meta name="description" content="Réservez en ligne votre session de LaserTag en plein air à LaserBay Agon-Coutainville. Système de réservation rapide et paiement sécurisé.">
-    <title>Réservation - LaserBay</title>
+    <meta name="description" content="LaserBay - Événements spéciaux de LaserTag en plein air à Agon-Coutainville. Anniversaires, EVG/EVJF, séminaires d'entreprise et plus encore.">
+    <title>Événements - LaserBay - LaserTag en plein air à Agon-Coutainville</title>
     <style>
         :root {
             --primary-color: #2b97a8;
@@ -28,18 +27,14 @@
             background-color: var(--light-color);
             color: var(--text-color);
             line-height: 1.6;
-            padding-top: 80px;
         }
         
         header {
             background-color: var(--bg-light);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
             z-index: 1000;
-            height: 80px;
         }
         
         .header-container {
@@ -48,42 +43,24 @@
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
-            height: 100%;
+            padding: 1rem 2rem;
         }
         
         .logo {
             width: 180px;
             height: auto;
-            display: block;
-        }
-        
-        nav {
-            height: 100%;
-            display: flex;
-            align-items: center;
         }
         
         nav ul {
             display: flex;
             list-style: none;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            align-items: center;
         }
         
         nav ul li {
             margin-left: 2rem;
-            height: 100%;
-            display: flex;
-            align-items: center;
         }
         
         nav ul li a {
-            display: flex;
-            align-items: center;
-            height: 100%;
             color: var(--dark-color);
             text-decoration: none;
             font-weight: 600;
@@ -116,12 +93,15 @@
             box-shadow: 0 5px 15px rgba(224, 82, 58, 0.3);
         }
         
-        .btn-secondary {
-            background-color: var(--secondary-color);
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
         }
         
-        .btn-secondary:hover {
-            background-color: #125070;
+        .btn-outline:hover {
+            background-color: var(--accent-color);
+            color: white;
         }
         
         .mobile-menu-btn {
@@ -133,6 +113,53 @@
             cursor: pointer;
         }
         
+        .hero {
+            background-image: url('/api/placeholder/1920/800');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            color: white;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(14, 59, 85, 0.8), rgba(14, 59, 85, 0.4));
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
         .section {
             padding: 5rem 2rem;
         }
@@ -140,53 +167,276 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 60vh;
         }
         
-        .redirect-box {
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
             background-color: var(--bg-light);
             border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-img {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .feature-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .feature-card:hover .feature-img img {
+            transform: scale(1.1);
+        }
+        
+        .feature-content {
+            padding: 1.5rem;
+        }
+        
+        .feature-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .feature-content p {
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .step {
+            text-align: center;
             padding: 2rem;
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .step:hover {
+            transform: translateY(-10px);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+        
+        .step h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .step p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .how-it-works {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .testimonials {
+            background-color: var(--light-color);
+        }
+        
+        .testimonial-container {
             max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: var(--bg-light);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial {
             text-align: center;
         }
         
-        .redirect-box h2 {
-            font-size: 2rem;
+        .testimonial-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding: 0 2rem;
+            font-style: italic;
+        }
+        
+        .testimonial-text::before,
+        .testimonial-text::after {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            color: var(--primary-color);
+            opacity: 0.2;
+        }
+        
+        .testimonial-text::before {
+            top: -20px;
+            left: 0;
+        }
+        
+        .testimonial-text::after {
+            bottom: -60px;
+            right: 0;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
             color: var(--dark-color);
+            margin-top: 1rem;
+        }
+        
+        .testimonial-role {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .cta {
+            background-image: url('/api/placeholder/1920/800');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            color: white;
+            text-align: center;
+        }
+        
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(14, 59, 85, 0.7);
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
             margin-bottom: 1.5rem;
         }
         
-        .redirect-box p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
+        .cta p {
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        .loading-spinner {
+        .event-detail {
+            background-color: var(--bg-light);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .event-detail h3 {
+            color: var(--dark-color);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .event-detail p {
+            margin-bottom: 1rem;
+        }
+        
+        .event-detail ul {
+            margin: 1rem 0 1.5rem 1.5rem;
+        }
+        
+        .event-detail li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .event-price {
+            background-color: var(--primary-color);
+            color: white;
             display: inline-block;
-            width: 3rem;
-            height: 3rem;
-            border: 0.3rem solid rgba(43, 151, 168, 0.2);
-            border-radius: 50%;
-            border-top-color: var(--primary-color);
-            animation: spin 1s ease-in-out infinite;
-            margin: 1.5rem 0;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 1rem 0;
         }
         
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .price-note {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
         }
         
         footer {
             background-color: var(--dark-color);
             color: white;
             padding: 4rem 0 2rem;
-            margin-top: auto;
         }
         
         .footer-container {
@@ -276,9 +526,19 @@
             font-size: 0.9rem;
         }
         
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
         @media (max-width: 768px) {
             .header-container {
-                padding: 0 1rem;
+                padding: 1rem;
             }
             
             .mobile-menu-btn {
@@ -287,10 +547,10 @@
             
             nav {
                 position: fixed;
-                top: 80px;
+                top: 70px;
                 left: -100%;
                 width: 100%;
-                height: calc(100vh - 80px);
+                height: calc(100vh - 70px);
                 background-color: var(--bg-light);
                 transition: left 0.3s ease;
                 z-index: 1000;
@@ -303,24 +563,36 @@
             nav ul {
                 flex-direction: column;
                 padding: 2rem;
-                height: auto;
+                height: 100%;
                 overflow-y: auto;
-                align-items: flex-start;
             }
             
             nav ul li {
                 margin: 1rem 0;
-                height: auto;
-                width: 100%;
             }
             
-            nav ul li a {
-                height: auto;
-                width: 100%;
+            .hero {
+                height: 80vh;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
             }
             
             .section {
                 padding: 3rem 1rem;
+            }
+            
+            .event-detail {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -335,22 +607,178 @@
                     <li><a href="index.html">Accueil</a></li>
                     <li><a href="experience.html">Notre Expérience</a></li>
                     <li><a href="formules.html">Formules & Tarifs</a></li>
-                    <li><a href="evenements.html">Événements</a></li>
-                    <li><a href="https://www.centreequestreagon.com/Reservation-lasertag.html" target="_blank" class="active">Réservation</a></li>
+                    <li><a href="evenements.html" class="active">Événements</a></li>
+                    <li><a href="reservation.html">Réservation</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Événements Spéciaux<br>LaserBay</h1>
+            <p>Des moments inoubliables en bord de mer. Organisez votre événement sur mesure et vivez une expérience unique de LaserTag en plein air à Agon-Coutainville.</p>
+            <div class="hero-buttons">
+                <a href="reservation.html" class="btn">Réserver maintenant</a>
+                <a href="#evenements" class="btn btn-outline">Découvrir nos offres</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="evenements" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos Événements Spéciaux</h2>
+                <p>LaserBay s'adapte à tous vos événements pour créer des moments mémorables. Découvrez nos offres spéciales pour chaque occasion.</p>
+            </div>
+            
+            <div class="event-detail" id="anniversaire">
+                <h3>Anniversaires</h3>
+                <p>Faites vivre à vos enfants un anniversaire dont ils se souviendront longtemps ! Notre formule anniversaire comprend :</p>
+                <ul>
+                    <li>2 parties de LaserTag (30 minutes de jeu)</li>
+                    <li>Équipement complet pour tous les participants</li>
+                    <li>Espace privatisé pour le goûter pendant 1h</li>
+                    <li>Boissons offertes pour tous les enfants</li>
+                    <li>Cadeau spécial pour l'enfant fêté</li>
+                    <li>Photos souvenirs offertes</li>
+                </ul>
+                <div class="event-price">160€ pour 10 enfants maximum</div>
+                <p class="price-note">5€ par enfant supplémentaire (maximum 15 enfants au total)</p>
+                <p>Notre formule anniversaire est accessible dès 7 ans. Un adulte accompagnateur gratuit est obligatoire.</p>
+                <a href="reservation.html" class="btn">Réserver</a>
+            </div>
+            
+            <div class="event-detail" id="evg-evjf">
+                <h3>EVG / EVJF</h3>
+                <p>Offrez au futur(e) marié(e) une expérience originale et fun pour son enterrement de vie de célibataire !</p>
+                <ul>
+                    <li>2 sessions de LaserTag (30 minutes de jeu)</li>
+                    <li>Équipement complet pour tous les participants</li>
+                    <li>Espace privatisé entre les parties</li>
+                    <li>Défi spécial pour le/la futur(e) marié(e)</li>
+                    <li>1 boisson offerte par personne</li>
+                    <li>Photos souvenirs offertes</li>
+                </ul>
+                <div class="event-price">190€ pour 10 personnes maximum</div>
+                <p class="price-note">15€ par personne supplémentaire</p>
+                <p>Possibilité d'ajouter des options : goodies personnalisés, cocktails, etc. Contactez-nous pour une offre sur mesure !</p>
+                <a href="reservation.html" class="btn">Réserver</a>
+            </div>
+            
+            <div class="event-detail" id="team-building">
+                <h3>Séminaires d'entreprise & Team Building</h3>
+                <p>Renforcez la cohésion de votre équipe avec nos activités de team building. Le LaserTag favorise la communication, la stratégie et l'esprit d'équipe.</p>
+                <ul>
+                    <li>Sessions adaptées à vos objectifs et au temps disponible</li>
+                    <li>Scénarios de jeu spécifiques pour renforcer la cohésion</li>
+                    <li>Espace de réunion disponible</li>
+                    <li>Options de restauration sur demande</li>
+                    <li>Analyse et débriefing des performances d'équipe</li>
+                    <li>Possibilité de combiner avec d'autres activités</li>
+                </ul>
+                <div class="event-price">À partir de 250€ pour 10 personnes</div>
+                <p class="price-note">Devis personnalisé selon vos besoins spécifiques</p>
+                <p>Notre équipe peut également se déplacer sur votre lieu de séminaire avec notre équipement pour une expérience unique.</p>
+                <a href="contact.html" class="btn">Demander un devis</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>Comment organiser votre événement</h2>
+                <p>Organiser un événement chez LaserBay est simple et rapide. Suivez ces étapes pour créer un moment inoubliable.</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Contactez-nous</h3>
+                    <p>Appelez-nous au 02 44 84 99 96 ou envoyez-nous un email à laserbayagon@gmail.com en précisant la nature de votre événement, la date souhaitée et le nombre de participants.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Personnalisation</h3>
+                    <p>Nous élaborons ensemble une offre sur mesure adaptée à vos besoins spécifiques et à votre budget.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Confirmation</h3>
+                    <p>Validez votre réservation avec un acompte de 30% et recevez une confirmation détaillée de votre événement.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Jour J</h3>
+                    <p>Profitez de votre événement ! Notre équipe s'occupe de tout pour que vous passiez un moment inoubliable.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="section">
         <div class="container">
-            <div class="redirect-box">
-                <h2>Redirection vers notre système de réservation</h2>
-                <p>Vous allez être redirigé vers notre système de réservation sur le site du Centre Équestre d'Agon dans quelques secondes...</p>
-                <div class="loading-spinner"></div>
-                <p>Si la redirection ne fonctionne pas automatiquement, veuillez cliquer sur le bouton ci-dessous :</p>
-                <a href="https://www.centreequestreagon.com/Reservation-lasertag.html" target="_blank" class="btn">Accéder au système de réservation</a>
+            <div class="section-title">
+                <h2>Options personnalisables</h2>
+                <p>Rendez votre événement unique avec nos nombreuses options de personnalisation.</p>
+            </div>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-img">
+                        <img src="/api/placeholder/400/250" alt="Option restauration">
+                    </div>
+                    <div class="feature-content">
+                        <h3>Restauration</h3>
+                        <p>Buffet, cocktail, barbecue ou simple goûter, nous pouvons organiser la restauration adaptée à votre événement en collaboration avec nos partenaires locaux.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-img">
+                        <img src="/api/placeholder/400/250" alt="Modes de jeu spéciaux">
+                    </div>
+                    <div class="feature-content">
+                        <h3>Modes de jeu spéciaux</h3>
+                        <p>Scénarios personnalisés, missions spéciales ou tournois, adaptez le jeu à votre événement pour une expérience encore plus immersive.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-img">
+                        <img src="/api/placeholder/400/250" alt="Espace privatisé">
+                    </div>
+                    <div class="feature-content">
+                        <h3>Espace privatisé</h3>
+                        <p>Profitez d'un espace entièrement dédié à votre groupe pour plus de convivialité avant, pendant et après les sessions de jeu.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Ils nous ont fait confiance</h2>
+                <p>Découvrez les témoignages de ceux qui ont organisé leur événement chez LaserBay.</p>
+            </div>
+            <div class="testimonial-container">
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        L'anniversaire de mon fils de 12 ans a été un véritable succès grâce à LaserBay ! Les enfants ont adoré l'expérience et l'équipe a été aux petits soins. Le cadre en bord de mer est magnifique et l'équipement de très bonne qualité. Je recommande vivement !
+                    </div>
+                    <div class="testimonial-author">Sophie D.</div>
+                    <div class="testimonial-role">Anniversaire enfant</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Prêt à organiser votre événement ?</h2>
+                <p>Contactez-nous dès maintenant pour discuter de votre projet et obtenir un devis personnalisé. Notre équipe est à votre disposition pour créer un événement sur mesure qui répondra à toutes vos attentes.</p>
+                <a href="contact.html" class="btn">Nous contacter</a>
             </div>
         </div>
     </section>
@@ -373,7 +801,7 @@
                     <li><a href="experience.html">Notre Expérience</a></li>
                     <li><a href="formules.html">Formules & Tarifs</a></li>
                     <li><a href="evenements.html">Événements</a></li>
-                    <li><a href="https://www.centreequestreagon.com/Reservation-lasertag.html" target="_blank">Réservation</a></li>
+                    <li><a href="reservation.html">Réservation</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
@@ -382,7 +810,7 @@
                 <p><span class="footer-contact-icon">📍</span> 56 Charrière du Commerce, 50230 Agon-Coutainville</p>
                 <p><span class="footer-contact-icon">📞</span> 02 44 84 99 96</p>
                 <p><span class="footer-contact-icon">📧</span> <a href="mailto:laserbayagon@gmail.com" style="color: #ccc; text-decoration: none;">laserbayagon@gmail.com</a></p>
-                <p><span class="footer-contact-icon">🕒</span> Hors saison: Mercredi - Vendredi: 14h - 19h<br>Samedi - Dimanche: 10h - 19h<br>En saison (15/06-15/09): Tous les jours de 10h à 18h</p>
+                <p><span class="footer-contact-icon">🕒</span> Hors saison: Mercredi - Vendredi: 14h - 19h<br>Samedi - Dimanche: 10h - 19h<br>Tous les jours pendant les vacances scolaires</p>
             </div>
         </div>
         <div class="copyright">
@@ -399,15 +827,6 @@
             mainNav.classList.toggle('active');
             this.textContent = mainNav.classList.contains('active') ? '✕' : '☰';
         });
-        
-        // Compteur pour la redirection
-        let secondsLeft = 5;
-        const redirectTimer = setInterval(function() {
-            secondsLeft--;
-            if (secondsLeft <= 0) {
-                clearInterval(redirectTimer);
-            }
-        }, 1000);
     </script>
 </body>
 </html>
