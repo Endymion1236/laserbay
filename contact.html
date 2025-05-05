@@ -30,21 +30,22 @@
         }
         
         header {
-            background-color: var(--bg-light);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-        }
+        background-color: var(--bg-light);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        top: 0;
+    }
         
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-        }
+       .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0.7rem 2rem; /* Réduction du padding vertical */
+    }
         
         .logo {
             width: 180px;
@@ -103,16 +104,16 @@
         }
         
         .page-banner {
-            background-image: url('/api/placeholder/1920/600');
-            background-size: cover;
-            background-position: center;
-            height: 50vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            color: white;
-            margin-top: 70px;
-        }
+        background-image: url('/api/placeholder/1920/600');
+        background-size: cover;
+        background-position: center;
+        height: 50vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        color: white;
+        margin-top: 60px; /* Réduction de la marge supérieure */
+    }
         
         .page-banner::before {
             content: '';
@@ -664,29 +665,39 @@
                         </div>
                     </div>
                     
-                    <div class="opening-hours">
-                        <h3>Horaires d'ouverture</h3>
-                        <div class="hours-grid">
-                            <div class="hour-item">
-                                <div class="day">Lundi</div>
-                                <div class="time closed">Fermé</div>
-                            </div>
-                            <div class="hour-item">
-                                <div class="day">Mardi</div>
-                                <div class="time closed">Fermé</div>
-                            </div>
-                            <div class="hour-item">
-                                <div class="day">Mercredi</div>
-                                <div class="time">14h - 19h</div>
-                            </div>
-                            <div class="hour-item">
-                                <div class="day">Jeudi</div>
-                                <div class="time">14h - 19h</div>
-                            </div>
-                            <div class="hour-item">
-                                <div class="day">Vendredi</div>
-                                <div class="time">14h - 19h</div>
-                            </div>
-                            <div class="hour-item">
-                                <div class="day">Samedi</div>
-                                <div class="time">10h - 19h</div>
+                <div class="opening-hours">
+    <h3>Horaires d'ouverture</h3>
+    
+    <h4>Été (juillet-août)</h4>
+    <div class="hours-grid">
+        <div class="hour-item">
+            <div class="day">Du lundi au dimanche</div>
+            <div class="time">10h - 12h et 14h - 18h30</div>
+        </div>
+        <div class="hour-item">
+            <div class="day">Sessions en soirée</div>
+            <div class="time">Possibles en cas de canicule</div>
+        </div>
+    </div>
+    
+    <h4>Printemps et Automne (avril à juin / septembre à fin octobre)</h4>
+    <div class="hours-grid">
+        <div class="hour-item">
+            <div class="day">Mercredi et Samedi</div>
+            <div class="time">Ouvert</div>
+        </div>
+        <div class="hour-item">
+            <div class="day">Autres jours</div>
+            <div class="time closed">Fermé</div>
+        </div>
+        <div class="hour-item" style="grid-column: 1 / -1; background-color: rgba(224, 82, 58, 0.05);">
+            <div class="day">Pour les groupes</div>
+            <div class="time">Possibilité d'ouverture en semaine sur réservation</div>
+        </div>
+    </div>
+    
+    <div class="important-notice" style="margin-top: 20px; padding: 15px; background-color: rgba(43, 151, 168, 0.1); border-radius: 5px; border-left: 4px solid var(--primary-color);">
+        <p><strong>Important :</strong> Veuillez arriver 20 minutes avant le début de votre session pour le briefing et l'équipement.</p>
+        <p><strong>Réservation :</strong> Appelez-nous au 02 44 84 99 96 pour connaître les disponibilités.</p>
+    </div>
+</div>
