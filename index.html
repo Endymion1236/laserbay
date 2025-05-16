@@ -29,12 +29,41 @@
             line-height: 1.6;
         }
         
+        /* Bandeau inauguration */
+        .inauguration-banner {
+            background-color: var(--accent-color);
+            color: white;
+            text-align: center;
+            padding: 1rem 2rem;
+            position: relative;
+            z-index: 1001;
+            animation: pulse 2s infinite;
+        }
+        
+        .inauguration-banner h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .inauguration-banner p {
+            font-size: 1rem;
+            margin: 0;
+        }
+        
+        @keyframes pulse {
+            0% { background-color: var(--accent-color); }
+            50% { background-color: #f06348; }
+            100% { background-color: var(--accent-color); }
+        }
+        
         header {
             background-color: var(--bg-light);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: fixed;
             width: 100%;
             z-index: 1000;
+            top: 0;
         }
         
         .header-container {
@@ -122,6 +151,7 @@
             align-items: center;
             position: relative;
             color: white;
+            margin-top: 70px; /* Ajout de marge pour compenser le header fixe */
         }
         
         .hero::before {
@@ -541,10 +571,24 @@
             .features, .steps {
                 grid-template-columns: 1fr;
             }
+            
+            .inauguration-banner h3 {
+                font-size: 1rem;
+            }
+            
+            .inauguration-banner p {
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Bandeau inauguration -->
+    <div class="inauguration-banner">
+        <h3>🎉 INAUGURATION LE SAMEDI 14 JUIN 2025 ! 🎉</h3>
+        <p>Premières parties réservables à partir du mercredi 18 juin 2025</p>
+    </div>
+
     <header>
         <div class="header-container">
             <img src="images/logolaserbay.png" alt="LaserBay Logo" class="logo">
@@ -639,7 +683,7 @@
                 <div class="step">
                     <div class="step-number">4</div>
                     <h3>Profitez du jeu</h3>
-                    <p>Arrivez 15 minutes avant votre session et laissez-vous guider par notre équipe.</p>
+                    <p>Arrivez 20 minutes avant votre session et laissez-vous guider par notre équipe.</p>
                 </div>
             </div>
         </div>
