@@ -2,7 +2,8 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=dev
+    ice-width, initial-scale=1.0">
     <meta name="description" content="LaserBay - LaserTag en plein air à Agon-Coutainville. Une expérience unique de jeu laser en bord de mer pour tous les âges.">
     <title>LaserBay - LaserTag en plein air à Agon-Coutainville</title>
     <style>
@@ -581,6 +582,14 @@
             }
         }
     </style>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3ML9EM9PNX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-3ML9EM9PNX');
+</script>
 </head>
 <body>
     <!-- Bandeau inauguration -->
@@ -749,6 +758,39 @@
             <p>&copy; 2025 LaserBay. Tous droits réservés.</p>
         </div>
     </footer>
+
+    <div id="cookie-consent" style="position: fixed; bottom: 0; width: 100%; background-color: #0e3b55; color: white; padding: 1rem; text-align: center; z-index: 9999;">
+        <p>Ce site utilise des cookies pour améliorer votre expérience. En continuant à naviguer, vous acceptez notre utilisation des cookies.</p>
+        <button onclick="acceptCookies()" style="background-color: #e0523a; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">Accepter</button>
+        <button onclick="rejectCookies()" style="background-color: #ffffff; color: #0e3b55; border: none; padding: 0.5rem 1rem; border-radius: 5px; margin-left: 1rem; cursor: pointer;">Refuser</button>
+    </div>
+
+    <script>
+        function acceptCookies() {
+            document.getElementById('cookie-consent').style.display = 'none';
+            localStorage.setItem('cookie-consent', 'accepted');
+            // Activer Google Analytics
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-3ML9EM9PNX');
+        }
+        
+        function rejectCookies() {
+            document.getElementById('cookie-consent').style.display = 'none';
+            localStorage.setItem('cookie-consent', 'rejected');
+            // Désactiver Google Analytics
+            window['ga-disable-G-3ML9EM9PNX'] = true;
+        }
+        
+        // Vérifier si l'utilisateur a déjà fait son choix
+        if (localStorage.getItem('cookie-consent')) {
+            document.getElementById('cookie-consent').style.display = 'none';
+            if (localStorage.getItem('cookie-consent') === 'rejected') {
+                window['ga-disable-G-3ML9EM9PNX'] = true;
+            }
+        }
+    </script>
 
     <script>
         // Mobile menu toggle
