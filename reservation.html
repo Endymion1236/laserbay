@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="5;url=https://www.centreequestreagon.com/Reservation-lasertag.html">
     <meta name="description" content="Réservez en ligne votre session de LaserTag en plein air à LaserBay Agon-Coutainville. Système de réservation rapide et paiement sécurisé.">
     <title>Réservation - LaserBay</title>
     <style>
@@ -16,323 +15,69 @@
             --text-color: #333333;
             --bg-light: #ffffff;
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--light-color); color: var(--text-color); line-height: 1.6; }
+        header { background-color: var(--bg-light); box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: fixed; width: 100%; z-index: 1000; }
+        .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; }
+        .logo { width: 180px; height: auto; }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 2rem; }
+        nav ul li a { color: var(--dark-color); text-decoration: none; font-weight: 600; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; transition: color 0.3s; }
+        nav ul li a:hover, nav ul li a.active { color: var(--accent-color); }
+        .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; color: var(--dark-color); cursor: pointer; }
+        .page-banner { background-image: url('/api/placeholder/1920/600'); background-size: cover; background-position: center; height: 50vh; display: flex; align-items: center; position: relative; color: white; margin-top: 70px; }
+        .page-banner::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(14,59,85,0.6); }
+        .banner-content { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; text-align: center; width: 100%; }
+        .page-banner h1 { font-size: 3rem; margin-bottom: 1rem; font-weight: 800; }
+        .breadcrumb { display: flex; justify-content: center; list-style: none; }
+        .breadcrumb li { margin: 0 0.5rem; }
+        .breadcrumb a { color: white; text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .section { padding: 3rem 2rem; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .section-title { margin-bottom: 2rem; text-align: center; }
+        .section-title h2 { font-size: 2.5rem; color: var(--dark-color); margin-bottom: 1rem; position: relative; display: inline-block; }
+        .section-title h2::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background-color: var(--accent-color); }
+        .section-title p { color: #666; max-width: 800px; margin: 0 auto; }
+        .reservation-iframe-container { background-color: var(--bg-light); border-radius: 10px; box-shadow: 0 5px 30px rgba(0,0,0,0.1); overflow: hidden; margin: 2rem auto; max-width: 1200px; }
+        .iframe-header { background-color: var(--primary-color); color: white; padding: 1.5rem; text-align: center; }
+        .iframe-header h3 { margin: 0; font-size: 1.5rem; }
+        .reservation-iframe { width: 100%; height: 80vh; min-height: 600px; border: none; display: block; }
+        .loading-message { text-align: center; padding: 3rem; color: #666; font-style: italic; }
+        .info-box { background-color: rgba(43,151,168,0.1); border-left: 4px solid var(--primary-color); padding: 1.5rem; margin: 2rem 0; border-radius: 0 5px 5px 0; }
+        .info-box h3 { margin-bottom: 0.5rem; color: var(--dark-color); }
+        footer { background-color: var(--dark-color); color: white; padding: 4rem 0 2rem; }
+        .footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .footer-col h3 { margin-bottom: 1.5rem; position: relative; padding-bottom: 0.5rem; display: inline-block; }
+        .footer-col h3::after { content: ''; position: absolute; left: 0; bottom: 0; width: 50px; height: 2px; background-color: var(--accent-color); }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.8rem; }
+        .footer-links a { color: #ccc; text-decoration: none; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--accent-color); }
+        .footer-contact p { margin-bottom: 0.8rem; display: flex; align-items: center; }
+        .footer-contact-icon { margin-right: 10px; color: var(--accent-color); }
+        .social-icons { display: flex; gap: 1rem; margin-top: 1.5rem; }
+        .social-icon { display: inline-block; width: 40px; height: 40px; background-color: rgba(255,255,255,0.1); border-radius: 50%; text-align: center; line-height: 40px; color: white; transition: all 0.3s ease; }
+        .social-icon:hover { background-color: var(--accent-color); transform: translateY(-3px); }
+        .copyright { text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: #999; font-size: 0.9rem; }
+        @media (max-width: 992px) {
+            .section-title h2 { font-size: 2rem; }
+            .page-banner h1 { font-size: 2.5rem; }
+            .reservation-iframe { height: 70vh; min-height: 500px; }
         }
-        
-        body {
-            background-color: var(--light-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            padding-top: 80px;
-        }
-        
-        header {
-            background-color: var(--bg-light);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            height: 80px;
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            height: 100%;
-        }
-        
-        .logo {
-            width: 180px;
-            height: auto;
-            display: block;
-        }
-        
-        nav {
-            height: 100%;
-            display: flex;
-            align-items: center;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            align-items: center;
-        }
-        
-        nav ul li {
-            margin-left: 2rem;
-            height: 100%;
-            display: flex;
-            align-items: center;
-        }
-        
-        nav ul li a {
-            display: flex;
-            align-items: center;
-            height: 100%;
-            color: var(--dark-color);
-            text-decoration: none;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            transition: color 0.3s;
-        }
-        
-        nav ul li a:hover, nav ul li a.active {
-            color: var(--accent-color);
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            background-color: var(--accent-color);
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            background-color: #f06348;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(224, 82, 58, 0.3);
-        }
-        
-        .btn-secondary {
-            background-color: var(--secondary-color);
-        }
-        
-        .btn-secondary:hover {
-            background-color: #125070;
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--dark-color);
-            cursor: pointer;
-        }
-        
-        .section {
-            padding: 5rem 2rem;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 60vh;
-        }
-        
-        .redirect-box {
-            background-color: var(--bg-light);
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
-            text-align: center;
-        }
-        
-        .redirect-box h2 {
-            font-size: 2rem;
-            color: var(--dark-color);
-            margin-bottom: 1.5rem;
-        }
-        
-        .redirect-box p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-        
-        .loading-spinner {
-            display: inline-block;
-            width: 3rem;
-            height: 3rem;
-            border: 0.3rem solid rgba(43, 151, 168, 0.2);
-            border-radius: 50%;
-            border-top-color: var(--primary-color);
-            animation: spin 1s ease-in-out infinite;
-            margin: 1.5rem 0;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        footer {
-            background-color: var(--dark-color);
-            color: white;
-            padding: 4rem 0 2rem;
-            margin-top: auto;
-        }
-        
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .footer-col h3 {
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-            display: inline-block;
-        }
-        
-        .footer-col h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50px;
-            height: 2px;
-            background-color: var(--accent-color);
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-        
-        .footer-links a {
-            color: #ccc;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: var(--accent-color);
-        }
-        
-        .footer-contact p {
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-        }
-        
-        .footer-contact-icon {
-            margin-right: 10px;
-            color: var(--accent-color);
-        }
-        
-        .social-icons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        
-        .social-icon {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            text-align: center;
-            line-height: 40px;
-            color: white;
-            transition: all 0.3s ease;
-        }
-        
-        .social-icon:hover {
-            background-color: var(--accent-color);
-            transform: translateY(-3px);
-        }
-        
-        .copyright {
-            text-align: center;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #999;
-            font-size: 0.9rem;
-        }
-        
         @media (max-width: 768px) {
-            .header-container {
-                padding: 0 1rem;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            nav {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background-color: var(--bg-light);
-                transition: left 0.3s ease;
-                z-index: 1000;
-            }
-            
-            nav.active {
-                left: 0;
-            }
-            
-            nav ul {
-                flex-direction: column;
-                padding: 2rem;
-                height: auto;
-                overflow-y: auto;
-                align-items: flex-start;
-            }
-            
-            nav ul li {
-                margin: 1rem 0;
-                height: auto;
-                width: 100%;
-            }
-            
-            nav ul li a {
-                height: auto;
-                width: 100%;
-            }
-            
-            .section {
-                padding: 3rem 1rem;
-            }
+            .header-container { padding: 1rem; }
+            .mobile-menu-btn { display: block; }
+            nav { position: fixed; top: 70px; left: -100%; width: 100%; height: calc(100vh - 70px); background-color: var(--bg-light); transition: left 0.3s ease; z-index: 1000; }
+            nav.active { left: 0; }
+            nav ul { flex-direction: column; padding: 2rem; height: 100%; overflow-y: auto; }
+            nav ul li { margin: 1rem 0; }
+            .section { padding: 2rem 1rem; }
+            .page-banner { height: 40vh; margin-top: 70px; }
+            .page-banner h1 { font-size: 2rem; }
+            .reservation-iframe { height: 60vh; min-height: 400px; }
         }
     </style>
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3ML9EM9PNX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-3ML9EM9PNX');
-    </script>
 </head>
 <body>
     <header>
@@ -345,21 +90,53 @@
                     <li><a href="experience.html">Notre Expérience</a></li>
                     <li><a href="formules.html">Formules & Tarifs</a></li>
                     <li><a href="evenements.html">Événements</a></li>
-                    <li><a href="https://www.centreequestreagon.com/Reservation-lasertag.html" target="_blank" class="active">Réservation</a></li>
+                    <li><a href="reservation.html" class="active">Réservation</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
+    <section class="page-banner">
+        <div class="banner-content">
+            <h1>Réservation</h1>
+            <ul class="breadcrumb">
+                <li><a href="index.html">Accueil</a></li>
+                <li>></li>
+                <li>Réservation</li>
+            </ul>
+        </div>
+    </section>
+
     <section class="section">
         <div class="container">
-            <div class="redirect-box">
-                <h2>Redirection vers notre système de réservation</h2>
-                <p>Vous allez être redirigé vers notre système de réservation sur le site du Centre Équestre d'Agon dans quelques secondes...</p>
-                <div class="loading-spinner"></div>
-                <p>Si la redirection ne fonctionne pas automatiquement, veuillez cliquer sur le bouton ci-dessous :</p>
-                <a href="https://www.centreequestreagon.com/Reservation-lasertag.html" target="_blank" class="btn">Accéder au système de réservation</a>
+            <div class="section-title">
+                <h2>Réservez votre aventure LaserBay</h2>
+                <p>Sélectionnez votre créneau et réservez directement en ligne pour une expérience LaserTag inoubliable</p>
+            </div>
+            <div class="info-box">
+                <h3>Informations importantes</h3>
+                <p>
+                    Nous vous recommandons d'arriver 20 minutes avant l'heure de votre réservation pour le briefing. 
+                    Portez des vêtements confortables et des chaussures fermées. En cas d'intempéries sévères, 
+                    nous vous contacterons pour reporter votre session sans frais supplémentaires.
+                </p>
+            </div>
+            <div class="reservation-iframe-container">
+                <div class="iframe-header">
+                    <h3>🎯 Plateforme de Réservation LaserBay</h3>
+                </div>
+                <div class="loading-message" id="loading-message">
+                    Chargement de la plateforme de réservation...
+                </div>
+                <iframe 
+                    src="https://reservation-lasertag.web.app/" 
+                    class="reservation-iframe"
+                    id="reservation-iframe"
+                    title="Réservation LaserBay"
+                    loading="lazy"
+                    onload="hideLoadingMessage()">
+                </iframe>
             </div>
         </div>
     </section>
@@ -382,7 +159,7 @@
                     <li><a href="experience.html">Notre Expérience</a></li>
                     <li><a href="formules.html">Formules & Tarifs</a></li>
                     <li><a href="evenements.html">Événements</a></li>
-                    <li><a href="https://www.centreequestreagon.com/Reservation-lasertag.html" target="_blank">Réservation</a></li>
+                    <li><a href="reservation.html">Réservation</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
@@ -390,8 +167,8 @@
                 <h3>Contact</h3>
                 <p><span class="footer-contact-icon">📍</span> 56 Charrière du Commerce, 50230 Agon-Coutainville</p>
                 <p><span class="footer-contact-icon">📞</span> 02 44 84 99 96</p>
-                <p><span class="footer-contact-icon">📧</span> <a href="mailto:laserbayagon@gmail.com" style="color: #ccc; text-decoration: none;">laserbayagon@gmail.com</a></p>
-                <p><span class="footer-contact-icon">🕒</span> Hors saison: Mercredi - Vendredi: 14h - 19h<br>Samedi - Dimanche: 10h - 19h<br>En saison (15/06-15/09): Tous les jours de 10h à 18h</p>
+                <p><span class="footer-contact-icon">📧</span> laserbayagon@gmail.com</p>
+                <p><span class="footer-contact-icon">🕒</span> Mercredi - Vendredi: 14h - 19h<br>Samedi - Dimanche: 10h - 19h<br>Tous les jours pendant les vacances scolaires</p>
             </div>
         </div>
         <div class="copyright">
@@ -403,20 +180,31 @@
         // Mobile menu toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const mainNav = document.getElementById('main-nav');
-        
         mobileMenuBtn.addEventListener('click', function() {
             mainNav.classList.toggle('active');
             this.textContent = mainNav.classList.contains('active') ? '✕' : '☰';
         });
-        
-        // Compteur pour la redirection
-        let secondsLeft = 5;
-        const redirectTimer = setInterval(function() {
-            secondsLeft--;
-            if (secondsLeft <= 0) {
-                clearInterval(redirectTimer);
+
+        // Fonction pour masquer le message de chargement
+        function hideLoadingMessage() {
+            const loadingMessage = document.getElementById('loading-message');
+            if (loadingMessage) {
+                loadingMessage.style.display = 'none';
             }
-        }, 1000);
+        }
+
+        // Gestion d'erreur de chargement de l'iframe
+        document.getElementById('reservation-iframe').addEventListener('error', function() {
+            const loadingMessage = document.getElementById('loading-message');
+            if (loadingMessage) {
+                loadingMessage.innerHTML = '<p style="color: var(--accent-color);">❌ Impossible de charger la plateforme de réservation. Veuillez réessayer ou nous contacter directement.</p>';
+            }
+        });
+
+        // Timeout pour masquer le message de chargement après 10 secondes
+        setTimeout(function() {
+            hideLoadingMessage();
+        }, 10000);
     </script>
 </body>
 </html>
