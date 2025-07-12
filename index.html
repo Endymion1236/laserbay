@@ -581,6 +581,96 @@
                 font-size: 0.9rem;
             }
         }
+
+        /* Ajoute ce style dans le <head> */
+        .testimonial-marquee-container {
+            overflow: hidden;
+            width: 100%;
+            background: #f5f0e3;
+            padding: 2rem 0;
+            position: relative;
+        }
+        .testimonial-marquee-track {
+            display: flex;
+            align-items: stretch;
+            /* animation: marquee 40s linear infinite;  <-- supprime ou commente cette ligne */
+            gap: 2rem;
+            transition: scroll-behavior 0.3s;
+            scroll-behavior: smooth;
+            overflow-x: auto;
+            scrollbar-width: none; /* Firefox */
+        }
+        .testimonial-marquee-track::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+        .testimonial-marquee {
+            min-width: 350px;
+            max-width: 400px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(43,151,168,0.08);
+            padding: 1.5rem 1.2rem;
+            margin: 0 1rem;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .testimonial-marquee .testimonial-text {
+            font-size:1.06rem;
+            color:#222;
+            margin-bottom: 1.2rem;
+        }
+        .testimonial-marquee .testimonial-author {
+            font-weight:bold;
+            color:#2b97a8;
+        }
+        .testimonial-marquee .testimonial-role {
+            color:#888;
+            font-size:0.95rem;
+        }
+        @media (max-width: 600px) {
+            .testimonial-marquee { min-width: 250px; }
+        }
+
+        .testimonial-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #fff;
+    border: 3px solid #2b97a8;
+    color: #e0523a;
+    font-size: 2.5rem;
+    font-weight: bold;
+    border-radius: 50%;
+    box-shadow: 0 4px 16px rgba(43,151,168,0.18);
+    cursor: pointer;
+    z-index: 2;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.98;
+    transition: background 0.2s, border 0.2s, color 0.2s, transform 0.2s;
+    outline: 3px solid #fff;
+}
+.testimonial-arrow.left { left: 10px; }
+.testimonial-arrow.right { right: 10px; }
+.testimonial-arrow:hover {
+    background: #e0523a;
+    color: #fff;
+    border-color: #e0523a;
+    transform: translateY(-50%) scale(1.12);
+    outline: 3px solid #2b97a8;
+}
+@media (max-width: 600px) {
+    .testimonial-arrow {
+        width: 44px;
+        height: 44px;
+        font-size: 1.6rem;
+    }
+}
     </style>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-3ML9EM9PNX"></script>
@@ -705,17 +795,121 @@
                 <h2>Ce que disent nos clients</h2>
                 <p>Découvrez les témoignages de ceux qui ont déjà vécu l'expérience LaserBay.</p>
             </div>
-            <div class="testimonial-container">
-                <div class="testimonial">
-                    <div class="testimonial-text">
-                        Une expérience incroyable pour l'anniversaire de mon fils ! Les enfants se sont éclatés et même les parents ont participé. Le cadre en bord de mer est magnifique et l'équipe est super sympa et professionnelle. On reviendra !
+            <div class="testimonial-marquee-container">
+                <button class="testimonial-arrow left" aria-label="Précédent">&#8592;</button>
+                <div class="testimonial-marquee-track">
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Moment très sympa entre amis. L’équipement quali et léger (alors qu’il faisait chaud!) et terrain de jeux bien pensé et aménagé. Tarif raisonnable pour le temps…</div>
+                        <div class="testimonial-author">Clarisse Nigrelli</div>
+                        <div class="testimonial-role">Avis Google · Juin 2025</div>
                     </div>
-                    <div class="testimonial-author">Sophie L.</div>
-                    <div class="testimonial-role">Maman de Lucas, 10 ans</div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Super moment aujourd'hui grand merci, nous étions 4, deux adultes deux enfants 13 et 8 ans bon moment pour nous 4. Gérants sympathiques, site agréable, on recommande !</div>
+                        <div class="testimonial-author">Geraldine Villain</div>
+                        <div class="testimonial-role">Avis Google · Juillet 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Un super moment en famille - super accueil et plein de modes de jeux à tester ! On recommande ! Pensez à réserver.</div>
+                        <div class="testimonial-author">June Duriez</div>
+                        <div class="testimonial-role">Avis Google · Juillet 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Super moment entre amis ce week-end. Tout le monde a pleinement profité de l’expérience.</div>
+                        <div class="testimonial-author">Alexandra DE OLIVEIRA</div>
+                        <div class="testimonial-role">Avis Google · Juin 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Super activité ! Je n’y connaissais rien et Nicolas nous a bien briefés pour pouvoir être dans le jeu dès la première partie.</div>
+                        <div class="testimonial-author">Elodie Laffont</div>
+                        <div class="testimonial-role">Avis Google · Juin 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Super expérience en famille (9 ans, 7 ans et 2 adultes) à recommander.</div>
+                        <div class="testimonial-author">13 Fabien</div>
+                        <div class="testimonial-role">Avis Google · Juillet 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Venue pour l'inauguration et nous avons passé un super moment car on se prend très vite au jeu.</div>
+                        <div class="testimonial-author">alexandra lejeune</div>
+                        <div class="testimonial-role">Avis Google · Juin 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Venue pour l’inauguration, c’était très bien ! Bonne sortie en famille. Merci !</div>
+                        <div class="testimonial-author">Léa</div>
+                        <div class="testimonial-role">Avis Google · Juin 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Une bonne expérience à vivre en groupe avec une bonne ambiance ! A refaire !</div>
+                        <div class="testimonial-author">Marine Lenoir</div>
+                        <div class="testimonial-role">Avis Google · Juin 2025</div>
+                    </div>
+                    <!-- Duplique les éléments ci-dessus pour un effet de boucle fluide -->
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Moment très sympa entre amis. L’équipement quali et léger (alors qu’il faisait chaud!) et terrain de jeux bien pensé et aménagé. Tarif raisonnable pour le temps…</div>
+                        <div class="testimonial-author">Clarisse Nigrelli</div>
+                        <div class="testimonial-role">Avis Google · Juin 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Super moment aujourd'hui grand merci, nous étions 4, deux adultes deux enfants 13 et 8 ans bon moment pour nous 4. Gérants sympathiques, site agréable, on recommande !</div>
+                        <div class="testimonial-author">Geraldine Villain</div>
+                        <div class="testimonial-role">Avis Google · Juillet 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Un super moment en famille - super accueil et plein de modes de jeux à tester ! On recommande ! Pensez à réserver.</div>
+                        <div class="testimonial-author">June Duriez</div>
+                        <div class="testimonial-role">Avis Google · Juillet 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Super moment entre amis ce week-end. Tout le monde a pleinement profité de l’expérience.</div>
+                        <div class="testimonial-author">Alexandra DE OLIVEIRA</div>
+                        <div class="testimonial-role">Avis Google · Juin 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Super activité ! Je n’y connaissais rien et Nicolas nous a bien briefés pour pouvoir être dans le jeu dès la première partie.</div>
+                        <div class="testimonial-author">Elodie Laffont</div>
+                        <div class="testimonial-role">Avis Google · Juin 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Super expérience en famille (9 ans, 7 ans et 2 adultes) à recommander.</div>
+                        <div class="testimonial-author">13 Fabien</div>
+                        <div class="testimonial-role">Avis Google · Juillet 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Venue pour l'inauguration et nous avons passé un super moment car on se prend très vite au jeu.</div>
+                        <div class="testimonial-author">alexandra lejeune</div>
+                        <div class="testimonial-role">Avis Google · Juin 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Venue pour l’inauguration, c’était très bien ! Bonne sortie en famille. Merci !</div>
+                        <div class="testimonial-author">Léa</div>
+                        <div class="testimonial-role">Avis Google · Juin 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Une bonne expérience à vivre en groupe avec une bonne ambiance ! A refaire !</div>
+                        <div class="testimonial-author">Marine Lenoir</div>
+                        <div class="testimonial-role">Avis Google · Juin 2025</div>
+                    </div>
                 </div>
+                <button class="testimonial-arrow right" aria-label="Suivant">&#8594;</button>
             </div>
         </div>
     </section>
+
+    <!-- Place ce bloc juste après la section "testimonials" et avant la section "cta" pour une intégration harmonieuse -->
+<section class="section video-section" style="background:#f5f0e3; padding-top:3rem; padding-bottom:3rem;">
+    <div class="container" style="text-align:center;">
+        <h2 style="color:#2b97a8; margin-bottom:1.5rem;">Découvrez LaserBay en vidéo !</h2>
+        <div style="display:flex; justify-content:center;">
+            <div style="display:inline-block; box-shadow:0 4px 24px rgba(43,151,168,0.12); border-radius:12px; overflow:hidden;">
+                <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F672106545871145%2F&show_text=false&width=269&t=0"
+                    width="269" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                    allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            </div>
+        </div>
+        <p style="margin-top:1rem; color:#666;">Suivez-nous sur <a href="https://www.facebook.com/profile.php?id=61576019151172&locale=fr_FR" target="_blank" style="color:#2b97a8; text-decoration:underline;">Facebook</a> pour plus de vidéos !</p>
+    </div>
+</section>
+<!-- Ensuite, la section cta continue -->
 
     <section class="section cta">
         <div class="container cta-content">
@@ -725,7 +919,8 @@
         </div>
     </section>
 
-    <footer>
+   
+<footer>
         <div class="footer-container">
             <div class="footer-col">
                 <h3>LaserBay</h3>
@@ -814,5 +1009,18 @@
             });
         });
     </script>
+    <script>
+const track = document.querySelector('.testimonial-marquee-track');
+const leftBtn = document.querySelector('.testimonial-arrow.left');
+const rightBtn = document.querySelector('.testimonial-arrow.right');
+const cardWidth = document.querySelector('.testimonial-marquee').offsetWidth + 32; // 32px = gap
+
+leftBtn.onclick = () => {
+    track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+};
+rightBtn.onclick = () => {
+    track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+};
+</script>
 </body>
 </html>
