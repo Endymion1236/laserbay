@@ -27,14 +27,18 @@
             background-color: var(--light-color);
             color: var(--text-color);
             line-height: 1.6;
+            padding-top: 80px;
         }
         
         header {
             background-color: var(--bg-light);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             z-index: 1000;
+            height: 80px;
         }
         
         .header-container {
@@ -43,21 +47,34 @@
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 0 2rem;
+            height: 100%;
         }
         
         .logo {
             width: 180px;
             height: auto;
+            display: block;
+        }
+        
+        nav {
+            height: 100%;
+            display: flex;
+            align-items: center;
         }
         
         nav ul {
             display: flex;
             list-style: none;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            align-items: center;
         }
         
         nav ul li {
             margin-left: 2rem;
+            height: 100%;
         }
         
         nav ul li a {
@@ -68,6 +85,10 @@
             font-size: 0.9rem;
             letter-spacing: 1px;
             transition: color 0.3s;
+            padding: 0 0.5rem;
+            display: flex;
+            align-items: center;
+            height: 100%;
         }
         
         nav ul li a:hover, nav ul li a.active {
@@ -538,7 +559,7 @@
         
         @media (max-width: 768px) {
             .header-container {
-                padding: 1rem;
+                padding: 0 1rem;
             }
             
             .mobile-menu-btn {
@@ -547,13 +568,14 @@
             
             nav {
                 position: fixed;
-                top: 70px;
+                top: 170px;
                 left: -100%;
                 width: 100%;
-                height: calc(100vh - 70px);
+                height: calc(100vh - 170px);
                 background-color: var(--bg-light);
                 transition: left 0.3s ease;
-                z-index: 1000;
+                z-index: 999;
+                overflow-y: auto;
             }
             
             nav.active {
@@ -563,12 +585,23 @@
             nav ul {
                 flex-direction: column;
                 padding: 2rem;
-                height: 100%;
-                overflow-y: auto;
+                height: auto;
+                align-items: stretch;
             }
             
             nav ul li {
-                margin: 1rem 0;
+                margin: 0;
+                margin-bottom: 1rem;
+                height: auto;
+                width: 100%;
+            }
+            
+            nav ul li a {
+                font-size: 1rem;
+                padding: 1rem;
+                height: auto;
+                border-bottom: 1px solid #eee;
+                display: block;
             }
             
             .hero {
@@ -624,7 +657,18 @@
         </div>
     </header>
 
-    <section class="hero">
+    <div class="seasonal-banner" style="background: linear-gradient(135deg, #2b97a8, #e0523a); color: white; text-align: center; padding: 1.5rem 2rem; position: fixed; top: 80px; left: 0; width: 100%; z-index: 999; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 style="margin: 0 0 0.5rem 0; font-size: 1.8rem; font-weight: bold;">🎉 Merci pour cette première saison ! 🎉</h2>
+            <p style="margin: 0; font-size: 1.1rem; line-height: 1.4;">
+                Un grand MERCI à tous nos joueurs pour avoir rendu cette première saison inoubliable !<br>
+                <strong>⚠️ Fermeture temporaire du 28 août au 16 septembre 2025 ⚠️</strong><br>
+                Nous revenons bientôt avec de nouvelles surprises ! 🚀
+            </p>
+        </div>
+    </div>
+
+    <section class="hero" style="margin-top: 170px;">
         <div class="hero-content">
             <h1>Événements Spéciaux<br>LaserBay</h1>
             <p>Des moments inoubliables en bord de mer. Organisez votre événement sur mesure et vivez une expérience unique de LaserTag en plein air à Agon-Coutainville.</p>

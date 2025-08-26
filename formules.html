@@ -588,10 +588,10 @@
             
             nav {
                 position: fixed;
-                top: 80px; /* Correspond à la hauteur du header */
+                top: 170px; /* Augmente pour tenir compte du header + bandeau */
                 left: -100%;
                 width: 100%;
-                height: calc(100vh - 80px);
+                height: calc(100vh - 170px);
                 background-color: var(--bg-light);
                 transition: left 0.3s ease;
                 z-index: 1000;
@@ -664,7 +664,18 @@
         </div>
     </header>
 
-    <section class="page-banner">
+    <div class="seasonal-banner" style="background: linear-gradient(135deg, #2b97a8, #e0523a); color: white; text-align: center; padding: 1.5rem 2rem; position: fixed; top: 80px; left: 0; width: 100%; z-index: 999; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 style="margin: 0 0 0.5rem 0; font-size: 1.8rem; font-weight: bold;">🎉 Merci pour cette première saison ! 🎉</h2>
+            <p style="margin: 0; font-size: 1.1rem; line-height: 1.4;">
+                Un grand MERCI à tous nos joueurs pour avoir rendu cette première saison inoubliable !<br>
+                <strong>⚠️ Fermeture temporaire du 28 août au 16 septembre 2025 ⚠️</strong><br>
+                Nous revenons bientôt avec de nouvelles surprises ! 🚀
+            </p>
+        </div>
+    </div>
+
+    <section class="page-banner" style="margin-top: 170px;">
         <div class="banner-content">
             <h1>Formules & Tarifs</h1>
             <ul class="breadcrumb">
@@ -693,16 +704,21 @@
                     <div class="pricing-card">
                         <div class="pricing-header">
                             <h3>Pack Découverte</h3>
-                            <div class="pricing-price">12€ <span>/pers</span></div>
+                            <div class="pricing-price">15€ <span>/pers</span></div>
                         </div>
                         <div class="pricing-features">
                             <ul>
-                                <li>20 minutes de jeu</li> <!-- MODIFIÉ -->
+                                <li>20 minutes de jeu</li>
                                 <li>Brief (10 minutes) et déséquipement (10 minutes)</li>
                                 <li>Durée totale : 40 minutes sur place</li>
                                 <li>Équipement inclus</li>
                                 <li>Terrain balisé et sécurisé</li>
                                 <li>Accessible dès 7 ans</li>
+                                <li>
+                                    <span style="color:#2b97a8;">
+                                        <strong>Une 3<sup>ème</sup> partie de 10&nbsp;min peut être ajoutée à la suite, selon les créneaux disponibles (6&nbsp;€ la partie supplémentaire).</strong>
+                                    </span>
+                                </li>
                             </ul>
                             <a href="reservation.html" class="btn pricing-btn">Réserver</a>
                         </div>
@@ -712,7 +728,7 @@
                         <div class="price-tag">Populaire</div>
                         <div class="pricing-header">
                             <h3>Pack Aventurier</h3>
-                            <div class="pricing-price">22€ <span>/pers</span></div>
+                            <div class="pricing-price">25€ <span>/pers</span></div>
                         </div>
                         <div class="pricing-features">
                             <ul>

@@ -27,6 +27,7 @@
             background-color: var(--light-color);
             color: var(--text-color);
             line-height: 1.6;
+            padding-top: 80px;
         }
         
         /* CORRECTION DU HEADER ET MENU */
@@ -34,8 +35,11 @@
             background-color: var(--bg-light);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             z-index: 1000;
+            height: 80px;
         }
         
         .header-container {
@@ -44,18 +48,18 @@
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem 2rem;
-            min-height: 70px;
+            padding: 0 2rem;
+            height: 100%;
         }
         
         .logo {
             width: 180px;
             height: auto;
-            flex-shrink: 0;
+            display: block;
         }
         
-        /* NAVIGATION CORRIGÉE */
         nav {
+            height: 100%;
             display: flex;
             align-items: center;
         }
@@ -63,13 +67,15 @@
         nav ul {
             display: flex;
             list-style: none;
+            height: 100%;
             margin: 0;
             padding: 0;
-            gap: 2rem;
+            align-items: center;
         }
         
         nav ul li {
-            position: relative;
+            margin-left: 2rem;
+            height: 100%;
         }
         
         nav ul li a {
@@ -80,9 +86,10 @@
             font-size: 0.9rem;
             letter-spacing: 1px;
             transition: color 0.3s;
-            padding: 0.5rem 0;
-            display: block;
-            white-space: nowrap;
+            padding: 0 0.5rem;
+            display: flex;
+            align-items: center;
+            height: 100%;
         }
         
         nav ul li a:hover, nav ul li a.active {
@@ -128,7 +135,6 @@
             align-items: center;
             position: relative;
             color: white;
-            margin-top: 70px;
         }
         
         .page-banner::before {
@@ -580,7 +586,7 @@
         
         @media (max-width: 768px) {
             .header-container {
-                padding: 1rem;
+                padding: 0 1rem;
             }
             
             .mobile-menu-btn {
@@ -589,13 +595,13 @@
             
             nav {
                 position: fixed;
-                top: 70px;
+                top: 170px;
                 left: -100%;
                 width: 100%;
-                height: calc(100vh - 70px);
+                height: calc(100vh - 170px);
                 background-color: var(--bg-light);
                 transition: left 0.3s ease;
-                z-index: 1000;
+                z-index: 999;
                 overflow-y: auto;
             }
             
@@ -606,20 +612,23 @@
             nav ul {
                 flex-direction: column;
                 padding: 2rem;
-                height: 100%;
-                overflow-y: auto;
-                gap: 0;
+                height: auto;
+                align-items: stretch;
             }
             
             nav ul li {
-                margin: 1rem 0;
+                margin: 0;
+                margin-bottom: 1rem;
+                height: auto;
                 width: 100%;
             }
             
             nav ul li a {
                 font-size: 1rem;
                 padding: 1rem;
+                height: auto;
                 border-bottom: 1px solid #eee;
+                display: block;
             }
             
             .section {
@@ -628,7 +637,6 @@
             
             .page-banner {
                 height: 40vh;
-                margin-top: 70px;
             }
             
             .page-banner h1 {
@@ -663,7 +671,18 @@
         </div>
     </header>
 
-    <section class="page-banner">
+    <div class="seasonal-banner" style="background: linear-gradient(135deg, #2b97a8, #e0523a); color: white; text-align: center; padding: 1.5rem 2rem; position: fixed; top: 80px; left: 0; width: 100%; z-index: 999; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 style="margin: 0 0 0.5rem 0; font-size: 1.8rem; font-weight: bold;">🎉 Merci pour cette première saison ! 🎉</h2>
+            <p style="margin: 0; font-size: 1.1rem; line-height: 1.4;">
+                Un grand MERCI à tous nos joueurs pour avoir rendu cette première saison inoubliable !<br>
+                <strong>⚠️ Fermeture temporaire du 28 août au 16 septembre 2025 ⚠️</strong><br>
+                Nous revenons bientôt avec de nouvelles surprises ! 🚀
+            </p>
+        </div>
+    </div>
+
+    <section class="page-banner" style="margin-top: 170px;">
         <div class="banner-content">
             <h1>Notre Expérience</h1>
             <ul class="breadcrumb">
@@ -869,137 +888,6 @@
         </div>
     </section>
 
-    <!-- Onglet Scénarios de jeu -->
-    <section class="section" id="scenarios">
-        <div class="container">
-            <div class="section-title">
-                <h2>📘 Fascicule LaserTag – Scénarios de Jeu</h2>
-                <p>Découvrez tous nos scénarios, du plus fun au plus stratégique !</p>
-            </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom:2rem;">
-                <button class="btn scenario-tab" data-target="affrontement-enfant">🤼 Affrontement Enfant</button>
-                <button class="btn scenario-tab" data-target="capture-base-enfant">🏰 Capture de Base Enfant</button>
-                <button class="btn scenario-tab" data-target="capture-drapeau-enfant">🚩 Capture de Drapeau Enfant</button>
-                <button class="btn scenario-tab" data-target="affrontement-adulte">🤼 Affrontement Adulte</button>
-                <button class="btn scenario-tab" data-target="capture-base-adulte">🏰 Capture de Base Adulte</button>
-                <button class="btn scenario-tab" data-target="capture-drapeau-adulte">🎌 Capture de Drapeau Adulte</button>
-                <button class="btn scenario-tab" data-target="drapeau-contre-montre">⏳ Drapeau contre la Montre</button>
-                <button class="btn scenario-tab" data-target="chacun-pour-soi">🤺 Chacun pour soi</button>
-            </div>
-            <div id="scenario-details">
-                <!-- Les scénarios s'affichent ici -->
-                <div class="scenario-content" id="affrontement-enfant">
-                    <h3>🤼 Scénario : Affrontement Enfant</h3>
-                    <ul>
-                        <li>📊 Complexité : Facile</li>
-                        <li>⏱️ Durée : 7 à 10 min</li>
-                        <li>👥 4 à 10 joueurs</li>
-                        <li>🔫 Touche adversaire : 2 pts | 💥 Désactivation adversaire : 1 pt | ❌ Désactivation personnelle : -2 pts</li>
-                        <li>♻️ Régénération auto toutes les 5s sur les bases Sirius</li>
-                        <li>🔫 Arme : Falcon (25 dégâts, 2s recharge, infini, rafale)</li>
-                    </ul>
-                    <p>Ce scénario permet aux enfants de se familiariser avec l’équipement et les règles du jeu tout en jouant en équipe. Il favorise la coopération et la réactivité dans un cadre ludique.</p>
-                </div>
-                <div class="scenario-content" id="capture-base-enfant" style="display:none">
-                    <h3>🏰 Scénario : Capture de Base Enfant</h3>
-                    <ul>
-                        <li>📊 Complexité : Moyenne</li>
-                        <li>⏱️ Durée : 7 à 10 min</li>
-                        <li>👥 6 à 12 joueurs</li>
-                        <li>🔫 Touche adversaire : 2 pts | 💥 Désactivation adversaire : 1 pt | ❌ Désactivation personnelle : -2 pts</li>
-                        <li>🎯 Tir sur base adverse : 5 pts</li>
-                        <li>🛡️ Chaque équipe protège sa base Sirius</li>
-                        <li>☢️ Base ennemie émet 50 pts de radiations toutes les 5s à moins de 3m</li>
-                        <li>♻️ Régénération auto toutes les 5s sur les bases Sirius</li>
-                        <li>🔫 Arme : Falcon (25 dégâts, 2s recharge, infini, rafale)</li>
-                    </ul>
-                    <p>Chaque équipe doit défendre sa base Sirius tout en essayant de capturer celle de l’adversaire. Accessible et dynamique, ce scénario est parfait pour initier les jeunes joueurs aux objectifs multiples.</p>
-                </div>
-                <div class="scenario-content" id="capture-drapeau-enfant" style="display:none">
-                    <h3>🚩 Scénario : Capture de Drapeau Enfant</h3>
-                    <ul>
-                        <li>📊 Complexité : Moyenne</li>
-                        <li>⏱️ Durée : 7 à 10 min ou 5 captures</li>
-                        <li>👥 6 à 12 joueurs</li>
-                        <li>🔫 Touche adversaire : 2 pts | 💥 Désactivation adversaire : 1 pt | ❌ Désactivation personnelle : -2 pts</li>
-                        <li>🏁 Capture : 5 pts | 🎁 Livraison : 10 pts</li>
-                        <li>🎽 Drapeaux = modules Sirius, capture à bout portant, livraison sur base</li>
-                        <li>♻️ Régénération auto toutes les 5s sur les bases Sirius</li>
-                        <li>🔫 Arme : Falcon (25 dégâts, 2s recharge, infini, rafale)</li>
-                    </ul>
-                    <p>Chaque équipe tente de capturer le drapeau adverse et de le ramener à sa base. Fun et accessible, ce mode développe l’esprit d’équipe.</p>
-                </div>
-                <div class="scenario-content" id="affrontement-adulte" style="display:none">
-                    <h3>🤼 Scénario : Affrontement Adulte</h3>
-                    <ul>
-                        <li>📊 Complexité : Facile</li>
-                        <li>⏱️ Durée : 7 à 10 min</li>
-                        <li>👥 4 à 12 joueurs</li>
-                        <li>🔫 Touche adversaire : 2 pts | 💥 Désactivation adversaire : 1 pt | ❌ Désactivation personnelle : -2 pts</li>
-                        <li>♻️ Régénération auto toutes les 5s sur les bases Sirius</li>
-                        <li>🔫 Arme : Falcon (25 dégâts, 2s recharge, infini, rafale)</li>
-                    </ul>
-                    <p>Un mode classique d’affrontement par équipe pour se chauffer ou s’amuser sans règles complexes. Idéal pour découvrir les sensations du jeu.</p>
-                </div>
-                <div class="scenario-content" id="capture-base-adulte" style="display:none">
-                    <h3>🏰 Scénario : Capture de Base Adulte</h3>
-                    <ul>
-                        <li>📊 Complexité : Moyenne</li>
-                        <li>⏱️ Durée : 7 à 10 min</li>
-                        <li>👥 6 à 12 joueurs</li>
-                        <li>🔫 Touche adversaire : 2 pts | 💥 Désactivation adversaire : 1 pt | ❌ Désactivation personnelle : -2 pts</li>
-                        <li>🎯 Tir sur base adverse : 10 pts</li>
-                        <li>🛡️ Chaque équipe protège sa base Sirius</li>
-                        <li>🏆 Il faut capturer 5 fois la base adverse pour gagner</li>
-                        <li>♻️ Régénération auto toutes les 5s sur les bases Sirius</li>
-                        <li>🔫 Arme : Falcon (25 dégâts, 2s recharge, infini, rafale)</li>
-                    </ul>
-                    <p>Un affrontement stratégique entre deux équipes qui doivent attaquer la base adverse tout en défendant la leur. Il faut capturer la base ennemie cinq fois pour l’emporter.</p>
-                </div>
-                <div class="scenario-content" id="capture-drapeau-adulte" style="display:none">
-                    <h3>🎌 Scénario : Capture de Drapeau Adulte</h3>
-                    <ul>
-                        <li>📊 Complexité : Élevée</li>
-                        <li>⏱️ Durée : 7 à 10 min ou 5 captures</li>
-                        <li>👥 6 à 12 joueurs</li>
-                        <li>🔫 Touche adversaire : 2 pts | 💥 Désactivation adversaire : 1 pt | ❌ Désactivation personnelle : -2 pts</li>
-                        <li>🏁 Capture : 5 pts | 🎁 Livraison : 10 pts</li>
-                        <li>🎽 Drapeaux = modules Sirius, capture à bout portant, livraison sur base</li>
-                        <li>♻️ Régénération auto toutes les 5s sur les bases Sirius</li>
-                        <li>🔫 Arme : Falcon (25 dégâts, 2s recharge, infini, rafale)</li>
-                    </ul>
-                    <p>Un mode stratégique où rapidité, coordination et défense sont les clés : chaque équipe doit capturer et rapporter le drapeau adverse plusieurs fois pour gagner.</p>
-                </div>
-                <div class="scenario-content" id="drapeau-contre-montre" style="display:none">
-                    <h3>⏳ Scénario : Drapeau contre la Montre</h3>
-                    <ul>
-                        <li>📊 Complexité : Élevée</li>
-                        <li>⏱️ Durée : 7 à 10 min</li>
-                        <li>👥 6 à 12 joueurs</li>
-                        <li>🔫 Touche adversaire : 2 pts | 💥 Désactivation adversaire : 1 pt | ❌ Désactivation personnelle : -2 pts</li>
-                        <li>🏁 Capture : 5 pts | 🎁 Livraison : 10 pts</li>
-                        <li>🚩 Trois drapeaux (modules Sirius) sur le terrain : rouge, bleu, neutre</li>
-                        <li>♻️ Régénération auto toutes les 5s sur les bases Sirius</li>
-                        <li>🔫 Arme : Falcon (25 dégâts, 2s recharge, infini, rafale)</li>
-                    </ul>
-                    <p>Une course effrénée contre le temps pour capturer et sécuriser un maximum de drapeaux. L’équipe la plus rapide et la mieux organisée remportera la victoire !</p>
-                </div>
-                <div class="scenario-content" id="chacun-pour-soi" style="display:none">
-                    <h3>🤺 Scénario : Chacun pour soi</h3>
-                    <ul>
-                        <li>📊 Complexité : Facile</li>
-                        <li>⏱️ Durée : 7 à 10 min</li>
-                        <li>👥 2 à 6 joueurs</li>
-                        <li>🔫 Touche adversaire : 2 pts | 💥 Désactivation adversaire : 1 pt | ❌ Désactivation personnelle : -2 pts</li>
-                        <li>♻️ Régénération auto toutes les 5s au centre du terrain</li>
-                        <li>🔫 Arme : Falcon (25 dégâts, 2s recharge, infini, rafale)</li>
-                    </ul>
-                    <p>Un mode où chaque joueur est seul contre tous les autres. Rapide, fun, et parfait pour tester ses réflexes.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <footer>
         <div class="footer-container">
             <div class="footer-col">
@@ -1091,20 +979,6 @@
                 alert('Dans un site en production, ceci ouvrirait une vue agrandie de l\'image.');
             });
         });
-        
-        // Onglet scénarios de jeu
-        document.querySelectorAll('.scenario-tab').forEach(btn => {
-    btn.addEventListener('click', function() {
-        document.querySelectorAll('.scenario-content').forEach(div => div.style.display = 'none');
-        document.getElementById(this.dataset.target).style.display = 'block';
-        document.querySelectorAll('.scenario-tab').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-    });
-});
-// Affiche le premier scénario par défaut
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('.scenario-tab').click();
-});
     </script>
 </body>
 </html>
