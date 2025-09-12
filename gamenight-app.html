@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameNight - Organise tes soirées jeux</title>
+    <meta name="description" content="Trouve et organise des soirées jeux de société dans ta région">
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6366f1">
+    <link rel="apple-touch-icon" href="icon-192x192.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .app-container {
+            max-width: 430px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            padding: 20px 20px 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20px;
+            width: 100px;
+            height: 200%;
+            background: rgba(255,255,255,0.1);
+            transform: rotate(15deg);
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .location-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        .location-badge::before {
+            content: '📍';
+            margin-right: 5px;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 15px 10px;
+            text-align: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-tab.active {
+            color: #6366f1;
+        }
+
+        .nav-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: #6366f1;
+            border-radius: 2px;
+        }
+
+        .nav-tab:hover {
+            background: #f8fafc;
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            padding: 20px;
+            min-height: calc(100vh - 200px);
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        /* Event Cards */
+        .event-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid #f1f5f9;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+
+        .event-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .event-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .event-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 5px;
+        }
+
+        .event-date {
+            background: linear-gradient(45deg, #6366f1, #8b5cf6);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .event-details {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .event-detail {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .event-detail::before {
+            margin-right: 6px;
+        }
+
+        .players::before { content: '👥'; }
+        .location::before { content: '📍'; }
+        .games::before { content: '🎲'; }
+        .level::before { content: '⭐'; }
+
+        .event-games {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .game-tag {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+
+        .event-host {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .host-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .host-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #f59e0b, #f97316);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .join-btn {
+            background: linear-gradient(45deg, #10b981, #059669);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .join-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .join-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Create Event Form */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 10px center;
+            background-repeat: no-repeat;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+
+        .create-btn {
+            background: linear-gradient(45deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+
+        .create-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Profile Section */
+        .profile-header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .profile-avatar-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #6366f1, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 32px;
+            margin: 0 auto 15px;
+        }
+
+        .profile-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #6366f1;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .games-collection {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .collection-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .collection-title::before {
+            content: '🎲';
+        }
+
+        .game-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .game-item {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            padding: 10px;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+
+        .game-name {
+            font-weight: 500;
+        }
+
+        .game-difficulty {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        /* Filter Bar */
+        .filter-bar {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .filter-chips {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-chip {
+            background: #f1f5f9;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-chip.active,
+        .filter-chip:hover {
+            background: #6366f1;
+            color: white;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #6b7280;
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .empty-state h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #374151;
+        }
+
+        /* Responsive */
+        @media (max-width: 430px) {
+            .app-container {
+                margin: 0;
+                border-radius: 0;
+            }
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 350px;
+            width: 90%;
+            text-align: center;
+            transform: translateY(50px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+
+        .modal-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #1e293b;
+        }
+
+        .modal-content {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .contact-info {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #6366f1, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 16px;
+        }
+
+        .contact-details h4 {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 3px;
+        }
+
+        .contact-details p {
+            color: #64748b;
+            font-size: 13px;
+            margin: 0;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .modal-btn {
+            padding: 12px 24px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            font-size: 14px;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .modal-btn-primary {
+            background: linear-gradient(45deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+
+        .modal-btn-secondary {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+        /* Success indicator */
+        .joined-event {
+            border: 2px solid #10b981 !important;
+            background: linear-gradient(135deg, #f0fdf4, #ecfdf5) !important;
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>GameNight</h1>
+            <p>Trouve des joueurs près de chez toi</p>
+            <div class="location-badge" id="userLocation">Paris, France</div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-tab="events">🗓️ Événements</button>
+            <button class="nav-tab" data-tab="create">➕ Créer</button>
+            <button class="nav-tab" data-tab="profile">👤 Profil</button>
+        </div>
+
+        <!-- Events Section -->
+        <div class="content-section active" id="events">
+            <div class="filter-bar">
+                <div class="filter-chips">
+                    <button class="filter-chip active">Tous</button>
+                    <button class="filter-chip">Aujourd'hui</button>
+                    <button class="filter-chip">Cette semaine</button>
+                    <button class="filter-chip">Débutant</button>
+                    <button class="filter-chip">Confirmé</button>
+                </div>
+            </div>
+
+            <div id="eventsList">
+                <!-- Events will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Create Event Section -->
+        <div class="content-section" id="create">
+            <h2 style="margin-bottom: 25px; font-size: 24px; color: #1e293b;">Organise ta soirée</h2>
+            
+            <form id="createEventForm">
+                <div class="form-group">
+                    <label class="form-label">Titre de la soirée</label>
+                    <input type="text" name="title" class="form-input" placeholder="Ex: Soirée Catan entre amis" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Date et heure</label>
+                    <input type="datetime-local" name="datetime" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Lieu</label>
+                    <select name="locationType" class="form-input form-select" required>
+                        <option value="">Choisir...</option>
+                        <option value="home">Chez moi</option>
+                        <option value="cafe">Café-jeux</option>
+                        <option value="public">Lieu public</option>
+                        <option value="other">Autre</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Adresse</label>
+                    <input type="text" name="address" class="form-input" placeholder="Adresse ou quartier" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Nombre de joueurs</label>
+                    <select name="players" class="form-input form-select" required>
+                        <option value="">Choisir...</option>
+                        <option value="2-3">2-3 joueurs</option>
+                        <option value="4-5">4-5 joueurs</option>
+                        <option value="6-8">6-8 joueurs</option>
+                        <option value="8+">8+ joueurs</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Niveau requis</label>
+                    <select name="level" class="form-input form-select" required>
+                        <option value="">Choisir...</option>
+                        <option value="beginner">Débutant</option>
+                        <option value="intermediate">Intermédiaire</option>
+                        <option value="advanced">Confirmé</option>
+                        <option value="expert">Expert</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Jeux proposés</label>
+                    <input type="text" name="games" class="form-input" placeholder="Ex: Catan, Splendor, Azul">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea name="description" class="form-input form-textarea" placeholder="Décris l'ambiance, les règles spéciales, ce qu'il faut apporter..."></textarea>
+                </div>
+
+                <button type="submit" class="create-btn">🎲 Créer la soirée</button>
+            </form>
+        </div>
+
+        <!-- Profile Section -->
+        <div class="content-section" id="profile">
+            <div class="profile-header">
+                <div class="profile-avatar-large">JD</div>
+                <h2>Jean Dupont</h2>
+                <p style="color: #6b7280; margin-top: 5px;">Membre depuis Mars 2025</p>
+                
+                <div class="profile-stats">
+                    <div class="stat">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Soirées</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">4.8</div>
+                        <div class="stat-label">Note</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">89</div>
+                        <div class="stat-label">Parties</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="games-collection">
+                <div class="collection-title">Ma ludothèque</div>
+                <div class="game-list">
+                    <div class="game-item">
+                        <div>
+                            <div class="game-name">Catan</div>
+                            <div class="game-difficulty">Intermédiaire • 3-4 joueurs</div>
+                        </div>
+                    </div>
+                    <div class="game-item">
+                        <div>
+                            <div class="game-name">Splendor</div>
+                            <div class="game-difficulty">Facile • 2-4 joueurs</div>
+                        </div>
+                    </div>
+                    <div class="game-item">
+                        <div>
+                            <div class="game-name">Azul</div>
+                            <div class="game-difficulty">Facile • 2-4 joueurs</div>
+                        </div>
+                    </div>
+                    <div class="game-item">
+                        <div>
+                            <div class="game-name">7 Wonders</div>
+                            <div class="game-difficulty">Confirmé • 3-7 joueurs</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for joining events -->
+    <div class="modal-overlay" id="joinModal">
+        <div class="modal">
+            <div class="modal-icon">🎉</div>
+            <div class="modal-title">Inscription confirmée !</div>
+            <div class="modal-content">
+                <p>Vous avez rejoint <strong id="modalEventTitle"></strong></p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">👤</div>
+                        <div class="contact-details">
+                            <h4 id="modalHostName"></h4>
+                            <p>Organisateur de la soirée</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-details">
+                            <h4>06 12 34 56 78</h4>
+                            <p>Téléphone de contact</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-details">
+                            <h4>contact@gamenight.fr</h4>
+                            <p>Email de l'organisateur</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <h4 id="modalEventLocation"></h4>
+                            <p>Lieu de rendez-vous</p>
+                        </div>
+                    </div>
+                </div>
+                <p style="font-size: 13px; color: #6b7280;">
+                    Les détails complets vous ont été envoyés par email. 
+                    L'organisateur vous contactera si nécessaire.
+                </p>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-secondary" onclick="closeJoinModal()">Fermer</button>
+                <button class="modal-btn modal-btn-primary" onclick="addToCalendar()">📅 Ajouter au calendrier</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample events data
+        const sampleEvents = [
+            {
+                id: 1,
+                title: "Soirée Catan & Stratégie",
+                date: "2025-09-07",
+                time: "19:30",
+                location: "Café-jeux Le Dé Rouge",
+                host: "Marie L.",
+                hostInitials: "ML",
+                players: "4/6",
+                level: "Intermédiaire",
+                games: ["Catan", "Splendor", "Azul"],
+                description: "Soirée détendue entre passionnés !",
+                spotsLeft: 2
+            },
+            {
+                id: 2,
+                title: "Découverte jeux coopératifs",
+                date: "2025-09-08",
+                time: "14:00",
+                location: "Chez Pierre",
+                host: "Pierre M.",
+                hostInitials: "PM",
+                players: "3/5",
+                level: "Débutant",
+                games: ["Pandemic", "Forbidden Island"],
+                description: "Parfait pour débuter !",
+                spotsLeft: 2
+            },
+            {
+                id: 3,
+                title: "Tournoi Wingspan",
+                date: "2025-09-10",
+                time: "20:00",
+                location: "Association Ludique",
+                host: "Sophie D.",
+                hostInitials: "SD",
+                players: "8/12",
+                level: "Confirmé",
+                games: ["Wingspan", "Everdell"],
+                description: "Tournoi avec lots à gagner !",
+                spotsLeft: 4
+            }
+        ];
+
+        // DOM Elements
+        const navTabs = document.querySelectorAll('.nav-tab');
+        const contentSections = document.querySelectorAll('.content-section');
+        const eventsList = document.getElementById('eventsList');
+        const createEventForm = document.getElementById('createEventForm');
+
+        // Navigation functionality
+        navTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetTab = tab.dataset.tab;
+                
+                // Update active tab
+                navTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Update active section
+                contentSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                document.getElementById(targetTab).classList.add('active');
+                
+                // Load content if needed
+                if (targetTab === 'events') {
+                    loadEvents();
+                }
+            });
+        });
+
+        // Load and display events
+        function loadEvents() {
+            eventsList.innerHTML = '';
+            
+            if (sampleEvents.length === 0) {
+                eventsList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🎲</div>
+                        <h3>Aucune soirée prévue</h3>
+                        <p>Sois le premier à organiser une soirée dans ta région !</p>
+                    </div>
+                `;
+                return;
+            }
+
+            sampleEvents.forEach(event => {
+                const eventCard = createEventCard(event);
+                eventsList.appendChild(eventCard);
+            });
+        }
+
+        // Create event card element
+        function createEventCard(event) {
+            const card = document.createElement('div');
+            card.className = 'event-card fade-in';
+            
+            // Add special styling for joined events
+            if (event.isJoined) {
+                card.classList.add('joined-event');
+            }
+            
+            const eventDate = new Date(event.date + 'T' + event.time);
+            const formattedDate = eventDate.toLocaleDateString('fr-FR', { 
+                weekday: 'short', 
+                day: 'numeric', 
+                month: 'short' 
+            });
+            
+            // Determine button content and state
+            let buttonContent = '';
+            let buttonDisabled = '';
+            
+            if (event.isJoined) {
+                buttonContent = '<span class="joined-badge">Inscrit ✓</span>';
+                buttonDisabled = 'disabled';
+            } else if (event.spotsLeft === 0) {
+                buttonContent = 'Complet';
+                buttonDisabled = 'disabled';
+            } else {
+                buttonContent = `Rejoindre (${event.spotsLeft} places)`;
+            }
+            
+            card.innerHTML = `
+                <div class="event-header">
+                    <div>
+                        <div class="event-title">${event.title}</div>
+                        <div class="event-details">
+                            <div class="event-detail players">${event.players}</div>
+                            <div class="event-detail level">${event.level}</div>
+                        </div>
+                    </div>
+                    <div class="event-date">${formattedDate}<br>${event.time}</div>
+                </div>
+                
+                <div class="event-details">
+                    <div class="event-detail location">${event.location}</div>
+                </div>
+                
+                <div class="event-games">
+                    ${event.games.map(game => `<span class="game-tag">${game}</span>`).join('')}
+                </div>
+                
+                <div class="event-host">
+                    <div class="host-info">
+                        <div class="host-avatar">${event.hostInitials}</div>
+                        <div>
+                            <div style="font-weight: 500; font-size: 14px;">${event.host}</div>
+                            <div style="font-size: 12px; color: #6b7280;">${event.description}</div>
+                        </div>
+                    </div>
+                    ${event.isJoined ? 
+                        buttonContent : 
+                        `<button class="join-btn" ${buttonDisabled} onclick="joinEvent(${event.id})">${buttonContent}</button>`
+                    }
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Join event functionality
+        function joinEvent(eventId) {
+            const event = sampleEvents.find(e => e.id === eventId);
+            if (event && event.spotsLeft > 0) {
+                // Update spots left
+                event.spotsLeft--;
+                const [current, total] = event.players.split('/');
+                event.players = `${parseInt(current) + 1}/${total}`;
+                
+                // Mark event as joined
+                event.isJoined = true;
+                
+                // Show detailed modal instead of simple alert
+                showJoinModal(event);
+                
+                // Reload events to update display
+                loadEvents();
+            }
+        }
+
+        // Show join confirmation modal
+        function showJoinModal(event) {
+            document.getElementById('modalEventTitle').textContent = event.title;
+            document.getElementById('modalHostName').textContent = event.host;
+            document.getElementById('modalEventLocation').textContent = event.location;
+            
+            const modal = document.getElementById('joinModal');
+            modal.classList.add('active');
+            
+            // Auto close after 8 seconds
+            setTimeout(() => {
+                closeJoinModal();
+            }, 8000);
+        }
+
+        // Close join modal
+        function closeJoinModal() {
+            const modal = document.getElementById('joinModal');
+            modal.classList.remove('active');
+        }
+
+        // Add to calendar functionality
+        function addToCalendar() {
+            // Create a simple calendar event (this would integrate with real calendar APIs)
+            const eventTitle = document.getElementById('modalEventTitle').textContent;
+            const eventLocation = document.getElementById('modalEventLocation').textContent;
+            
+            // Simple calendar link creation (works with Google Calendar)
+            const startDate = new Date();
+            startDate.setDate(startDate.getDate() + 2); // Example: day after tomorrow
+            const endDate = new Date(startDate);
+            endDate.setHours(startDate.getHours() + 3); // 3 hour event
+            
+            const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventTitle)}&dates=${startDate.toISOString().replace(/[-:]/g, '').split('.')[0]}Z/${endDate.toISOString().replace(/[-:]/g, '').split('.')[0]}Z&details=${encodeURIComponent('Soirée jeux de société organisée via GameNight')}&location=${encodeURIComponent(eventLocation)}`;
+            
+            window.open(calendarUrl, '_blank');
+            closeJoinModal();
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('joinModal').addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal-overlay')) {
+                closeJoinModal();
+            }
+        });
+
+        // Create event form functionality
+        createEventForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(createEventForm);
+            const formElements = createEventForm.elements;
+            
+            // Create new event object
+            const newEvent = {
+                id: sampleEvents.length + 1,
+                title: formElements[0].value,
+                date: formElements[1].value.split('T')[0],
+                time: formElements[1].value.split('T')[1],
+                location: formElements[3].value || getLocationText(formElements[2].value),
+                host: "Vous",
+                hostInitials: "V",
+                players: "1/" + getMaxPlayers(formElements[4].value),
+                level: getLevelText(formElements[5].value),
+                games: formElements[6].value ? formElements[6].value.split(',').map(g => g.trim()) : ["À définir"],
+                description: formElements[7].value || "Nouvelle soirée créée !",
+                spotsLeft: getMaxPlayers(formElements[4].value) - 1
+            };
+            
+            // Add to events list
+            sampleEvents.unshift(newEvent); // Add at beginning
+            
+            alert('🎉 Ta soirée a été créée avec succès !\n\nElle est maintenant visible par les autres joueurs de ta région.');
+            
+            // Reset form
+            createEventForm.reset();
+            
+            // Switch to events tab and reload
+            document.querySelector('[data-tab="events"]').click();
+            loadEvents();
+        });
+
+        // Helper functions for form processing
+        function getLocationText(locationType) {
+            const locationMap = {
+                'home': 'Chez l\'organisateur',
+                'cafe': 'Café-jeux',
+                'public': 'Lieu public',
+                'other': 'Autre lieu'
+            };
+            return locationMap[locationType] || 'Lieu à définir';
+        }
+
+        function getMaxPlayers(playersRange) {
+            const rangeMap = {
+                '2-3': 3,
+                '4-5': 5,
+                '6-8': 8,
+                '8+': 12
+            };
+            return rangeMap[playersRange] || 4;
+        }
+
+        function getLevelText(level) {
+            const levelMap = {
+                'beginner': 'Débutant',
+                'intermediate': 'Intermédiaire',
+                'advanced': 'Confirmé',
+                'expert': 'Expert'
+            };
+            return levelMap[level] || 'Tous niveaux';
+        }
+
+        // Filter functionality
+        document.querySelectorAll('.filter-chip').forEach(chip => {
+            chip.addEventListener('click', () => {
+                document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                
+                // Here you would filter events based on the selected chip
+                // For now, we'll just reload all events
+                loadEvents();
+            });
+        });
+
+        // Geolocation (simplified)
+        function updateLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    // In a real app, you'd reverse geocode these coordinates
+                    document.getElementById('userLocation').textContent = 'Votre région';
+                }, () => {
+                    document.getElementById('userLocation').textContent = 'Paris, France';
+                });
+            }
+        }
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', () => {
+            loadEvents();
+            updateLocation();
+        });
+
+        // PWA Install prompt (simplified)
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // Show install button or banner
+            console.log('PWA install prompt available');
+        });
+    </script>
+</body>
+</html>
