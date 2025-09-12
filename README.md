@@ -1,133 +1,98 @@
-# LaserBay - Site Web de LaserTag en Plein Air
+# Nightapp V3 - Plateforme Sociale Gaming
 
-Ce dépôt contient les fichiers du site web LaserBay, un centre de LaserTag en plein air situé à Agon-Coutainville.
+Une plateforme sociale gaming moderne construite avec React, TypeScript et Firebase.
+
+## Stack Technique
+
+- **Frontend**: React 18 + TypeScript + Vite
+- **Backend**: Firebase v10 (Auth + Firestore + Realtime Database)
+- **Styling**: Tailwind CSS + Framer Motion
+- **State Management**: Zustand
+- **Design System**: Variables CSS personnalisées
 
 ## Structure du Projet
 
 ```
-laserbay/
-├── css/
-│   ├── style.css       # Styles principaux du site
-│   └── effects.css     # Effets visuels et animations CSS
-├── js/
-│   ├── main.js         # Fonctionnalités JavaScript principales
-│   ├── integrations.js # Intégrations PayPal et Google Maps
-│   └── form-handler.js # Gestion des formulaires
-├── images/
-│   ├── logo.svg        # Logo LaserBay
-│   └── hero-background.jpeg # Image d'arrière-plan principale
-├── index.html          # Page d'accueil
-├── experience.html     # Page Notre Expérience
-├── formules.html       # Page Formules & Tarifs
-├── evenements.html     # Page Événements
-├── reservation.html    # Page Réservation
-└── contact.html        # Page Contact
+src/
+├── lib/
+│   └── firebase.ts          # Configuration Firebase
+├── types/
+│   ├── user.ts             # Types TypeScript pour User
+│   ├── event.ts            # Types TypeScript pour Event
+│   └── index.ts            # Export des types
+├── stores/
+│   └── authStore.ts        # Store Zustand pour l'authentification
+├── hooks/
+│   └── useAuth.ts          # Hook personnalisé pour l'auth
+├── components/
+│   ├── Layout.tsx          # Composant Layout de base
+│   ├── Header.tsx          # Composant Header avec navigation
+│   └── index.ts            # Export des composants
+├── App.tsx                 # Composant principal
+├── main.tsx               # Point d'entrée
+├── index.css              # Styles globaux + Design System
+└── vite-env.d.ts          # Types pour les variables d'environnement
 ```
 
-## Technologies Utilisées
+## Design System
 
-- HTML5
-- CSS3 (avec animations et effets visuels)
-- JavaScript
-- PayPal API pour les paiements
-- Google Maps API pour la localisation
-- Font Awesome pour les icônes
+Le design system utilise les couleurs suivantes définies dans `:root` :
+
+- **Primary**: `#6366f1` (Indigo)
+- **Surface**: `#1e293b` (Slate foncé)
+- **Text**: `#f1f5f9` (Slate très clair)
+
+## Configuration
+
+1. **Variables d'environnement** : Copiez `.env.example` vers `.env` et remplissez les valeurs Firebase
+2. **Firebase** : Configurez votre projet Firebase avec Auth, Firestore et Realtime Database
+
+## Scripts Disponibles
+
+- `npm run dev` - Démarre le serveur de développement
+- `npm run build` - Construit l'application pour la production
+- `npm run preview` - Prévisualise la version de production
 
 ## Fonctionnalités Implémentées
 
-- Design responsive adapté à tous les appareils
-- Navigation intuitive
-- Intégration PayPal pour les paiements en ligne
-- Intégration Google Maps pour la localisation
-- Formulaires de contact et de réservation
-- Effets visuels et animations CSS
-- Optimisation des performances
+### ✅ Infrastructure de Base
+- Configuration React + TypeScript + Vite
+- Configuration Firebase complète
+- Store Zustand avec persistance
+- Hook useAuth personnalisé
+- Composants Layout et Header
+- Design system avec Tailwind CSS
 
-## Instructions de Déploiement
+### 🎮 Fonctionnalités Gaming
+- Types TypeScript pour User et Event
+- Système de niveaux et d'expérience
+- Gestion des achievements
+- Statuts utilisateur (online, away, busy, offline)
+- Préférences utilisateur personnalisables
 
-### Prérequis
+### 🎨 Interface Utilisateur
+- Header avec navigation responsive
+- Hero section avec animations Framer Motion
+- Section des fonctionnalités principales
+- Design moderne avec effets visuels
+- Support mobile et desktop
 
-- Un hébergeur web supportant HTML, CSS et JavaScript
-- Un compte PayPal Business pour les paiements en ligne
-- Une clé API Google Maps pour l'intégration de la carte
+## Prochaines Étapes
 
-### Étapes de Déploiement
+1. Configuration complète Firebase (Auth, Firestore, Realtime DB)
+2. Implémentation des fonctionnalités d'authentification
+3. Création des pages pour les événements
+4. Système de messagerie et notifications
+5. Tableau de bord utilisateur
 
-1. **Obtenir une clé API Google Maps**
-   - Rendez-vous sur [Google Cloud Platform](https://console.cloud.google.com/)
-   - Créez un projet et activez l'API Maps JavaScript
-   - Générez une clé API
-   - Remplacez `YOUR_API_KEY` dans le fichier `contact.html` par votre clé API
+## Développement
 
-2. **Configurer PayPal**
-   - Votre Client ID PayPal est déjà intégré dans le fichier `reservation.html`
-   - Assurez-vous que votre compte PayPal est configuré pour recevoir des paiements
-
-3. **Configurer l'envoi des formulaires**
-   - Pour une solution simple, vous pouvez utiliser un service comme Formspree ou Netlify Forms
-   - Pour une solution personnalisée, modifiez le fichier `form-handler.js` pour envoyer les données à votre serveur
-
-4. **Télécharger les fichiers sur votre hébergeur**
-   - Utilisez FTP ou le gestionnaire de fichiers de votre hébergeur
-   - Conservez la structure des dossiers telle quelle
-
-5. **Tester le site**
-   - Vérifiez que toutes les pages s'affichent correctement
-   - Testez les formulaires de contact et de réservation
-   - Vérifiez l'intégration PayPal en effectuant un paiement test
-   - Assurez-vous que la carte Google Maps s'affiche correctement
-
-## Personnalisation
-
-### Modifier les Couleurs
-
-Les couleurs principales du site sont définies dans le fichier `css/style.css` :
-
-```css
-:root {
-    --primary-color: #2b97a8;    /* Bleu-vert */
-    --secondary-color: #0e3b55;  /* Bleu marine */
-    --accent-color: #e0523a;     /* Orange-rouge */
-    --dark-color: #0e3b55;       /* Bleu marine (même que secondary) */
-    --light-color: #f5f0e3;      /* Beige clair */
-    --text-color: #333333;       /* Gris foncé */
-    --bg-light: #ffffff;         /* Blanc */
-}
-```
-
-### Ajouter des Images
-
-Pour ajouter de nouvelles images :
-1. Placez les images dans le dossier `images/`
-2. Référencez-les dans les fichiers HTML avec le chemin relatif `images/nom-de-l-image.jpg`
-
-### Modifier le Contenu
-
-Chaque page HTML peut être modifiée directement pour mettre à jour le contenu :
-- Textes
-- Images
-- Tarifs
-- Horaires
-- Coordonnées
-
-## Maintenance
-
-### Mises à Jour Régulières
-
-- Mettez à jour les informations de contact si nécessaire
-- Actualisez les tarifs et les formules
-- Ajoutez de nouvelles images pour maintenir le site frais et attractif
-
-### Sécurité
-
-- Gardez votre clé API Google Maps privée
-- Mettez régulièrement à jour les bibliothèques externes (comme Font Awesome)
-- Surveillez les transactions PayPal pour détecter toute activité suspecte
-
-## Support
-
-Pour toute question ou assistance technique, contactez le développeur du site.
+Le projet est configuré pour le développement avec :
+- Hot module replacement (HMR)
+- TypeScript strict mode
+- ESLint pour la qualité du code
+- Optimisations de build automatiques
 
 ---
 
-© 2025 LaserBay - Tous droits réservés
+**Nightapp V3** - Connectons la communauté gaming ! 🎮
