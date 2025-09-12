@@ -1,133 +1,158 @@
-# LaserBay - Site Web de LaserTag en Plein Air
+# Nightapp V3 - Social Gaming Platform
 
-Ce dépôt contient les fichiers du site web LaserBay, un centre de LaserTag en plein air situé à Agon-Coutainville.
+A modern social gaming platform built with React, TypeScript, and Firebase.
 
-## Structure du Projet
+![Nightapp V3 Loading Screen](https://github.com/user-attachments/assets/1d5934bf-a937-41a2-80d6-af572bed17f9)
+
+## 🚀 Tech Stack
+
+- **Frontend**: React 18 + TypeScript + Vite
+- **Backend**: Firebase v10 (Auth + Firestore + Realtime Database)
+- **Styling**: Tailwind CSS + Framer Motion
+- **State Management**: Zustand
+- **Build Tool**: Vite
+- **Design System**: Custom CSS variables with gaming theme
+
+## 🎨 Design System
+
+The application uses a custom design system with these core colors:
+- **Primary**: `#6366f1` (Indigo)
+- **Surface**: `#1e293b` (Slate)
+- **Text**: `#f1f5f9` (Light Gray)
+
+## 📁 Project Structure
 
 ```
-laserbay/
-├── css/
-│   ├── style.css       # Styles principaux du site
-│   └── effects.css     # Effets visuels et animations CSS
-├── js/
-│   ├── main.js         # Fonctionnalités JavaScript principales
-│   ├── integrations.js # Intégrations PayPal et Google Maps
-│   └── form-handler.js # Gestion des formulaires
-├── images/
-│   ├── logo.svg        # Logo LaserBay
-│   └── hero-background.jpeg # Image d'arrière-plan principale
-├── index.html          # Page d'accueil
-├── experience.html     # Page Notre Expérience
-├── formules.html       # Page Formules & Tarifs
-├── evenements.html     # Page Événements
-├── reservation.html    # Page Réservation
-└── contact.html        # Page Contact
+src/
+├── components/
+│   └── Layout/
+│       ├── Header.tsx       # Navigation header with user status
+│       ├── Layout.tsx       # Main layout wrapper
+│       └── index.ts         # Component exports
+├── hooks/
+│   └── useAuth.ts          # Custom authentication hook
+├── lib/
+│   └── firebase.ts         # Firebase configuration
+├── stores/
+│   └── authStore.ts        # Zustand auth state management
+├── types/
+│   └── index.ts            # TypeScript interfaces
+├── App.tsx                 # Main application component
+├── main.tsx               # Application entry point
+└── index.css              # Global styles and Tailwind imports
 ```
 
-## Technologies Utilisées
+## 🔧 Setup Instructions
 
-- HTML5
-- CSS3 (avec animations et effets visuels)
-- JavaScript
-- PayPal API pour les paiements
-- Google Maps API pour la localisation
-- Font Awesome pour les icônes
+### 1. Install Dependencies
 
-## Fonctionnalités Implémentées
+```bash
+npm install
+```
 
-- Design responsive adapté à tous les appareils
-- Navigation intuitive
-- Intégration PayPal pour les paiements en ligne
-- Intégration Google Maps pour la localisation
-- Formulaires de contact et de réservation
-- Effets visuels et animations CSS
-- Optimisation des performances
+### 2. Configure Firebase
 
-## Instructions de Déploiement
+1. Create a new Firebase project at [Firebase Console](https://console.firebase.google.com/)
+2. Enable Authentication, Firestore, and Realtime Database
+3. Copy your Firebase config and replace the placeholder in `src/lib/firebase.ts`:
 
-### Prérequis
-
-- Un hébergeur web supportant HTML, CSS et JavaScript
-- Un compte PayPal Business pour les paiements en ligne
-- Une clé API Google Maps pour l'intégration de la carte
-
-### Étapes de Déploiement
-
-1. **Obtenir une clé API Google Maps**
-   - Rendez-vous sur [Google Cloud Platform](https://console.cloud.google.com/)
-   - Créez un projet et activez l'API Maps JavaScript
-   - Générez une clé API
-   - Remplacez `YOUR_API_KEY` dans le fichier `contact.html` par votre clé API
-
-2. **Configurer PayPal**
-   - Votre Client ID PayPal est déjà intégré dans le fichier `reservation.html`
-   - Assurez-vous que votre compte PayPal est configuré pour recevoir des paiements
-
-3. **Configurer l'envoi des formulaires**
-   - Pour une solution simple, vous pouvez utiliser un service comme Formspree ou Netlify Forms
-   - Pour une solution personnalisée, modifiez le fichier `form-handler.js` pour envoyer les données à votre serveur
-
-4. **Télécharger les fichiers sur votre hébergeur**
-   - Utilisez FTP ou le gestionnaire de fichiers de votre hébergeur
-   - Conservez la structure des dossiers telle quelle
-
-5. **Tester le site**
-   - Vérifiez que toutes les pages s'affichent correctement
-   - Testez les formulaires de contact et de réservation
-   - Vérifiez l'intégration PayPal en effectuant un paiement test
-   - Assurez-vous que la carte Google Maps s'affiche correctement
-
-## Personnalisation
-
-### Modifier les Couleurs
-
-Les couleurs principales du site sont définies dans le fichier `css/style.css` :
-
-```css
-:root {
-    --primary-color: #2b97a8;    /* Bleu-vert */
-    --secondary-color: #0e3b55;  /* Bleu marine */
-    --accent-color: #e0523a;     /* Orange-rouge */
-    --dark-color: #0e3b55;       /* Bleu marine (même que secondary) */
-    --light-color: #f5f0e3;      /* Beige clair */
-    --text-color: #333333;       /* Gris foncé */
-    --bg-light: #ffffff;         /* Blanc */
+```typescript
+const firebaseConfig = {
+  apiKey: "your-api-key",
+  authDomain: "your-project.firebaseapp.com",
+  databaseURL: "https://your-project-default-rtdb.firebaseio.com",
+  projectId: "your-project-id",
+  storageBucket: "your-project.appspot.com",
+  messagingSenderId: "123456789",
+  appId: "your-app-id"
 }
 ```
 
-### Ajouter des Images
+### 3. Run Development Server
 
-Pour ajouter de nouvelles images :
-1. Placez les images dans le dossier `images/`
-2. Référencez-les dans les fichiers HTML avec le chemin relatif `images/nom-de-l-image.jpg`
+```bash
+npm run dev
+```
 
-### Modifier le Contenu
+The application will be available at `http://localhost:5173/`
 
-Chaque page HTML peut être modifiée directement pour mettre à jour le contenu :
-- Textes
-- Images
-- Tarifs
-- Horaires
-- Coordonnées
+### 4. Build for Production
 
-## Maintenance
+```bash
+npm run build
+```
 
-### Mises à Jour Régulières
+## 🎮 Features
 
-- Mettez à jour les informations de contact si nécessaire
-- Actualisez les tarifs et les formules
-- Ajoutez de nouvelles images pour maintenir le site frais et attractif
+### Core Features
+- **User Authentication**: Sign up, sign in, and secure session management
+- **Gaming Profiles**: User stats, levels, experience points, and game history
+- **Social Features**: Friends system, status indicators, and social interactions
+- **Real-time Updates**: Live status updates and notifications
+- **Responsive Design**: Mobile-first design that works on all devices
 
-### Sécurité
+### User Profile System
+- Level progression and experience points
+- Win/loss tracking and statistics
+- Gaming status indicators (online, offline, in-game, away)
+- Customizable user preferences
+- Friend requests and social connections
 
-- Gardez votre clé API Google Maps privée
-- Mettez régulièrement à jour les bibliothèques externes (comme Font Awesome)
-- Surveillez les transactions PayPal pour détecter toute activité suspecte
+### Event System
+- Tournament creation and management
+- Event participation tracking
+- Prize and reward systems
+- Location-based events (online/physical)
+- Event categorization and filtering
 
-## Support
+## 🔐 Authentication Features
 
-Pour toute question ou assistance technique, contactez le développeur du site.
+The authentication system includes:
+- Email/password authentication
+- User profile creation and management
+- Session persistence
+- Automatic status updates (online/offline)
+- Secure state management with Zustand
+
+## 🎨 UI Components
+
+### Layout Components
+- **Header**: Navigation with user avatar, status, and quick actions
+- **Layout**: Main wrapper with gradient background and footer
+- **Cards**: Reusable card components for stats and content
+
+### Interactive Elements
+- Hover animations with Framer Motion
+- Loading states with spinning animations
+- Button variants (primary, secondary)
+- Form inputs with focus states
+
+## 🚀 Development
+
+### Scripts
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+
+### Environment Setup
+- Node.js 18+ required
+- Firebase project with enabled services
+- Modern browser with ES2020 support
+
+## 🔮 Future Enhancements
+
+- Real-time chat system
+- Advanced tournament brackets
+- Achievement system
+- Leaderboards and rankings
+- Push notifications
+- Mobile app versions
+- Integration with gaming platforms
+
+## 📄 License
+
+MIT License - see LICENSE file for details
 
 ---
 
-© 2025 LaserBay - Tous droits réservés
+**Built with ❤️ for the gaming community**
