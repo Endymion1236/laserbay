@@ -30,7 +30,6 @@
             padding-top: 80px;
         }
         
-        /* CORRECTION DU HEADER ET MENU */
         header {
             background-color: var(--bg-light);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -127,10 +126,10 @@
         }
         
         .page-banner {
-            background-image: url('/api/placeholder/1920/600');
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
             background-size: cover;
             background-position: center;
-            height: 50vh;
+            height: 40vh;
             display: flex;
             align-items: center;
             position: relative;
@@ -144,7 +143,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(14, 59, 85, 0.6);
+            background-color: rgba(14, 59, 85, 0.4);
         }
         
         .banner-content {
@@ -216,6 +215,7 @@
         .section-title p {
             color: #666;
             max-width: 800px;
+            font-size: 1.1rem;
         }
         
         .two-columns {
@@ -275,105 +275,180 @@
             color: var(--dark-color);
         }
         
-        .gallery {
-            background-color: var(--secondary-color);
-            color: white;
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .gallery-item {
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-            height: 250px;
-            cursor: pointer;
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-        
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 1rem;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .gallery-item:hover .gallery-caption {
-            opacity: 1;
-        }
-        
+        /* Styles pour les scénarios */
         .game-modes {
             background-color: var(--light-color);
         }
         
-        .modes-grid {
+        .scenarios-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
         }
         
-        .mode-card {
+        .scenario-card {
             background-color: var(--bg-light);
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid #ccc;
         }
         
-        .mode-card:hover {
-            transform: translateY(-10px);
+        .scenario-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
         
-        .mode-img {
-            height: 200px;
-            overflow: hidden;
+        .scenario-green { border-top-color: #22c55e; }
+        .scenario-blue { border-top-color: #3b82f6; }
+        .scenario-purple { border-top-color: #8b5cf6; }
+        
+        .scenario-badge {
+            padding: 0.6rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #fff;
         }
         
-        .mode-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .scenario-green .scenario-badge { background: linear-gradient(135deg, #22c55e, #16a34a); }
+        .scenario-blue .scenario-badge { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+        .scenario-purple .scenario-badge { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
         
-        .mode-content {
+        .scenario-content {
             padding: 1.5rem;
         }
         
-        .mode-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+        .scenario-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
             color: var(--dark-color);
         }
         
-        .mode-content p {
+        .scenario-description {
+            color: #555;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        
+        .scenario-features {
+            list-style: none;
+            padding: 0;
             margin-bottom: 1rem;
         }
         
-        #equipement {
-            scroll-margin-top: 80px;
+        .scenario-features li {
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+            color: #444;
         }
         
+        .scenario-features li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .scenario-verdict {
+            background-color: #f8fafc;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            font-weight: 500;
+            color: var(--dark-color);
+            font-size: 0.95rem;
+            border-left: 3px solid var(--primary-color);
+        }
+        
+        /* Conseils */
+        .scenario-tips {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        
+        .scenario-tips h3 {
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .tips-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .tip-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            flex-wrap: wrap;
+        }
+        
+        .tip-condition {
+            font-weight: 600;
+            color: #555;
+            min-width: 280px;
+        }
+        
+        .tip-arrow {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .tip-suggestion {
+            color: var(--dark-color);
+            font-weight: 600;
+        }
+        
+        /* Infos pratiques */
+        .infos-pratiques {
+            background-color: var(--bg-light);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .infos-pratiques h3 {
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .infos-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.05rem;
+            color: #444;
+        }
+        
+        .info-icon {
+            font-size: 1.5rem;
+        }
+        
+        /* Équipement */
         .equipment-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 2rem;
         }
         
@@ -398,106 +473,66 @@
         .equipment-img img {
             max-width: 100%;
             height: auto;
+            max-height: 200px;
+            object-fit: contain;
         }
         
         .equipment-content {
             padding: 1.5rem;
+            text-align: left;
         }
         
         .equipment-content h3 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-bottom: 1rem;
             color: var(--dark-color);
         }
         
-        .equipment-content p {
-            margin-bottom: 1rem;
-        }
-        
         .equipment-specs {
             list-style: none;
-            text-align: left;
+            padding: 0;
+            margin-top: 1rem;
         }
         
         .equipment-specs li {
-            margin-bottom: 0.5rem;
+            padding: 0.3rem 0;
             padding-left: 1.5rem;
             position: relative;
+            font-size: 0.9rem;
+            color: #555;
         }
         
         .equipment-specs li::before {
-            content: '✓';
+            content: "✓";
             position: absolute;
             left: 0;
             color: var(--primary-color);
+            font-weight: bold;
         }
         
-        .cta {
-            background-image: url('/api/placeholder/1920/600');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            color: white;
-            text-align: center;
-        }
-        
-        .cta::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(14, 59, 85, 0.7);
-        }
-        
-        .cta-content {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .cta p {
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
+        /* Footer */
         footer {
-            background-color: var(--dark-color);
+            background-color: var(--secondary-color);
             color: white;
-            padding: 4rem 0 2rem;
+            padding: 3rem 2rem 1rem;
         }
         
         .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
         }
         
         .footer-col h3 {
             margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-            display: inline-block;
+            font-size: 1.2rem;
         }
         
-        .footer-col h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50px;
-            height: 2px;
-            background-color: var(--accent-color);
+        .footer-col p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
         }
         
         .footer-links {
@@ -505,158 +540,121 @@
         }
         
         .footer-links li {
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
         }
         
         .footer-links a {
-            color: #ccc;
+            color: white;
             text-decoration: none;
-            transition: color 0.3s;
+            opacity: 0.9;
+            transition: opacity 0.3s;
         }
         
         .footer-links a:hover {
-            color: var(--accent-color);
-        }
-        
-        .footer-contact p {
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-        }
-        
-        .footer-contact-icon {
-            margin-right: 10px;
-            color: var(--accent-color);
+            opacity: 1;
+            text-decoration: underline;
         }
         
         .social-icons {
             display: flex;
             gap: 1rem;
-            margin-top: 1.5rem;
+            margin-top: 1rem;
         }
         
         .social-icon {
-            display: inline-block;
             width: 40px;
             height: 40px;
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
-            text-align: center;
-            line-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: white;
-            transition: all 0.3s ease;
+            text-decoration: none;
+            transition: background-color 0.3s;
         }
         
         .social-icon:hover {
             background-color: var(--accent-color);
-            transform: translateY(-3px);
         }
         
         .copyright {
             text-align: center;
-            margin-top: 3rem;
             padding-top: 2rem;
+            margin-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #999;
-            font-size: 0.9rem;
+            opacity: 0.8;
         }
         
-        @media (max-width: 992px) {
-            .two-columns {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .section-title h2 {
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-banner h1 {
                 font-size: 2rem;
             }
             
-            .page-banner h1 {
-                font-size: 2.5rem;
+            .two-columns {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .scenarios-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tip-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .tip-condition {
+                min-width: auto;
+            }
+            
+            .infos-grid {
+                flex-direction: column;
             }
             
             nav ul {
-                gap: 1.5rem;
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--bg-light);
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                height: auto;
             }
             
             nav ul li a {
-                font-size: 0.8rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .header-container {
-                padding: 0 1rem;
+                padding: 1rem 2rem;
+                height: auto;
             }
             
             .mobile-menu-btn {
                 display: block;
             }
-            
-            nav {
-                position: fixed;
-                top: 170px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 170px);
-                background-color: var(--bg-light);
-                transition: left 0.3s ease;
-                z-index: 999;
-                overflow-y: auto;
-            }
-            
-            nav.active {
-                left: 0;
-            }
-            
-            nav ul {
-                flex-direction: column;
-                padding: 2rem;
-                height: auto;
-                align-items: stretch;
-            }
-            
-            nav ul li {
-                margin: 0;
-                margin-bottom: 1rem;
-                height: auto;
-                width: 100%;
-            }
-            
-            nav ul li a {
-                font-size: 1rem;
-                padding: 1rem;
-                height: auto;
-                border-bottom: 1px solid #eee;
-                display: block;
-            }
-            
-            .section {
-                padding: 3rem 1rem;
-            }
-            
-            .page-banner {
-                height: 40vh;
-            }
-            
-            .page-banner h1 {
-                font-size: 2rem;
-            }
         }
     </style>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3ML9EM9PNX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-3ML9EM9PNX');
-    </script>
 </head>
 <body>
     <header>
         <div class="header-container">
-            <img src="images/logolaserbay.png" alt="LaserBay Logo" class="logo">
+            <a href="index.html">
+                <img src="images/logo-laserbay.png" alt="LaserBay Logo" class="logo">
+            </a>
             <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
             <nav id="main-nav">
                 <ul>
@@ -676,132 +674,176 @@
             <h1>Notre Expérience</h1>
             <ul class="breadcrumb">
                 <li><a href="index.html">Accueil</a></li>
-                <li>></li>
+                <li>/</li>
                 <li>Notre Expérience</li>
             </ul>
         </div>
     </section>
 
+    <!-- Introduction -->
     <section class="section">
         <div class="container">
             <div class="two-columns">
-                <div class="experience-img">
-                    <img src="images/LaserTag-en-plein-air.jpg" alt="LaserTag en plein air">
-                </div>
                 <div class="experience-content">
                     <div class="section-title">
-                        <h2>LaserTag en Plein Air</h2>
-                        <p>Une expérience unique à Agon-Coutainville</p>
+                        <h2>Le LaserTag en Plein Air</h2>
+                        <p>Une aventure unique à Agon-Coutainville</p>
                     </div>
-                    <p>Bienvenue dans l'univers LaserBay, votre destination de LaserTag en plein air à Agon-Coutainville. Contrairement au LaserTag d'intérieur traditionnel, notre expérience vous plonge dans un environnement naturel exceptionnel, entre terre et mer.</p>
-                    <p>Notre terrain balisé et sécurisé offre un cadre idéal pour des parties de LaserTag palpitantes et immersives, où stratégie, précision et esprit d'équipe seront vos meilleurs atouts.</p>
+                    <p>Bienvenue chez LaserBay, votre destination laser game en extérieur sur la côte normande ! Oubliez les salles sombres et confinées : ici, c'est la nature qui devient votre terrain de jeu.</p>
+                    <p>Accessible dès 7 ans, notre activité est idéale pour les familles, les groupes d'amis, les anniversaires ou les événements d'entreprise. Sans projectiles et sans douleur, le LaserTag est une activité fun et sécurisée pour tous.</p>
                     <div class="feature-list">
                         <div class="feature-item">
                             <div class="feature-icon">✓</div>
                             <div class="feature-text">
-                                <h4>Accessible dès 7 ans</h4>
-                                <p>Notre activité est conçue pour être amusante et sécurisée pour les enfants à partir de 7 ans et les adultes de tous âges.</p>
+                                <h4>100% Sécurisé</h4>
+                                <p>Pas de projectiles, pas de douleur. Uniquement des rayons infrarouges inoffensifs.</p>
                             </div>
                         </div>
                         <div class="feature-item">
                             <div class="feature-icon">✓</div>
                             <div class="feature-text">
-                                <h4>Sans projectiles, sans douleur</h4>
-                                <p>Contrairement au paintball, notre LaserTag utilise uniquement des faisceaux infrarouges. Pas de projectiles, pas d'impact, pas de douleur !</p>
+                                <h4>Pour tous les âges</h4>
+                                <p>Dès 7 ans, enfants et adultes peuvent jouer ensemble sur le même terrain.</p>
                             </div>
                         </div>
                         <div class="feature-item">
                             <div class="feature-icon">✓</div>
                             <div class="feature-text">
-                                <h4>100% adrénaline</h4>
-                                <p>Malgré l'absence de projectiles, l'adrénaline est bien au rendez-vous ! Immersion totale garantie.</p>
+                                <h4>100% Adrénaline</h4>
+                                <p>Malgré l'absence de projectiles, l'adrénaline est bien au rendez-vous !</p>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="experience-img">
+                    <img src="images/lasertag-plein-air.jpg" alt="LaserTag en plein air à Agon-Coutainville">
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section">
-        <div class="container">
-            <div class="two-columns">
-                <div class="experience-img">
-                    <img src="images/joueurs-plein-air.jpg" alt="Joueurs de LaserTag en plein air">
-                </div>
-                <div class="experience-content">
-                    <div class="section-title">
-                        <h2>Une Expérience Immersive</h2>
-                        <p>Le LaserTag version plein air</p>
-                    </div>
-                    <p>Contrairement au LaserTag traditionnel pratiqué en salle, LaserBay vous propose une expérience unique en plein air, où la nature devient votre terrain de jeu. Notre cadre naturel exceptionnel à Agon-Coutainville offre à la fois des zones dégagées et des espaces plus couverts, parfaits pour élaborer des stratégies et vous immerger pleinement dans l'aventure.</p>
-                    <p>Les parties en extérieur ajoutent une dimension supplémentaire au jeu, avec la lumière naturelle, le terrain varié et les conditions changeantes qui rendent chaque partie unique et mémorable.</p>
-                    <div class="feature-list">
-                        <div class="feature-item">
-                            <div class="feature-icon">✓</div>
-                            <div class="feature-text">
-                                <h4>Jeu en équipe</h4>
-                                <p>Développez votre esprit d'équipe et votre coordination avec des scénarios de jeu qui favorisent la communication et la stratégie collective.</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">✓</div>
-                            <div class="feature-text">
-                                <h4>Activité physique ludique</h4>
-                                <p>Profitez d'une activité qui combine plaisir et exercice physique, idéale pour se dépenser tout en s'amusant.</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">✓</div>
-                            <div class="feature-text">
-                                <h4>Pour tous les niveaux</h4>
-                                <p>Que vous soyez débutant ou joueur expérimenté, nos différents modes de jeu s'adaptent à tous les niveaux et à tous les âges à partir de 7 ans.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section game-modes">
+    <!-- Scénarios -->
+    <section class="section game-modes" id="modes">
         <div class="container">
             <div class="section-title">
-                <h2>Nos Modes de Jeu</h2>
-                <p>Découvrez les différents scénarios disponibles pour vos parties</p>
+                <h2>🔫 Nos Scénarios LaserTag</h2>
+                <p>À LaserBay, chaque partie est encadrée par un animateur et adaptée à votre groupe : âge, nombre de joueurs et envie de jeu.</p>
             </div>
-            <div class="modes-grid">
-                <div class="mode-card">
-                    <div class="mode-img">
-                        <img src="images/mode-capture-drapeau.jpg" alt="Mode Capture de drapeau">
-                    </div>
-                    <div class="mode-content">
-                        <h3>Capture de Drapeau</h3>
-                        <p>Deux équipes s'affrontent pour capturer le drapeau adverse tout en défendant le leur. Stratégie et coordination sont essentielles pour remporter la victoire.</p>
+            
+            <div class="scenarios-grid">
+                <!-- Scénario 1 : Affrontement Équipe vs Équipe -->
+                <div class="scenario-card scenario-green">
+                    <div class="scenario-badge">🟢 Fun immédiat – Découverte</div>
+                    <div class="scenario-content">
+                        <h3>Affrontement Équipe vs Équipe</h3>
+                        <p class="scenario-description">Deux équipes s'affrontent pour marquer un maximum de points.</p>
+                        <ul class="scenario-features">
+                            <li><strong>Idéal pour :</strong> enfants, familles, colos, groupes mixtes</li>
+                            <li>Règles simples, action continue</li>
+                            <li>Parfait pour une première partie</li>
+                        </ul>
+                        <div class="scenario-verdict">
+                            👉 Le scénario le plus accessible et le plus dynamique.
+                        </div>
                     </div>
                 </div>
-                <div class="mode-card">
-                    <div class="mode-img">
-                        <img src="images/mode-survie.jpg" alt="Mode Survie">
-                    </div>
-                    <div class="mode-content">
-                        <h3>Survie</h3>
-                        <p>Chaque joueur dispose d'un nombre limité de vies. Le dernier joueur ou la dernière équipe encore en jeu remporte la partie. Tension maximale !</p>
+
+                <!-- Scénario 2 : Pose de Mines -->
+                <div class="scenario-card scenario-blue">
+                    <div class="scenario-badge">🔵 Stratégie & coordination</div>
+                    <div class="scenario-content">
+                        <h3>Pose de Mines</h3>
+                        <p class="scenario-description">Les équipes doivent poser, défendre et neutraliser des mines sur le terrain.</p>
+                        <ul class="scenario-features">
+                            <li><strong>Idéal pour :</strong> ados, adultes, groupes motivés</li>
+                            <li>Jeu tactique avec rôles naturels (attaque, défense, infiltration)</li>
+                            <li>Très immersif et intense</li>
+                        </ul>
+                        <div class="scenario-verdict">
+                            👉 Pour ceux qui aiment réfléchir autant que courir.
+                        </div>
                     </div>
                 </div>
-                <div class="mode-card">
-                    <div class="mode-img">
-                        <img src="images/mode-vip.jpg" alt="Mode VIP">
+
+                <!-- Scénario 3 : Raid de Base -->
+                <div class="scenario-card scenario-blue">
+                    <div class="scenario-badge">🔵 Stratégie avancée</div>
+                    <div class="scenario-content">
+                        <h3>Raid de Base – Vol de Mines</h3>
+                        <p class="scenario-description">Attaquez la base ennemie et volez leurs mines une par une pour les ramener dans votre camp.</p>
+                        <ul class="scenario-features">
+                            <li><strong>Idéal pour :</strong> ados, adultes, équipes organisées</li>
+                            <li>Forte coordination d'équipe</li>
+                            <li>Tension permanente et décisions tactiques</li>
+                        </ul>
+                        <div class="scenario-verdict">
+                            👉 Un scénario très prenant pour les groupes soudés.
+                        </div>
                     </div>
-                    <div class="mode-content">
-                        <h3>Protection VIP</h3>
-                        <p>Une équipe doit protéger son VIP tandis que l'autre tente de l'éliminer. Des rôles différents pour une expérience de jeu unique.</p>
+                </div>
+
+                <!-- Scénario 4 : Double VIP -->
+                <div class="scenario-card scenario-purple">
+                    <div class="scenario-badge">🟣 Scénario premium – Intensité maximale</div>
+                    <div class="scenario-content">
+                        <h3>Double VIP</h3>
+                        <p class="scenario-description">Chaque équipe possède un VIP avec une seule vie.</p>
+                        <ul class="scenario-features">
+                            <li><strong>Objectif :</strong> protéger votre VIP et éliminer celui de l'équipe adverse</li>
+                            <li>Jeu très tendu et spectaculaire</li>
+                            <li>Communication et esprit d'équipe indispensables</li>
+                        </ul>
+                        <div class="scenario-verdict">
+                            👉 Le scénario parfait pour un final mémorable.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conseils -->
+            <div class="scenario-tips">
+                <h3>🧭 Notre conseil</h3>
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <span class="tip-condition">Première fois ?</span>
+                        <span class="tip-arrow">→</span>
+                        <span class="tip-suggestion">Affrontement Équipe vs Équipe</span>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-condition">Envie de stratégie ?</span>
+                        <span class="tip-arrow">→</span>
+                        <span class="tip-suggestion">Pose de Mines ou Raid de Base</span>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-condition">Envie d'un scénario intense et original ?</span>
+                        <span class="tip-arrow">→</span>
+                        <span class="tip-suggestion">Double VIP</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Infos pratiques -->
+            <div class="infos-pratiques">
+                <h3>ℹ️ Infos pratiques</h3>
+                <div class="infos-grid">
+                    <div class="info-item">
+                        <span class="info-icon">📐</span>
+                        <span>Terrain extérieur <strong>40 × 60 m</strong></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">⏱️</span>
+                        <span>Parties courtes et rythmées</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">👥</span>
+                        <span>Scénarios adaptés à votre groupe</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Équipement -->
     <section class="section" id="equipement">
         <div class="container">
             <div class="section-title">
@@ -811,7 +853,7 @@
             <div class="equipment-grid">
                 <div class="equipment-card">
                     <div class="equipment-img">
-                        <img src="images/falcon-pistolet.jpg" alt="Pistolet LaserTag">
+                        <img src="images/falcon-pistolet.jpg" alt="Pistolet LaserTag FALCON">
                     </div>
                     <div class="equipment-content">
                         <h3>Pistolet Laser FALCON</h3>
@@ -827,7 +869,7 @@
                 </div>
                 <div class="equipment-card">
                     <div class="equipment-img">
-                        <img src="images/borne-centrale.jpg" alt="Borne LaserTag">
+                        <img src="images/borne-centrale.jpg" alt="Borne LaserTag SIRIUS">
                     </div>
                     <div class="equipment-content">
                         <h3>Borne Centrale SIRIUS</h3>
@@ -843,7 +885,7 @@
                 </div>
                 <div class="equipment-card">
                     <div class="equipment-img">
-                        <img src="images/bombe-supernova.jpg" alt="Bombe LaserTag">
+                        <img src="images/bombe-supernova.jpg" alt="Bombe LaserTag Supernova">
                     </div>
                     <div class="equipment-content">
                         <h3>Bombe Supernova</h3>
@@ -859,7 +901,7 @@
                 </div>
                 <div class="equipment-card">
                     <div class="equipment-img">
-                        <img src="images/veste-netronic.jpg" alt="Veste LaserTag">
+                        <img src="images/veste-netronic.jpg" alt="Veste LaserTag NETRONIC">
                     </div>
                     <div class="equipment-content">
                         <h3>Veste NETRONIC</h3>
@@ -874,6 +916,15 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="background: linear-gradient(135deg, var(--accent-color), #f06348); color: white; text-align: center;">
+        <div class="container">
+            <h2 style="color: white; margin-bottom: 1rem;">Prêt pour l'aventure ?</h2>
+            <p style="margin-bottom: 2rem; font-size: 1.2rem;">Réservez votre session de LaserTag en plein air dès maintenant !</p>
+            <a href="reservation.html" class="btn" style="background-color: white; color: var(--accent-color);">Réserver maintenant</a>
         </div>
     </section>
 
@@ -895,78 +946,35 @@
                     <li><a href="experience.html">Notre Expérience</a></li>
                     <li><a href="formules.html">Formules & Tarifs</a></li>
                     <li><a href="evenements.html">Événements</a></li>
-                    <li><a href="https://www.centreequestreagon.com/Reservation-lasertag.html" target="_blank">Réservation</a></li>
+                    <li><a href="reservation.html">Réservation</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
-            <div class="footer-col footer-contact">
+            <div class="footer-col">
                 <h3>Contact</h3>
-                <p><span class="footer-contact-icon">📍</span> 56 Charrière du Commerce, 50230 Agon-Coutainville</p>
-                <p><span class="footer-contact-icon">📞</span> 02 44 84 99 96</p>
-                <p><span class="footer-contact-icon">📧</span> laserbayagon@gmail.com</p>
-                <p><span class="footer-contact-icon">🕒</span> Mercredi - Vendredi: 14h - 19h<br>Samedi - Dimanche: 10h - 19h<br>Tous les jours pendant les vacances scolaires</p>
+                <p>📍 56 Charrière du Commerce, 50230 Agon-Coutainville</p>
+                <p>📞 02 44 84 99 96</p>
+                <p>📧 laserbayagon@gmail.com</p>
+                <p>🕒 Mercredi - Vendredi: 14h - 19h<br>Samedi - Dimanche: 10h - 19h<br>Tous les jours pendant les vacances scolaires</p>
             </div>
         </div>
         <div class="copyright">
-            <p>&copy; 2025 LaserBay. Tous droits réservés.</p>
+            <p>© 2025 LaserBay. Tous droits réservés.</p>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle - Version corrigée
+        // Mobile menu toggle
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mainNav = document.getElementById('main-nav');
             
             if (mobileMenuBtn && mainNav) {
                 mobileMenuBtn.addEventListener('click', function() {
-                    mainNav.classList.toggle('active');
-                    this.textContent = mainNav.classList.contains('active') ? '✕' : '☰';
-                });
-                
-                // Fermer le menu mobile quand on clique sur un lien
-                const navLinks = mainNav.querySelectorAll('a');
-                navLinks.forEach(link => {
-                    link.addEventListener('click', function() {
-                        if (window.innerWidth <= 768) {
-                            mainNav.classList.remove('active');
-                            mobileMenuBtn.textContent = '☰';
-                        }
-                    });
-                });
-                
-                // Fermer le menu si on redimensionne la fenêtre
-                window.addEventListener('resize', function() {
-                    if (window.innerWidth > 768) {
-                        mainNav.classList.remove('active');
-                        mobileMenuBtn.textContent = '☰';
-                    }
+                    mainNav.querySelector('ul').classList.toggle('active');
+                    this.textContent = mainNav.querySelector('ul').classList.contains('active') ? '✕' : '☰';
                 });
             }
-        });
-        
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Gallery lightbox (simplified version)
-        const galleryItems = document.querySelectorAll('.gallery-item');
-        
-        galleryItems.forEach(item => {
-            item.addEventListener('click', function() {
-                // In a real implementation, this would open a lightbox
-                alert('Dans un site en production, ceci ouvrirait une vue agrandie de l\'image.');
-            });
         });
     </script>
 </body>
