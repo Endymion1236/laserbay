@@ -718,7 +718,11 @@
         🎯 Jusqu'au 1er juillet : <span style="color:#ffe082;">Formule Découverte 10€ la session</span> au lieu de 15€ !
     </div> -->
 
-    <!-- Bandeau inauguration SUPPRIMÉ -->
+    <!-- Bandeau promo ouverture saison -->
+    <div class="inauguration-banner">
+        <h3>🎉 OUVERTURE LE 11 AVRIL — PROMO -20% !</h3>
+        <p>Pour fêter l'ouverture de la saison, profitez de <strong>-20% sur toutes les formules</strong> le samedi 11 avril ! <a href="reservation.html" style="color: #fff; text-decoration: underline; font-weight: bold;">Réservez maintenant →</a></p>
+    </div>
 
     <header>
         <div class="header-container">
@@ -958,9 +962,7 @@
                 <p>Le LaserTag en plein air à Agon-Coutainville. Une aventure laser en bord de mer accessible dès 7 ans, sans projectiles, sans douleur et 100% adrénaline !</p>
                 <div class="social-icons">
                     <a href="https://www.facebook.com/profile.php?id=61576019151172&locale=fr_FR" class="social-icon" target="_blank" rel="noopener" aria-label="Facebook">f</a>
-                    <a href="#" class="social-icon">i</a>
-                    <a href="#" class="social-icon">t</a>
-                </div>
+                    </div>
             </div>
             <div class="footer-col">
                 <h3>Navigation</h3>
@@ -977,8 +979,8 @@
                 <h3>Contact</h3>
                 <p><span class="footer-contact-icon">📍</span> 56 Charrière du Commerce, 50230 Agon-Coutainville</p>
                 <p><span class="footer-contact-icon">📞</span> 02 44 84 99 96</p>
-                <p><span class="footer-contact-icon">📧</span> laserbayagon@gmail.com</p>
-                <p><span class="footer-contact-icon">🕒</span> Mercredi - Vendredi: 14h - 19h<br>Samedi - Dimanche: 10h - 19h<br>Tous les jours pendant les vacances scolaires</p>
+                <p><span class="footer-contact-icon">📧</span> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6c000d1f091e0e0d150d0b03022c0b010d0500420f0301">[email&#160;protected]</a></p>
+                <p><span class="footer-contact-icon">🕒</span> Ouvert d’avril à octobre<br>Horaires selon saison — consultez la <a href="reservation.html" style="color:#ccc;">page réservation</a></p>
             </div>
         </div>
         <div class="copyright">
@@ -992,7 +994,7 @@
         <button onclick="rejectCookies()" style="background-color: #ffffff; color: #0e3b55; border: none; padding: 0.5rem 1rem; border-radius: 5px; margin-left: 1rem; cursor: pointer;">Refuser</button>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         function acceptCookies() {
             document.getElementById('cookie-consent').style.display = 'none';
             localStorage.setItem('cookie-consent', 'accepted');
@@ -1044,14 +1046,4 @@
 const track = document.querySelector('.testimonial-marquee-track');
 const leftBtn = document.querySelector('.testimonial-arrow.left');
 const rightBtn = document.querySelector('.testimonial-arrow.right');
-const cardWidth = document.querySelector('.testimonial-marquee').offsetWidth + 32; // 32px = gap
-
-leftBtn.onclick = () => {
-    track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
-};
-rightBtn.onclick = () => {
-    track.scrollBy({ left: cardWidth, behavior: 'smooth' });
-};
-</script>
-</body>
-</html>
+const cardWidth = document.querySelector('.testimonial-marquee').offsetWidth + 32;
