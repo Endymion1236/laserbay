@@ -335,4 +335,14 @@
             
             if (mobileMenuBtn && mainNav) {
                 mobileMenuBtn.addEventListener('click', function() {
-                    mainNav.querySelec
+                    mainNav.querySelector('.mobile-menu-btn');
+                    mainNav.classList.toggle('active');
+                    const expanded = mainNav.classList.contains('active');
+                    mobileMenuBtn.textContent = expanded ? '✕' : '☰';
+                });
+            }
+        });
+    </script>
+    <script src="main.js"></script>
+</body>
+</html>

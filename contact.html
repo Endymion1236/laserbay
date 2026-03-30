@@ -119,4 +119,17 @@
     
     <div class="important-notice" style="margin-top: 20px; padding: 15px; background-color: rgba(43, 151, 168, 0.1); border-radius: 5px; border-left: 4px solid var(--primary-color);">
         <p><strong>Important :</strong> Veuillez arriver 15 minutes avant le début de votre session pour le briefing et l'équipement.</p>
-        <
+        <p>Pour tout renseignement supplémentaire, n'hésitez pas à nous contacter.</p>
+    </div>
+
+    <script>
+        // FAQ toggle
+        document.querySelectorAll('.faq-question').forEach(function(q) {
+            q.addEventListener('click', function() {
+                this.parentElement.classList.toggle('active');
+            });
+        });
+    </script>
+    <script src="main.js"></script>
+</body>
+</html>

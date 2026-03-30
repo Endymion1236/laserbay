@@ -366,3 +366,9 @@ const track = document.querySelector('.testimonial-marquee-track');
 const leftBtn = document.querySelector('.testimonial-arrow.left');
 const rightBtn = document.querySelector('.testimonial-arrow.right');
 const cardWidth = document.querySelector('.testimonial-marquee').offsetWidth + 32;
+leftBtn.addEventListener('click', () => { track.scrollBy({ left: -cardWidth, behavior: 'smooth' }); });
+rightBtn.addEventListener('click', () => { track.scrollBy({ left: cardWidth, behavior: 'smooth' }); });
+    </script>
+    <script src="main.js"></script>
+</body>
+</html>
