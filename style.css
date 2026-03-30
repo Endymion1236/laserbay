@@ -52,23 +52,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* ─── Scroll reveal animation ─── */
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.section .container,
-.section .section-title,
-.section .features,
-.section .steps,
-.section .two-columns,
-.section .pricing-grid,
-.section .scenarios-grid,
-.section .contact-container,
-.section .faq-container {
-    animation: fadeUp 0.7s ease-out both;
-}
+/* ─── Scroll reveal (piloté par main.js IntersectionObserver) ─── */
 
 /* ─── Header & Navigation ─── */
 header {
