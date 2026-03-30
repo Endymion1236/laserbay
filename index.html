@@ -340,27 +340,7 @@
         }
     </script>
 
-    <script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const mainNav = document.getElementById('main-nav');
-        
-        mobileMenuBtn.addEventListener('click', function() {
-            mainNav.classList.toggle('active');
-            this.textContent = mainNav.classList.contains('active') ? '✕' : '☰';
-        });
-        
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+    
     <script>
 const track = document.querySelector('.testimonial-marquee-track');
 const leftBtn = document.querySelector('.testimonial-arrow.left');

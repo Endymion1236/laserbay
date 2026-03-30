@@ -365,17 +365,6 @@
                     document.getElementById(target).classList.add('active');
                 });
             });
-            
-            // Menu mobile
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const mainNav = document.getElementById('main-nav');
-            
-            if (mobileMenuBtn && mainNav) {
-                mobileMenuBtn.addEventListener('click', function() {
-                    mainNav.classList.toggle('active');
-                    this.textContent = mainNav.classList.contains('active') ? '✕' : '☰';
-                });
-            }
         });
     </script>
     <script src="main.js"></script>
