@@ -1250,26 +1250,26 @@
     </footer>
 
     <script>
-        // Mobile menu toggle
+        // Menu mobile
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mainNav = document.getElementById('main-nav');
-            
+
             if (mobileMenuBtn && mainNav) {
                 mobileMenuBtn.addEventListener('click', function() {
-                    mainNav.querySelector('a').forEach(link => {
-                        link.addEventListener('click', () => {
-                            mainNav.classList.remove('active');
-                            mobileMenuBtn.textContent = '☰';
-                        });
+                    mainNav.classList.toggle('active');
+                    this.textContent = mainNav.classList.contains('active') ? '✕' : '☰';
+                });
+
+                // Fermer le menu quand on clique sur un lien
+                mainNav.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mainNav.classList.remove('active');
+                        mobileMenuBtn.textContent = '☰';
                     });
-                    
-                    mobileMenuBtn.addEventListener('click', function() {
-                        mainNav.classList.toggle('active');
-                        this.textContent = mainNav.classList.contains('active') ? '✕' : '☰';
-                    });
-                }
-            });
+                });
+            }
+        });
     </script>
 </body>
 </html>

@@ -1109,8 +1109,8 @@
     </footer>
 
     <script>
-        // Mobile menu toggle
-            // Menu mobile
+        // Menu mobile
+        document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
             const mainNav = document.getElementById('main-nav');
             if (mobileMenuBtn && mainNav) {
@@ -1119,6 +1119,7 @@
                     this.textContent = mainNav.classList.contains('active') ? '✕' : '☰';
                 });
             }
+        });
     </script>
 </body>
 </html>
