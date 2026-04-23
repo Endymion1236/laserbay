@@ -911,6 +911,35 @@
             }
         }
     
+        
+        /* Infographie scénarios : visible en desktop/tablette */
+        .scenarios-infographic {
+            display: none;
+            max-width: 1400px;
+            margin: 0 auto 2rem;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(14, 59, 85, 0.25);
+        }
+        .scenarios-infographic picture,
+        .scenarios-infographic img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        @media (min-width: 900px) {
+            .scenarios-infographic {
+                display: block;
+            }
+            .scenarios-grid {
+                display: none;
+            }
+            .scenario-tips,
+            .infos-pratiques {
+                /* conservés car utiles même avec l'infographie */
+            }
+        }
+
         /* ANTI-OVERFLOW : empêche tout débordement horizontal */
         html, body {
             overflow-x: hidden;
@@ -1006,7 +1035,15 @@
                 <h2>🔫 Nos Scénarios LaserTag</h2>
                 <p>À LaserBay, chaque partie est encadrée par un animateur et adaptée à votre groupe : âge, nombre de joueurs et envie de jeu.</p>
             </div>
-            
+
+            <!-- Infographie des scénarios (desktop/tablette uniquement) -->
+            <div class="scenarios-infographic">
+                <picture>
+                    <source srcset="images/infographie-scenarios.webp" type="image/webp">
+                    <img src="images/infographie-scenarios.jpg" alt="Les 4 scénarios LaserBay : Affrontement Équipe vs Équipe, Pose de Mines, Raid de Base, Double VIP" loading="lazy">
+                </picture>
+            </div>
+
             <div class="scenarios-grid">
                 <!-- Scénario 1 : Affrontement Équipe vs Équipe -->
                 <div class="scenario-card scenario-green">
