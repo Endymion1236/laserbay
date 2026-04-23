@@ -544,10 +544,10 @@
             
             nav {
                 position: fixed;
-                top: 170px;
+                top: 80px;
                 left: -100%;
                 width: 100%;
-                height: calc(100vh - 170px);
+                height: calc(100vh - 80px);
                 background-color: var(--bg-light);
                 transition: left 0.3s ease;
                 z-index: 999;
@@ -951,6 +951,30 @@
             .conversion-bar { grid-template-columns: 1fr; margin-top: 1.5rem; }
             .gallery-v6 { grid-template-columns: 1fr; }
             .cta-conversion { grid-template-columns: 1fr; text-align: center; }
+        }
+
+        /* Correctif mobile : éviter que le h1 ne déborde de l'écran */
+        @media (max-width: 600px) {
+            .hero {
+                min-height: auto;
+                padding: 2rem 0 3rem;
+            }
+            .hero h1 {
+                font-size: 1.9rem;
+                line-height: 1.15;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .hero-content {
+                padding: 0 1.2rem;
+            }
+            .hero-proof {
+                gap: 0.5rem;
+            }
+            .hero-proof span {
+                font-size: 0.85rem;
+            }
         }
 
     </style>
