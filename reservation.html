@@ -5,17 +5,362 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Réservez en ligne votre session de LaserTag en plein air à LaserBay Agon-Coutainville. Système de réservation rapide et paiement sécurisé.">
     <title>Réservation - LaserBay</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary-color: #2b97a8;
+            --secondary-color: #0e3b55;
+            --accent-color: #e0523a;
+            --dark-color: #0e3b55;
+            --light-color: #f5f0e3;
+            --text-color: #333333;
+            --bg-light: #ffffff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { 
+            background-color: var(--light-color); 
+            color: var(--text-color); 
+            line-height: 1.6; 
+            padding-top: 80px;
+        }
+        header { 
+            background-color: var(--bg-light); 
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+            position: fixed; 
+            width: 100%; 
+            z-index: 1000; 
+            top: 0;
+            height: 80px;
+        }
+        .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 100%; }
+        .logo { width: 180px; height: auto; display: block; }
+        nav { height: 100%; display: flex; align-items: center; }
+        nav ul { display: flex; list-style: none; height: 100%; margin: 0; padding: 0; align-items: center; }
+        nav ul li { margin-left: 2rem; height: 100%; }
+        nav ul li a { color: var(--dark-color); text-decoration: none; font-weight: 600; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; transition: color 0.3s; padding: 0 0.5rem; display: flex; align-items: center; height: 100%; }
+        nav ul li a:hover, nav ul li a.active { color: var(--accent-color); }
+        .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; color: var(--dark-color); cursor: pointer; }
+        .page-banner {
+            background-image: linear-gradient(rgba(14,59,85,0.55), rgba(14,59,85,0.55)), url('images/team-action-v2.png');
+            background-size: cover;
+            background-position: center;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            color: white;
+            margin-top: 0;
+        }
+        .page-banner::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(14,59,85,0.6); }
+        .banner-content { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; text-align: center; width: 100%; }
+        .page-banner h1 { font-size: 3rem; margin-bottom: 1rem; font-weight: 800; }
+        .breadcrumb { display: flex; justify-content: center; list-style: none; }
+        .breadcrumb li { margin: 0 0.5rem; }
+        .breadcrumb a { color: white; text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .section { padding: 3rem 2rem; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .section-title { margin-bottom: 2rem; text-align: center; }
+        .section-title h2 { font-size: 2.5rem; color: var(--dark-color); margin-bottom: 1rem; position: relative; display: inline-block; }
+        .section-title h2::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background-color: var(--accent-color); }
+        .section-title p { color: #666; max-width: 800px; margin: 0 auto; }
+        .reservation-iframe-container { background-color: var(--bg-light); border-radius: 10px; box-shadow: 0 5px 30px rgba(0,0,0,0.1); overflow: hidden; margin: 2rem auto; max-width: 1200px; }
+        .iframe-header { background-color: var(--primary-color); color: white; padding: 1.5rem; text-align: center; }
+        .iframe-header h3 { margin: 0; font-size: 1.5rem; }
+        .reservation-iframe { width: 100%; height: 80vh; min-height: 600px; border: none; display: block; }
+        .loading-message { text-align: center; padding: 3rem; color: #666; font-style: italic; }
+        .info-box { background-color: rgba(43,151,168,0.1); border-left: 4px solid var(--primary-color); padding: 1.5rem; margin: 2rem 0; border-radius: 0 5px 5px 0; }
+        .info-box h3 { margin-bottom: 0.5rem; color: var(--dark-color); }
+        footer { background-color: var(--dark-color); color: white; padding: 4rem 0 2rem; }
+        .footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .footer-col h3 { margin-bottom: 1.5rem; position: relative; padding-bottom: 0.5rem; display: inline-block; }
+        .footer-col h3::after { content: ''; position: absolute; left: 0; bottom: 0; width: 50px; height: 2px; background-color: var(--accent-color); }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.8rem; }
+        .footer-links a { color: #ccc; text-decoration: none; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--accent-color); }
+        .footer-contact p { margin-bottom: 0.8rem; display: flex; align-items: center; }
+        .footer-contact-icon { margin-right: 10px; color: var(--accent-color); }
+        .social-icons { display: flex; gap: 1rem; margin-top: 1.5rem; }
+        .social-icon { display: inline-block; width: 40px; height: 40px; background-color: rgba(255,255,255,0.1); border-radius: 50%; text-align: center; line-height: 40px; color: white; transition: all 0.3s ease; }
+        .social-icon:hover { background-color: var(--accent-color); transform: translateY(-3px); }
+        .copyright { text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: #999; font-size: 0.9rem; }
+        @media (max-width: 992px) {
+            .section-title h2 { font-size: 2rem; }
+            .page-banner h1 { font-size: 2.5rem; }
+            .reservation-iframe { height: 70vh; min-height: 500px; }
+        }
+        @media (max-width: 768px) {
+            .header-container { padding: 0 1rem; }
+            .mobile-menu-btn { display: block; }
+            nav { position: fixed; top: 170px; left: -100%; width: 100%; height: calc(100vh - 170px); background-color: var(--bg-light); transition: left 0.3s ease; z-index: 999; overflow-y: auto; }
+            nav.active { left: 0; }
+            nav ul { flex-direction: column; padding: 2rem; height: auto; align-items: stretch; }
+            nav ul li { margin: 0; margin-bottom: 1rem; height: auto; width: 100%; }
+            nav ul li a { font-size: 1rem; padding: 1rem; height: auto; border-bottom: 1px solid #eee; display: block; }
+            .section { padding: 2rem 1rem; }
+            .page-banner { height: 40vh; }
+            .page-banner h1 { font-size: 2rem; }
+            .reservation-iframe { height: 60vh; min-height: 400px; }
+        }
+    
+        /* V2 visuels */
+        .photo-gallery {
+            background: linear-gradient(180deg, rgba(255,255,255,0.0), rgba(43,151,168,0.06));
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.25rem;
+            margin-top: 2rem;
+        }
+        .gallery-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            min-height: 260px;
+            box-shadow: 0 14px 34px rgba(0,0,0,0.16);
+            grid-column: span 4;
+            background: #0e3b55;
+        }
+        .gallery-card.large { grid-column: span 8; min-height: 360px; }
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.45s ease;
+        }
+        .gallery-card:hover img { transform: scale(1.04); }
+        .gallery-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(14,59,85,0.88), rgba(14,59,85,0.05) 55%);
+        }
+        .gallery-caption {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2;
+            padding: 1.2rem 1.2rem 1.1rem;
+            color: #fff;
+        }
+        .gallery-caption h3 {
+            margin: 0 0 0.35rem;
+            font-size: 1.25rem;
+            line-height: 1.2;
+        }
+        .gallery-caption p {
+            margin: 0;
+            font-size: 0.96rem;
+            opacity: 0.95;
+        }
+        .visual-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .strip-item {
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+        }
+        .strip-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+        .strip-content {
+            padding: 1rem 1rem 1.1rem;
+        }
+        .strip-content h3 {
+            margin-bottom: 0.35rem;
+            color: var(--dark-color);
+            font-size: 1.1rem;
+        }
+        .strip-content p {
+            margin: 0;
+            color: #555;
+            font-size: 0.95rem;
+        }
+        @media (max-width: 900px) {
+            .gallery-card, .gallery-card.large { grid-column: span 12; min-height: 280px; }
+            .visual-strip { grid-template-columns: 1fr; }
+        }
+
+    
+        /* V6 conversion max, sans casser l'agencement */
+        .hero {
+            min-height: 88vh;
+            background-position: center center;
+        }
+        .hero::before {
+            background: linear-gradient(to right, rgba(14,59,85,0.82), rgba(14,59,85,0.38));
+        }
+        .hero-content {
+            max-width: 760px;
+        }
+        .hero h1 {
+            font-size: 3.9rem;
+            line-height: 1.05;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.16rem;
+            max-width: 640px;
+        }
+        .hero-buttons {
+            margin-top: 1.2rem;
+        }
+        .hero-buttons .btn,
+        .hero-buttons .btn-outline {
+            border-radius: 999px;
+            padding: 0.95rem 1.6rem;
+        }
+        .hero-proof {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.3rem;
+        }
+        .hero-proof span {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.18);
+            color: white;
+            padding: 0.7rem 1rem;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.92rem;
+        }
+        .conversion-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: -2rem;
+            position: relative;
+            z-index: 4;
+        }
+        .conversion-item {
+            background: white;
+            border-radius: 18px;
+            padding: 1.1rem 1.2rem;
+            box-shadow: 0 18px 38px rgba(0,0,0,0.12);
+            text-align: center;
+        }
+        .conversion-item strong {
+            display: block;
+            color: var(--dark-color);
+            font-size: 1.12rem;
+            margin-bottom: 0.3rem;
+        }
+        .conversion-item p {
+            margin: 0;
+            color: #666;
+            font-size: 0.95rem;
+        }
+        .feature-img img,
+        .experience-img img,
+        .gallery-v6 img {
+            object-fit: cover;
+        }
+        .gallery-v6 {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+        .gallery-v6-main,
+        .gallery-v6-side > div {
+            position: relative;
+            overflow: hidden;
+            border-radius: 18px;
+            box-shadow: 0 16px 34px rgba(0,0,0,0.14);
+            background: #0e3b55;
+        }
+        .gallery-v6-main img {
+            width: 100%;
+            height: 100%;
+            min-height: 420px;
+            display: block;
+        }
+        .gallery-v6-side {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            gap: 1.2rem;
+        }
+        .gallery-v6-side img {
+            width: 100%;
+            height: 100%;
+            min-height: 200px;
+            display: block;
+        }
+        .gallery-v6-caption {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 1.2rem;
+            color: white;
+            background: linear-gradient(to top, rgba(14,59,85,0.92), rgba(14,59,85,0));
+        }
+        .gallery-v6-caption h3 {
+            margin: 0 0 0.3rem;
+            font-size: 1.2rem;
+        }
+        .gallery-v6-caption p {
+            margin: 0;
+            opacity: 0.96;
+            font-size: 0.95rem;
+        }
+        .cta-conversion {
+            background: linear-gradient(135deg, #0e3b55, #2b97a8);
+            color: white;
+            border-radius: 22px;
+            padding: 2rem;
+            box-shadow: 0 20px 46px rgba(14,59,85,0.2);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        .cta-conversion h3 {
+            color: white;
+            margin-bottom: 0.4rem;
+            font-size: 1.8rem;
+        }
+        .cta-conversion p {
+            margin: 0;
+            opacity: 0.94;
+        }
+        .cta-conversion .btn {
+            border-radius: 999px;
+            white-space: nowrap;
+            padding: 1rem 1.5rem;
+        }
+        .feature-card .feature-img img { object-position: center center; }
+        .feature-card:nth-child(1) .feature-img img { object-position: center 45%; }
+        .feature-card:nth-child(2) .feature-img img { object-position: center 40%; }
+        .feature-card:nth-child(3) .feature-img img { object-position: center 35%; }
+        @media (max-width: 980px) {
+            .hero h1 { font-size: 2.8rem; }
+            .conversion-bar { grid-template-columns: 1fr; margin-top: 1.5rem; }
+            .gallery-v6 { grid-template-columns: 1fr; }
+            .cta-conversion { grid-template-columns: 1fr; text-align: center; }
+        }
+
+    </style>
 </head>
 <body>
     <!-- Bandeau inauguration SUPPRIMÉ -->
 
     <header>
         <div class="header-container">
-            <img src="images/logolaserbay.png" alt="LaserBay Logo" class="logo">
+            <img src="images/logolaserbay.svg" alt="LaserBay Logo" class="logo">
             <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu mobile" aria-controls="main-nav" aria-expanded="false">☰</button>
             <nav id="main-nav">
                 <ul>
@@ -45,7 +390,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>Réservez votre aventure LaserBay</h2>
-                <p>Sélectionnez votre créneau et réservez directement en ligne pour une expérience LaserTag inoubliable</p>
+                <p>Réservez votre créneau en ligne et venez jouer sur un vrai terrain extérieur pensé pour les groupes.</p>
             </div>
 
             <!-- Bloc d'information personnalisé -->
@@ -94,6 +439,31 @@
                     Offrir →
                 </a>
             </div>
+
+            
+<div class="visual-strip" style="margin-bottom: 2rem;">
+    <div class="strip-item">
+        <img src="images/briefing-v2.png" alt="Accueil de groupe LaserBay">
+        <div class="strip-content">
+            <h3>Avant la partie</h3>
+            <p>Un accueil simple, un briefing rapide et c'est parti.</p>
+        </div>
+    </div>
+    <div class="strip-item">
+        <img src="images/terrain-sunset-v2.png" alt="Terrain extérieur LaserBay">
+        <div class="strip-content">
+            <h3>Le terrain vous attend</h3>
+            <p>Le cadre extérieur donne tout de suite envie de réserver.</p>
+        </div>
+    </div>
+    <div class="strip-item">
+        <img src="images/closeup-equipment-v2.png" alt="Équipement de laser tag LaserBay">
+        <div class="strip-content">
+            <h3>Matériel prêt à jouer</h3>
+            <p>Parfait pour rassurer le visiteur juste avant la réservation.</p>
+        </div>
+    </div>
+</div>
 
             <div class="reservation-iframe-container">
                 <div class="iframe-header">
@@ -149,7 +519,53 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-    <script src="main.js"></script>
-</body>
-</html>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Mobile menu toggle - Version corrigée
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mainNav = document.getElementById('main-nav');
+            
+            if (mobileMenuBtn && mainNav) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mainNav.classList.toggle('active');
+                    const expanded = mainNav.classList.contains('active');
+                    this.textContent = expanded ? '✕' : '☰';
+                    this.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+                });
+                
+                // Fermer le menu mobile quand on clique sur un lien
+                const navLinks = mainNav.querySelectorAll('a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        if (window.innerWidth <= 768) {
+                            mainNav.classList.remove('active');
+                            mobileMenuBtn.textContent = '☰';
+                            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                });
+                
+                // Fermer le menu si on redimensionne la fenêtre
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 768) {
+                        mainNav.classList.remove('active');
+                        mobileMenuBtn.textContent = '☰';
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        });
+
+        // Fonction pour masquer le message de chargement
+        function hideLoadingMessage() {
+            const loadingMessage = document.getElementById('loading-message');
+            if (loadingMessage) {
+                loadingMessage.style.display = 'none';
+            }
+        }
+
+        // Gestion d'erreur de chargement de l'iframe
+        document.getElementById('reservation-iframe').addEventListener('error', function() {
+            const loadingMessage = document.getElementById('loading-message');
+            if (loadingMessage) {
+                loadingMessage.innerHTML = '<p style="color: var(--accent-color);">❌ Impossible de charger la plateforme de réservation. Veuillez réessayer ou nous contacter directement.<
