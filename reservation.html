@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Réservez en ligne votre session de LaserTag en plein air à LaserBay Agon-Coutainville. Système de réservation rapide et paiement sécurisé.">
     <title>Réservation - LaserBay</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         :root {
             --primary-color: #2b97a8;
@@ -81,7 +82,7 @@
         .footer-contact p { margin-bottom: 0.8rem; display: flex; align-items: center; }
         .footer-contact-icon { margin-right: 10px; color: var(--accent-color); }
         .social-icons { display: flex; gap: 1rem; margin-top: 1.5rem; }
-        .social-icon { display: inline-block; width: 40px; height: 40px; background-color: rgba(255,255,255,0.1); border-radius: 50%; text-align: center; line-height: 40px; color: white; transition: all 0.3s ease; }
+        .social-icon { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: rgba(255,255,255,0.1); border-radius: 50%; color: white; transition: all 0.3s ease; }
         .social-icon:hover { background-color: var(--accent-color); transform: translateY(-3px); }
         .copyright { text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: #999; font-size: 0.9rem; }
         @media (max-width: 992px) {
@@ -407,7 +408,7 @@
                     <li><strong>Découverte</strong> — 2 parties de 10 min (30 min sur place) — <strong>12€/pers</strong></li>
                     <li><strong>Aventurier</strong> — 3 parties de 10 min (1h sur place) — <strong>18€/pers</strong></li>
                     <li><strong>Expert</strong> — 4 parties de 12 min (1h30 sur place) — <strong>25€/pers</strong></li>
-                    <li><strong>Groupes & Événements</strong> — Formules de 100€ à 190€ (jusqu'à 10 personnes)</li>
+                    <li><strong>Groupes & Événements</strong> — Forfaits privatisation de 100€ à 190€ (terrain privé, jusqu'à 10 joueurs)</li>
                 </ul>
                 <hr style="margin: 20px 0; border-top: 1px dashed #00bfff;">
 
@@ -490,9 +491,7 @@
                 <h3>LaserBay</h3>
                 <p>Le LaserTag en plein air à Agon-Coutainville. Une aventure laser en bord de mer accessible dès 7 ans, sans projectiles, sans douleur et 100% adrénaline !</p>
                 <div class="social-icons">
-                    <a href="https://www.facebook.com/profile.php?id=61576019151172&locale=fr_FR" class="social-icon" target="_blank" rel="noopener" aria-label="Facebook">f</a>
-                    <a href="#" class="social-icon" aria-label="Instagram">i</a>
-                    <a href="#" class="social-icon" aria-label="TikTok">t</a>
+                    <a href="https://www.facebook.com/profile.php?id=61576019151172&locale=fr_FR" class="social-icon" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
                 </div>
             </div>
             <div class="footer-col">
@@ -510,7 +509,7 @@
                 <h3>Contact</h3>
                 <p><span class="footer-contact-icon">📍</span> 56 Charrière du Commerce, 50230 Agon-Coutainville</p>
                 <p><span class="footer-contact-icon">📞</span> 02 44 84 99 96</p>
-                <p><span class="footer-contact-icon">📧</span> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bad6dbc9dfc8d8dbc3dbddd5d4faddd7dbd3d694d9d5d7">[email&#160;protected]</a></p>
+                <p><span class="footer-contact-icon">📧</span> <a href="mailto:laserbayagon@gmail.com">laserbayagon@gmail.com</a></p>
                 <p><span class="footer-contact-icon">🕒</span> Mercredi - Vendredi: 14h - 19h<br>Samedi - Dimanche: 10h - 19h<br>Tous les jours pendant les vacances scolaires</p>
             </div>
         </div>
@@ -519,7 +518,7 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // Mobile menu toggle - Version corrigée
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
