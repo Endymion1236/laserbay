@@ -878,6 +878,19 @@
                 z-index: 1002;
             }
         }
+    
+        /* ANTI-OVERFLOW : empêche tout débordement horizontal */
+        html, body {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+        * {
+            max-width: 100%;
+        }
+        img, iframe, video {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 
     <!-- Google tag (gtag.js) -->
