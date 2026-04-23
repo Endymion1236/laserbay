@@ -1110,4 +1110,15 @@
 
     <script>
         // Mobile menu toggle
-     
+            // Menu mobile
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mainNav = document.getElementById('main-nav');
+            if (mobileMenuBtn && mainNav) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mainNav.classList.toggle('active');
+                    this.textContent = mainNav.classList.contains('active') ? '✕' : '☰';
+                });
+            }
+    </script>
+</body>
+</html>
