@@ -299,6 +299,8 @@ footer {
         background-color: var(--bg-light);
         transition: left 0.3s ease;
         z-index: 1000;
+        align-items: flex-start;
+        justify-content: flex-start;
     }
 
     nav.active {
