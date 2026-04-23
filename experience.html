@@ -127,7 +127,7 @@
         }
         
         .page-banner {
-            background: linear-gradient(rgba(14, 59, 85, 0.56), rgba(14, 59, 85, 0.56)), url('images/showdown-v2.png');
+            background: linear-gradient(rgba(14, 59, 85, 0.15), rgba(14, 59, 85, 0.25)), url('images/showdown-v2.png');
             background-size: cover;
             background-position: center;
             background-size: cover;
@@ -146,7 +146,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(14, 59, 85, 0.4);
+            background: linear-gradient(to right, rgba(14,59,85,0.40), rgba(14,59,85,0.05));
         }
         
         .banner-content {
@@ -940,7 +940,13 @@
             }
         }
 
-        /* ANTI-OVERFLOW : empêche tout débordement horizontal */
+        
+        /* LIGHT-BANNER-TEXT-SHADOW : lisibilité des titres sur fonds photo allégés */
+        .page-banner h1 { text-shadow: 0 2px 14px rgba(0,0,0,0.6), 0 2px 4px rgba(0,0,0,0.45); }
+        .page-banner p { text-shadow: 0 1px 8px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.35); }
+        .breadcrumb a { text-shadow: 0 1px 6px rgba(0,0,0,0.45); }
+        .breadcrumb li { text-shadow: 0 1px 6px rgba(0,0,0,0.45); }
+    /* ANTI-OVERFLOW : empêche tout débordement horizontal */
         html, body {
             overflow-x: hidden;
             max-width: 100%;
