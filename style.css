@@ -287,7 +287,9 @@ footer {
     }
 
     .mobile-menu-btn {
-        display: block;
+        display: block !important;
+        position: relative;
+        z-index: 1002;
     }
 
     nav {

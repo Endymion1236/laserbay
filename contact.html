@@ -869,6 +869,15 @@
             .cta-conversion { grid-template-columns: 1fr; text-align: center; }
         }
 
+    
+        /* FORCE-MOBILE-MENU : affichage garanti du bouton hamburger en mobile */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block !important;
+                position: relative;
+                z-index: 1002;
+            }
+        }
     </style>
 
     <!-- Google tag (gtag.js) -->
