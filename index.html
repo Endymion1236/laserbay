@@ -163,7 +163,11 @@
         }
         
         .hero {
-            background-image: linear-gradient(rgba(14,59,85,0.05), rgba(14,59,85,0.15)), url('images/team-action-v2.png');
+            background-image: linear-gradient(rgba(14,59,85,0.05), rgba(14,59,85,0.15)), url('images/team-action-v3.jpg');
+            background-image: linear-gradient(rgba(14,59,85,0.05), rgba(14,59,85,0.15)), image-set(
+                url('images/team-action-v3.webp') type('image/webp'),
+                url('images/team-action-v3.jpg') type('image/jpeg')
+            );
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -797,7 +801,9 @@
     
         /* V6 conversion max, sans casser l'agencement */
         .hero {
-            min-height: 88vh;
+            min-height: 92vh;
+            padding-top: 2rem;
+            padding-bottom: 3rem;
             background-position: center center;
         }
         .hero::before {
@@ -1163,7 +1169,7 @@
             </div>
             <div class="gallery-v6">
                 <div class="gallery-v6-main">
-                    <img src="images/team-action-v2.png" alt="Action LaserBay en équipe">
+                    <img src="images/team-action-v3.jpg" alt="Action LaserBay en équipe">
                     <div class="gallery-v6-caption">
                         <h3>De vraies parties qui bougent</h3>
                         <p>Plus d’espace, plus d’intensité, plus de sensation de jeu.</p>
