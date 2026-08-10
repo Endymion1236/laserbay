@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LaserBay - LaserTag en plein air à Agon-Coutainville. Une expérience unique de jeu laser en bord de mer pour tous les âges.">
+    <title>LaserBay - LaserTag en plein air à Agon-Coutainville</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary-color: #2b97a8;
+            --secondary-color: #0e3b55;
+            --accent-color: #e0523a;
+            --dark-color: #0e3b55;
+            --light-color: #f5f0e3;
+            --text-color: #333333;
+            --bg-light: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+        
+        /* ---------- Bandeau annonce Grand Tournoi ---------- */
+        .tournoi-banner {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem 1.2rem;
+            background-color: var(--accent-color);
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+            padding: 0.9rem 2rem;
+            position: relative;
+            z-index: 1002;
+            transition: background-color 0.25s;
+        }
+        .tournoi-banner:hover { background-color: #c8452e; }
+        .tournoi-banner strong { font-size: 1.05rem; }
+        .tournoi-banner span { font-size: 0.95rem; opacity: 0.92; }
+        .tournoi-banner em {
+            font-style: normal;
+            background: rgba(255,255,255,0.18);
+            border: 1px solid rgba(255,255,255,0.45);
+            padding: 0.25rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .nav-tournoi { color: var(--accent-color) !important; font-weight: bold; }
+
+        /* ---------- Section Grand Tournoi (accueil) ---------- */
+        .tournoi-section {
+            background: linear-gradient(rgba(14,59,85,0.86), rgba(14,59,85,0.9)),
+                        url('images/laserbay-action-terrain.png') center/cover no-repeat;
+            color: #fff;
+            padding: 3.5rem 2rem;
+        }
+        .tournoi-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        .tournoi-date {
+            display: inline-block;
+            background-color: var(--accent-color);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.88rem;
+            margin-bottom: 1rem;
+        }
+        .tournoi-inner h2 { font-size: 2.1rem; line-height: 1.25; margin-bottom: 0.9rem; }
+        .tournoi-inner > div > p { opacity: 0.95; margin-bottom: 1.5rem; }
+        .tournoi-points { list-style: none; padding: 0; margin: 0 0 1.8rem; }
+        .tournoi-points li { padding: 0.35rem 0; }
+        .tournoi-points li::before { content: "✓"; color: #ffe082; font-weight: bold; margin-right: 0.6rem; }
+        .tournoi-encart {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.28);
+            border-radius: 12px;
+            padding: 1.8rem 1.5rem;
+            text-align: center;
+        }
+        .tournoi-encart .tarif {
+            font-size: 3.2rem;
+            font-weight: bold;
+            color: #ffe082;
+            line-height: 1;
+        }
+        .tournoi-encart .tarif-sub { font-size: 0.95rem; opacity: 0.9; margin-bottom: 1.2rem; }
+        .tournoi-encart .detail { font-size: 0.92rem; opacity: 0.88; margin-top: 1rem; }
+
+        @media (max-width: 768px) {
+            .tournoi-inner { grid-template-columns: 1fr; gap: 1.8rem; }
+            .tournoi-inner h2 { font-size: 1.6rem; }
+            .tournoi-banner { padding: 0.8rem 1rem; }
+            .tournoi-banner strong { font-size: 0.95rem; }
+            .tournoi-banner span { font-size: 0.85rem; }
+        }
+
+        /* Bandeau inauguration */
+        .inauguration-banner {
+            background-color: var(--accent-color);
+            color: white;
+            text-align: center;
+            padding: 1rem 2rem;
+            position: relative;
+            z-index: 1001;
+            animation: pulse 2s infinite;
+        }
+        
+        .inauguration-banner h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .inauguration-banner p {
+            font-size: 1rem;
+            margin: 0;
+        }
+        
+        @keyframes pulse {
+            0% { background-color: var(--accent-color); }
+            50% { background-color: #f06348; }
+            100% { background-color: var(--accent-color); }
+        }
+        
+        header {
+            background-color: var(--bg-light);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            top: 0;
+            height: 80px;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 100%;
+        }
+        
+        .logo {
+            width: 180px;
+            height: auto;
+            display: block;
+        }
+        
+        nav {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+            height: 100%;
+        }
+        
+        nav ul li a {
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            padding: 0 0.5rem;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #f06348;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(224, 82, 58, 0.3);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+        }
+        
+        .hero {
+            background-image: linear-gradient(rgba(14,59,85,0.05), rgba(14,59,85,0.15)), url('images/team-action-v3.jpg');
+            background-image: linear-gradient(rgba(14,59,85,0.05), rgba(14,59,85,0.15)), image-set(
+                url('images/team-action-v3.webp') type('image/webp'),
+                url('images/team-action-v3.jpg') type('image/jpeg')
+            );
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            color: white;
+            margin-top: 0;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(14, 59, 85, 0.8), rgba(14, 59, 85, 0.4));
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .section {
+            padding: 5rem 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: var(--bg-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .feature-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .feature-card:hover .feature-img img {
+            transform: scale(1.1);
+        }
+        
+        .feature-content {
+            padding: 1.5rem;
+        }
+        
+        .feature-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .feature-content p {
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+        
+        .how-it-works {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .step {
+            text-align: center;
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .step:hover {
+            transform: translateY(-10px);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+        
+        .step h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .testimonials {
+            background-color: var(--light-color);
+        }
+        
+        .testimonial-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: var(--bg-light);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial {
+            text-align: center;
+        }
+        
+        .testimonial-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding: 0 2rem;
+        }
+        
+        .testimonial-text::before,
+        .testimonial-text::after {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            color: var(--primary-color);
+            opacity: 0.2;
+        }
+        
+        .testimonial-text::before {
+            top: -20px;
+            left: 0;
+        }
+        
+        .testimonial-text::after {
+            bottom: -60px;
+            right: 0;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--dark-color);
+        }
+        
+        .testimonial-role {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .cta {
+            background-image: linear-gradient(rgba(14,59,85,0.52), rgba(14,59,85,0.38)), url('images/terrain-sunset-v2.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            color: white;
+            text-align: center;
+        }
+        
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(14, 59, 85, 0.7);
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta p {
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .footer-col h3 {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .footer-contact p {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-contact-icon {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 1rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--bg-light);
+                transition: left 0.3s ease;
+                z-index: 999;
+                overflow-y: auto;
+                align-items: flex-start;
+                justify-content: flex-start;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 2rem;
+                height: auto;
+                align-items: stretch;
+            }
+            
+            nav ul li {
+                margin: 0;
+                margin-bottom: 1rem;
+                height: auto;
+                width: 100%;
+            }
+            
+            nav ul li a {
+                font-size: 1rem;
+                padding: 1rem;
+                height: auto;
+                border-bottom: 1px solid #eee;
+                display: block;
+            }
+            
+            .hero {
+                height: 80vh;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .section {
+                padding: 3rem 1rem;
+            }
+            
+            .features, .steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .inauguration-banner h3 {
+                font-size: 1rem;
+            }
+            
+            .inauguration-banner p {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Ajoute ce style dans le <head> */
+        .testimonial-marquee-container {
+            overflow: hidden;
+            width: 100%;
+            background: #f5f0e3;
+            padding: 2rem 0;
+            position: relative;
+        }
+        .testimonial-marquee-track {
+            display: flex;
+            align-items: stretch;
+            /* animation: marquee 40s linear infinite;  <-- supprime ou commente cette ligne */
+            gap: 2rem;
+            transition: scroll-behavior 0.3s;
+            scroll-behavior: smooth;
+            overflow-x: auto;
+            scrollbar-width: none; /* Firefox */
+        }
+        .testimonial-marquee-track::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+        .testimonial-marquee {
+            min-width: 350px;
+            max-width: 400px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(43,151,168,0.08);
+            padding: 1.5rem 1.2rem;
+            margin: 0 1rem;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .testimonial-marquee .testimonial-text {
+            font-size:1.06rem;
+            color:#222;
+            margin-bottom: 1.2rem;
+        }
+        .testimonial-marquee .testimonial-author {
+            font-weight:bold;
+            color:#2b97a8;
+        }
+        .testimonial-marquee .testimonial-role {
+            color:#888;
+            font-size:0.95rem;
+        }
+        @media (max-width: 600px) {
+            .testimonial-marquee { min-width: 250px; }
+        }
+
+        .testimonial-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #fff;
+    border: 3px solid #2b97a8;
+    color: #e0523a;
+    font-size: 2.5rem;
+    font-weight: bold;
+    border-radius: 50%;
+    box-shadow: 0 4px 16px rgba(43,151,168,0.18);
+    cursor: pointer;
+    z-index: 2;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.98;
+    transition: background 0.2s, border 0.2s, color 0.2s, transform 0.2s;
+    outline: 3px solid #fff;
+}
+.testimonial-arrow.left { left: 10px; }
+.testimonial-arrow.right { right: 10px; }
+.testimonial-arrow:hover {
+    background: #e0523a;
+    color: #fff;
+    border-color: #e0523a;
+    transform: translateY(-50%) scale(1.12);
+    outline: 3px solid #2b97a8;
+}
+@media (max-width: 600px) {
+    .testimonial-arrow {
+        width: 44px;
+        height: 44px;
+        font-size: 1.6rem;
+    }
+}
+    
+        /* V2 visuels */
+        .photo-gallery {
+            background: linear-gradient(180deg, rgba(255,255,255,0.0), rgba(43,151,168,0.06));
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.25rem;
+            margin-top: 2rem;
+        }
+        .gallery-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            min-height: 260px;
+            box-shadow: 0 14px 34px rgba(0,0,0,0.16);
+            grid-column: span 4;
+            background: #0e3b55;
+        }
+        .gallery-card.large { grid-column: span 8; min-height: 360px; }
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.45s ease;
+        }
+        .gallery-card:hover img { transform: scale(1.04); }
+        .gallery-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(14,59,85,0.88), rgba(14,59,85,0.05) 55%);
+        }
+        .gallery-caption {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2;
+            padding: 1.2rem 1.2rem 1.1rem;
+            color: #fff;
+        }
+        .gallery-caption h3 {
+            margin: 0 0 0.35rem;
+            font-size: 1.25rem;
+            line-height: 1.2;
+        }
+        .gallery-caption p {
+            margin: 0;
+            font-size: 0.96rem;
+            opacity: 0.95;
+        }
+        .visual-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .strip-item {
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+        }
+        .strip-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+        .strip-content {
+            padding: 1rem 1rem 1.1rem;
+        }
+        .strip-content h3 {
+            margin-bottom: 0.35rem;
+            color: var(--dark-color);
+            font-size: 1.1rem;
+        }
+        .strip-content p {
+            margin: 0;
+            color: #555;
+            font-size: 0.95rem;
+        }
+        @media (max-width: 900px) {
+            .gallery-card, .gallery-card.large { grid-column: span 12; min-height: 280px; }
+            .visual-strip { grid-template-columns: 1fr; }
+        }
+
+    
+        /* V6 conversion max, sans casser l'agencement */
+        .hero {
+            min-height: 92vh;
+            padding-top: 2rem;
+            padding-bottom: 3rem;
+            background-position: center center;
+        }
+        .hero::before {
+            background: linear-gradient(to right, rgba(14,59,85,0.30), rgba(14,59,85,0.00));
+        }
+        .hero-content {
+            max-width: 760px;
+        }
+        .hero h1 {
+            font-size: 3.9rem;
+            line-height: 1.05;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 16px rgba(0,0,0,0.65), 0 2px 4px rgba(0,0,0,0.5);
+        }
+        .hero p {
+            font-size: 1.16rem;
+            max-width: 640px;
+            text-shadow: 0 1px 8px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.4);
+        }
+        .hero-buttons {
+            margin-top: 1.2rem;
+        }
+        .hero-buttons .btn,
+        .hero-buttons .btn-outline {
+            border-radius: 999px;
+            padding: 0.95rem 1.6rem;
+        }
+        .hero-proof {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.3rem;
+        }
+        .hero-proof span {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.18);
+            color: white;
+            padding: 0.7rem 1rem;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.92rem;
+        }
+        .conversion-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: -2rem;
+            position: relative;
+            z-index: 4;
+        }
+        .conversion-item {
+            background: white;
+            border-radius: 18px;
+            padding: 1.1rem 1.2rem;
+            box-shadow: 0 18px 38px rgba(0,0,0,0.12);
+            text-align: center;
+        }
+        .conversion-item strong {
+            display: block;
+            color: var(--dark-color);
+            font-size: 1.12rem;
+            margin-bottom: 0.3rem;
+        }
+        .conversion-item p {
+            margin: 0;
+            color: #666;
+            font-size: 0.95rem;
+        }
+        .feature-img img,
+        .experience-img img,
+        .gallery-v6 img {
+            object-fit: cover;
+        }
+        .gallery-v6 {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+        .gallery-v6-main,
+        .gallery-v6-side > div {
+            position: relative;
+            overflow: hidden;
+            border-radius: 18px;
+            box-shadow: 0 16px 34px rgba(0,0,0,0.14);
+            background: #0e3b55;
+        }
+        .gallery-v6-main img {
+            width: 100%;
+            height: 100%;
+            min-height: 420px;
+            display: block;
+        }
+        .gallery-v6-side {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            gap: 1.2rem;
+        }
+        .gallery-v6-side img {
+            width: 100%;
+            height: 100%;
+            min-height: 200px;
+            display: block;
+        }
+        .gallery-v6-caption {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 1.2rem;
+            color: white;
+            background: linear-gradient(to top, rgba(14,59,85,0.92), rgba(14,59,85,0));
+        }
+        .gallery-v6-caption h3 {
+            margin: 0 0 0.3rem;
+            font-size: 1.2rem;
+        }
+        .gallery-v6-caption p {
+            margin: 0;
+            opacity: 0.96;
+            font-size: 0.95rem;
+        }
+        .cta-conversion {
+            background: linear-gradient(135deg, #0e3b55, #2b97a8);
+            color: white;
+            border-radius: 22px;
+            padding: 2rem;
+            box-shadow: 0 20px 46px rgba(14,59,85,0.2);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        .cta-conversion h3 {
+            color: white;
+            margin-bottom: 0.4rem;
+            font-size: 1.8rem;
+        }
+        .cta-conversion p {
+            margin: 0;
+            opacity: 0.94;
+        }
+        .cta-conversion .btn {
+            border-radius: 999px;
+            white-space: nowrap;
+            padding: 1rem 1.5rem;
+        }
+        .feature-card .feature-img img { object-position: center center; }
+        .feature-card:nth-child(1) .feature-img img { object-position: center 45%; }
+        .feature-card:nth-child(2) .feature-img img { object-position: center 40%; }
+        .feature-card:nth-child(3) .feature-img img { object-position: center 35%; }
+        @media (max-width: 980px) {
+            .hero h1 { font-size: 2.8rem; }
+            .conversion-bar { grid-template-columns: 1fr; margin-top: 1.5rem; }
+            .gallery-v6 { grid-template-columns: 1fr; }
+            .cta-conversion { grid-template-columns: 1fr; text-align: center; }
+        }
+
+        /* Correctif mobile : éviter que le h1 ne déborde de l'écran */
+        @media (max-width: 600px) {
+            .hero {
+                min-height: auto;
+                padding: 2rem 0 3rem;
+            }
+            .hero h1 {
+                font-size: 1.9rem;
+                line-height: 1.15;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .hero-content {
+                padding: 0 1.2rem;
+            }
+            .hero-proof {
+                gap: 0.5rem;
+            }
+            .hero-proof span {
+                font-size: 0.85rem;
+            }
+        }
+
+    
+        /* FORCE-MOBILE-MENU : affichage garanti du bouton hamburger en mobile */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block !important;
+                position: relative;
+                z-index: 1002;
+            }
+        }
+    
+        /* ANTI-OVERFLOW : empêche tout débordement horizontal */
+        html, body {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+        * {
+            max-width: 100%;
+        }
+        img, iframe, video {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T2JPVM3L');</script>
+    <!-- End Google Tag Manager -->
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T2JPVM3L"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Bandeau promo temporaire -->
+    <!-- <div class="promo-banner" style="background-color:#2b97a8; color:white; text-align:center; padding:1rem 2rem; font-weight:bold; z-index:1002; position:relative;">
+        🎯 Jusqu'au 1er juillet : <span style="color:#ffe082;">Formule Découverte 10€ la session</span> au lieu de 15€ !
+    </div> -->
+
+    <!-- Bandeau annonce du Grand Tournoi (à retirer après le 14 août) -->
+    <a href="tournoi.html" class="tournoi-banner">
+        🏆 <strong>Vendredi 14 août : le Grand Tournoi LaserBay</strong>
+        <span>Par équipes de 5 · 12&nbsp;€ par joueur · places limitées</span>
+        <em>Je découvre &rsaquo;</em>
+    </a>
+
+    <header>
+        <div class="header-container">
+            <img src="images/logolaserbay.png" alt="LaserBay Logo" class="logo">
+            <button class="mobile-menu-btn">☰</button>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="experience.html">Notre Expérience</a></li>
+                    <li><a href="formules.html">Formules & Tarifs</a></li>
+                    <li><a href="tournoi.html" class="nav-tournoi">Tournoi 14 août</a></li>
+                    <li><a href="evenements.html">Événements</a></li>
+                    <li><a href="reservation.html" class="active">Réservation</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Le LaserTag extérieur<br>qui fait vraiment monter l’adrénaline</h1>
+            <p>À Agon-Coutainville, vivez des parties rythmées sur un vrai terrain extérieur : plus d’espace, plus de mouvement, plus de fun en famille, entre amis ou pour un anniversaire.</p>
+            <div class="hero-buttons">
+                <a href="reservation.html" class="btn">Réserver maintenant</a>
+                <a href="formules.html" class="btn btn-outline">Voir les formules</a>
+            </div>
+            <div class="hero-proof">
+                <span>🌿 Terrain extérieur immersif</span>
+                <span>🎯 Dès 7 ans</span>
+                <span>🎉 Familles, groupes, anniversaires</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Grand Tournoi du 14 août (section à retirer après l'événement) ===== -->
+    <section class="tournoi-section">
+        <div class="tournoi-inner">
+            <div>
+                <span class="tournoi-date">🏆 Vendredi 14 août · 13h30 - 18h</span>
+                <h2>Le Grand Tournoi LaserBay</h2>
+                <p>
+                    Une après-midi entière de LaserTag par équipes de 5, en famille ou entre amis.
+                    Huit équipes s'affrontent sur notre terrain extérieur jusqu'à la grande finale.
+                </p>
+                <ul class="tournoi-points">
+                    <li>3 matchs minimum garantis pour chaque équipe</li>
+                    <li>Équipes composées sur place, tous niveaux mélangés</li>
+                    <li>Goûter offert et coupe pour les vainqueurs</li>
+                    <li>Ouvert dès 8 ans, seul ou en équipe constituée</li>
+                </ul>
+                <a href="tournoi.html" class="btn">Découvrir le tournoi</a>
+            </div>
+            <div class="tournoi-encart">
+                <div class="tarif">12 €</div>
+                <div class="tarif-sub">par joueur, après-midi complet</div>
+                <a href="tel:0244849996" class="btn btn-outline" style="display:inline-block;">02 44 84 99 96</a>
+                <p class="detail">Places limitées à 40 joueurs.<br>Inscription par téléphone.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top:2rem;">
+        <div class="container">
+            <div class="conversion-bar">
+                <div class="conversion-item">
+                    <strong>Plus vivant qu’en salle</strong>
+                    <p>De vrais déplacements, de vrais angles, une vraie sensation de terrain.</p>
+                </div>
+                <div class="conversion-item">
+                    <strong>Facile à organiser</strong>
+                    <p>Vous réservez, on vous équipe, on vous briefe, puis ça joue.</p>
+                </div>
+                <div class="conversion-item">
+                    <strong>Parfait en groupe</strong>
+                    <p>Entre amis, en famille ou pour un anniversaire, ça fonctionne tout de suite.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>L'Expérience LaserBay</h2>
+                <p>Trois bonnes raisons de réserver : un terrain extérieur qui change tout, un matériel immersif et des formules pensées pour les groupes.</p>
+            </div>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-img">
+                        <img src="images/showdown-v2.png" alt="Partie de LaserTag en plein air chez LaserBay">
+                    </div>
+                    <div class="feature-content">
+                        <h3>Jeu en plein air</h3>
+                        <p>Un vrai terrain extérieur avec obstacles et couverts pour des parties plus fluides, plus lisibles et plus prenantes.</p>
+                        <a href="experience.html" class="btn">En savoir plus</a>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-img">
+                        <img src="images/closeup-equipment-v2.png" alt="Équipement et action LaserBay">
+                    </div>
+                    <div class="feature-content">
+                        <h3>Équipement de pointe</h3>
+                        <p>Du matériel moderne, simple à prendre en main et visuellement impactant pour se mettre dans le jeu dès les premières minutes.</p>
+                        <a href="experience.html#equipement" class="btn">Découvrir notre matériel</a>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-img">
+                        <img src="images/briefing-v2.png" alt="Groupes et événements LaserBay">
+                    </div>
+                    <div class="feature-content">
+                        <h3>Événements sur mesure</h3>
+                        <p>Anniversaire, sortie en famille ou groupe d’amis : LaserBay est pensé pour créer un vrai moment, pas juste occuper un créneau.</p>
+                        <a href="evenements.html" class="btn">Voir nos offres</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+<section class="section photo-gallery">
+    <div class="container">
+        <div class="section-title">
+            <h2>LaserBay en images</h2>
+            <p>Plongez dans l'ambiance LaserBay : action sur le terrain, briefing avant la partie, fous rires en groupe et lumière dorée du coucher de soleil.</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-card large">
+                <img src="images/terrain-sunset-v2.png" alt="Partie LaserBay au coucher du soleil">
+                <div class="gallery-caption">
+                    <h3>Une ambiance de jeu ultra immersive</h3>
+                    <p>Terrain extérieur, obstacles, adrénaline et lumière dorée pour une vraie expérience LaserTag.</p>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="images/closeup-equipment-v2.png" alt="Équipement LaserBay en gros plan">
+                <div class="gallery-caption">
+                    <h3>Matériel pro</h3>
+                    <p>Un équipement moderne, visuel et simple à prendre en main.</p>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="images/briefing-v2.png" alt="Briefing d'équipe chez LaserBay">
+                <div class="gallery-caption">
+                    <h3>Accueil & briefing</h3>
+                    <p>On vous équipe, on vous explique, puis place au jeu.</p>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="images/showdown-v2.png" alt="Action LaserTag en duel sur le terrain">
+                <div class="gallery-caption">
+                    <h3>Action dynamique</h3>
+                    <p>Des scénarios pensés pour les familles, amis et groupes.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>L’ambiance LaserBay</h2>
+                <p>Des images fortes, mais un agencement simple : on montre l’activité, le terrain et l’énergie du jeu sans casser la lecture du site.</p>
+            </div>
+            <div class="gallery-v6">
+                <div class="gallery-v6-main">
+                    <img src="images/team-action-v3.jpg" alt="Action LaserBay en équipe">
+                    <div class="gallery-v6-caption">
+                        <h3>De vraies parties qui bougent</h3>
+                        <p>Plus d’espace, plus d’intensité, plus de sensation de jeu.</p>
+                    </div>
+                </div>
+                <div class="gallery-v6-side">
+                    <div>
+                        <img src="images/briefing-v2.png" alt="Briefing LaserBay avant la partie">
+                        <div class="gallery-v6-caption">
+                            <h3>Briefing rapide</h3>
+                            <p>Le groupe comprend vite, puis la partie démarre sans temps mort.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="images/terrain-sunset-v2.png" alt="Terrain LaserBay au coucher du soleil">
+                        <div class="gallery-v6-caption">
+                            <h3>Un terrain qui a de la gueule</h3>
+                            <p>Le plein air donne tout de suite une autre dimension à l’expérience.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cta-conversion">
+                <div>
+                    <h3>Prêt à tenter l’expérience ?</h3>
+                    <p>Choisissez votre formule et réservez votre créneau en ligne en quelques clics.</p>
+                </div>
+                <a href="reservation.html" class="btn">Je réserve ma session</a>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>Comment ça marche ?</h2>
+                <p>Réserver une session de LaserTag chez LaserBay n'a jamais été aussi simple.</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Choisissez votre formule</h3>
+                    <p>Sélectionnez parmi nos différentes formules selon votre nombre de participants et la durée souhaitée.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Réservez en ligne</h3>
+                    <p>Utilisez notre système de réservation pour choisir votre date et créneau horaire.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Confirmation immédiate</h3>
+                    <p>Recevez votre confirmation par email et payez en ligne ou sur place.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Profitez du jeu</h3>
+                    <p>Arrivez 20 minutes avant votre session et laissez-vous guider par notre équipe.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Ce que disent nos clients</h2>
+                <p>Découvrez les témoignages de ceux qui ont déjà vécu l'expérience LaserBay.</p>
+            </div>
+            <div class="testimonial-marquee-container">
+                <button class="testimonial-arrow left" aria-label="Précédent">&#8592;</button>
+                <div class="testimonial-marquee-track">
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Moment très sympa entre amis. L’équipement quali et léger (alors qu’il faisait chaud!) et terrain de jeux bien pensé et aménagé. Tarif raisonnable pour le temps…</div>
+                        <div class="testimonial-author">Clarisse Nigrelli</div>
+                        <div class="testimonial-role">Avis Google · Juin 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Super moment aujourd'hui grand merci, nous étions 4, deux adultes deux enfants 13 et 8 ans bon moment pour nous 4. Gérants sympathiques, site agréable, on recommande !</div>
+                        <div class="testimonial-author">Geraldine Villain</div>
+                        <div class="testimonial-role">Avis Google · Juillet 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Un super moment en famille - super accueil et plein de modes de jeux à tester ! On recommande ! Pensez à réserver.</div>
+                        <div class="testimonial-author">June Duriez</div>
+                        <div class="testimonial-role">Avis Google · Juillet 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Super moment entre amis ce week-end. Tout le monde a pleinement profité de l’expérience.</div>
+                        <div class="testimonial-author">Alexandra DE OLIVEIRA</div>
+                        <div class="testimonial-role">Avis Google · Juin 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Super activité ! Je n’y connaissais rien et Nicolas nous a bien briefés pour pouvoir être dans le jeu dès la première partie.</div>
+                        <div class="testimonial-author">Elodie Laffont</div>
+                        <div class="testimonial-role">Avis Google · Juin 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Super expérience en famille (9 ans, 7 ans et 2 adultes) à recommander.</div>
+                        <div class="testimonial-author">13 Fabien</div>
+                        <div class="testimonial-role">Avis Google · Juillet 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Venue pour l'inauguration et nous avons passé un super moment car on se prend très vite au jeu.</div>
+                        <div class="testimonial-author">alexandra lejeune</div>
+                        <div class="testimonial-role">Avis Google · Juin 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Venue pour l’inauguration, c’était très bien ! Bonne sortie en famille. Merci !</div>
+                        <div class="testimonial-author">Léa</div>
+                        <div class="testimonial-role">Avis Google · Juin 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Une bonne expérience à vivre en groupe avec une bonne ambiance ! A refaire !</div>
+                        <div class="testimonial-author">Marine Lenoir</div>
+                        <div class="testimonial-role">Avis Google · Juin 2025</div>
+                    </div>
+                    <!-- Duplique les éléments ci-dessus pour un effet de boucle fluide -->
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Moment très sympa entre amis. L’équipement quali et léger (alors qu’il faisait chaud!) et terrain de jeux bien pensé et aménagé. Tarif raisonnable pour le temps…</div>
+                        <div class="testimonial-author">Clarisse Nigrelli</div>
+                        <div class="testimonial-role">Avis Google · Juin 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Super moment aujourd'hui grand merci, nous étions 4, deux adultes deux enfants 13 et 8 ans bon moment pour nous 4. Gérants sympathiques, site agréable, on recommande !</div>
+                        <div class="testimonial-author">Geraldine Villain</div>
+                        <div class="testimonial-role">Avis Google · Juillet 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Un super moment en famille - super accueil et plein de modes de jeux à tester ! On recommande ! Pensez à réserver.</div>
+                        <div class="testimonial-author">June Duriez</div>
+                        <div class="testimonial-role">Avis Google · Juillet 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Super moment entre amis ce week-end. Tout le monde a pleinement profité de l’expérience.</div>
+                        <div class="testimonial-author">Alexandra DE OLIVEIRA</div>
+                        <div class="testimonial-role">Avis Google · Juin 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Super activité ! Je n’y connaissais rien et Nicolas nous a bien briefés pour pouvoir être dans le jeu dès la première partie.</div>
+                        <div class="testimonial-author">Elodie Laffont</div>
+                        <div class="testimonial-role">Avis Google · Juin 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Super expérience en famille (9 ans, 7 ans et 2 adultes) à recommander.</div>
+                        <div class="testimonial-author">13 Fabien</div>
+                        <div class="testimonial-role">Avis Google · Juillet 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Venue pour l'inauguration et nous avons passé un super moment car on se prend très vite au jeu.</div>
+                        <div class="testimonial-author">alexandra lejeune</div>
+                        <div class="testimonial-role">Avis Google · Juin 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Venue pour l’inauguration, c’était très bien ! Bonne sortie en famille. Merci !</div>
+                        <div class="testimonial-author">Léa</div>
+                        <div class="testimonial-role">Avis Google · Juin 2025</div>
+                    </div>
+                    <div class="testimonial-marquee">
+                        <div class="testimonial-text"><span style="color:#e0523a; font-size:1.3rem;">★</span> Une bonne expérience à vivre en groupe avec une bonne ambiance ! A refaire !</div>
+                        <div class="testimonial-author">Marine Lenoir</div>
+                        <div class="testimonial-role">Avis Google · Juin 2025</div>
+                    </div>
+                </div>
+                <button class="testimonial-arrow right" aria-label="Suivant">&#8594;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Place ce bloc juste après la section "testimonials" et avant la section "cta" pour une intégration harmonieuse -->
+<section class="section video-section" style="background:#f5f0e3; padding-top:3rem; padding-bottom:3rem;">
+    <div class="container" style="text-align:center;">
+        <h2 style="color:#2b97a8; margin-bottom:1.5rem;">Découvrez LaserBay en vidéo !</h2>
+        <div style="display:flex; justify-content:center;">
+            <div style="display:inline-block; box-shadow:0 4px 24px rgba(43,151,168,0.12); border-radius:12px; overflow:hidden;">
+                <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F672106545871145%2F&show_text=false&width=269&t=0"
+                    width="269" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                    allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            </div>
+        </div>
+        <p style="margin-top:1rem; color:#666;">Suivez-nous sur <a href="https://www.facebook.com/profile.php?id=61576019151172&locale=fr_FR" target="_blank" style="color:#2b97a8; text-decoration:underline;">Facebook</a> pour plus de vidéos !</p>
+    </div>
+</section>
+<!-- Ensuite, la section cta continue -->
+
+    <!-- Section Carte Cadeau -->
+    <section style="background: linear-gradient(135deg, #0e3b55, #2b97a8); color: white; text-align: center; padding: 3rem 2rem;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h2 style="color: white; margin-bottom: 0.8rem; font-size: 2rem;">🎁 Offrez du Laser Tag !</h2>
+            <p style="opacity: 0.9; font-size: 1.05rem; margin-bottom: 1.5rem;">
+                Anniversaire, fête des pères, Noël ou juste pour faire plaisir — offrez une expérience unique avec notre carte cadeau digitale. Envoyée par email instantanément !
+            </p>
+            <a href="https://reservation-lasertag.web.app/giftcard" target="_blank" rel="noopener" style="display: inline-block; background: #e0523a; color: white; text-decoration: none; padding: 14px 32px; border-radius: 8px; font-weight: 700; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.3s;">
+                🎁 Offrir une carte cadeau — Dès 12€
+            </a>
+            <p style="margin-top: 0.8rem; font-size: 0.82rem; opacity: 0.6;">Valable 1 an • Toutes les formules disponibles</p>
+        </div>
+    </section>
+
+    <section class="section cta">
+        <div class="container cta-content">
+            <h2>Prêt à vivre l'aventure LaserBay ?</h2>
+            <p>Réservez dès maintenant votre session de LaserTag en plein air à Agon-Coutainville et profitez d'une expérience inoubliable en bord de mer.</p>
+            <a href="reservation.html" class="btn">Réserver maintenant</a>
+        </div>
+    </section>
+
+   
+<footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>LaserBay</h3>
+                <p>Le LaserTag en plein air à Agon-Coutainville. Une aventure laser en bord de mer accessible dès 7 ans, sans projectiles, sans douleur et 100% adrénaline !</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/profile.php?id=61576019151172&locale=fr_FR" class="social-icon" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Navigation</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="experience.html">Notre Expérience</a></li>
+                    <li><a href="formules.html">Formules & Tarifs</a></li>
+                    <li><a href="tournoi.html">Tournoi 14 août</a></li>
+                    <li><a href="evenements.html">Événements</a></li>
+                    <li><a href="reservation.html">Réservation</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-contact">
+                <h3>Contact</h3>
+                <p><span class="footer-contact-icon">📍</span> 56 Charrière du Commerce, 50230 Agon-Coutainville</p>
+                <p><span class="footer-contact-icon">📞</span> 02 44 84 99 96</p>
+                <p><span class="footer-contact-icon">📧</span> <a href="mailto:laserbayagon@gmail.com">laserbayagon@gmail.com</a></p>
+                <p><span class="footer-contact-icon">🕒</span> Mercredi - Vendredi: 14h - 19h<br>Samedi - Dimanche: 10h - 19h<br>Tous les jours pendant les vacances scolaires</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 LaserBay. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <div id="cookie-consent" style="position: fixed; bottom: 0; width: 100%; background-color: #0e3b55; color: white; padding: 1rem; text-align: center; z-index: 9999;">
+        <p>Ce site utilise des cookies pour améliorer votre expérience. En continuant à naviguer, vous acceptez notre utilisation des cookies.</p>
+        <button onclick="acceptCookies()" style="background-color: #e0523a; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">Accepter</button>
+        <button onclick="rejectCookies()" style="background-color: #ffffff; color: #0e3b55; border: none; padding: 0.5rem 1rem; border-radius: 5px; margin-left: 1rem; cursor: pointer;">Refuser</button>
+    </div>
+
+    <script>
+        function acceptCookies() {
+            document.getElementById('cookie-consent').style.display = 'none';
+            localStorage.setItem('cookie-consent', 'accepted');
+            // Activer Google Analytics
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-39WN1FNZP5');
+        }
+        
+        function rejectCookies() {
+            document.getElementById('cookie-consent').style.display = 'none';
+            localStorage.setItem('cookie-consent', 'rejected');
+            // Désactiver Google Analytics
+            window['ga-disable-G-39WN1FNZP5'] = true;
+        }
+        
+        // Vérifier si l'utilisateur a déjà fait son choix
+        if (localStorage.getItem('cookie-consent')) {
+            document.getElementById('cookie-consent').style.display = 'none';
+            if (localStorage.getItem('cookie-consent') === 'rejected') {
+                window['ga-disable-G-39WN1FNZP5'] = true;
+            }
+        }
+    </script>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mainNav = document.getElementById('main-nav');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+            this.textContent = mainNav.classList.contains('active') ? '✕' : '☰';
+        });
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+    <script>
+const track = document.querySelector('.testimonial-marquee-track');
+const leftBtn = document.querySelector('.testimonial-arrow.left');
+const rightBtn = document.querySelector('.testimonial-arrow.right');
+const cardWidth = document.querySelector('.testimonial-marquee').offsetWidth + 32;
+let scrollAmount = 0;
+if (leftBtn && rightBtn && track) {
+    leftBtn.addEventListener('click', () => {
+        track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    });
+    rightBtn.addEventListener('click', () => {
+        track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    });
+}
+    </script>
+</body>
+</html>

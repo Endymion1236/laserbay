@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Grand Tournoi LaserBay le vendredi 14 août à Agon-Coutainville. Par équipes de 5, en famille ou entre amis, dès 8 ans. 12€ par joueur, goûter inclus, lots à gagner.">
+    <title>Grand Tournoi du 14 août - LaserBay</title>
+    <link rel="stylesheet" href="style.css">
+    <meta property="og:title" content="Grand Tournoi LaserBay — Vendredi 14 août">
+    <meta property="og:description" content="Par équipes de 5, en famille ou entre amis. 3 matchs minimum garantis, coupes et lots à gagner. 12€ par joueur, goûter inclus.">
+    <meta property="og:image" content="images/laserbay-action-terrain.png">
+    <meta property="og:type" content="website">
+    <style>
+        :root {
+            --primary-color: #2b97a8;
+            --secondary-color: #0e3b55;
+            --accent-color: #e0523a;
+            --dark-color: #0e3b55;
+            --light-color: #f5f0e3;
+            --text-color: #333333;
+            --bg-light: #ffffff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--light-color); color: var(--text-color); line-height: 1.6; padding-top: 80px; }
+
+        /* ---------- Hero tournoi ---------- */
+        .tournoi-hero {
+            background: linear-gradient(rgba(14,59,85,0.82), rgba(14,59,85,0.88)),
+                        url('images/laserbay-action-terrain.png') center/cover no-repeat;
+            color: #fff;
+            text-align: center;
+            padding: 4rem 2rem 3.5rem;
+        }
+        .tournoi-hero .date-pill {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 0.5rem 1.4rem;
+            border-radius: 50px;
+            font-weight: bold;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+        }
+        .tournoi-hero h1 {
+            font-size: 2.9rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        .tournoi-hero p.lead {
+            font-size: 1.2rem;
+            max-width: 720px;
+            margin: 0 auto 2rem;
+            opacity: 0.95;
+        }
+        .hero-facts {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-bottom: 2.2rem;
+        }
+        .hero-fact { text-align: center; }
+        .hero-fact .num {
+            display: block;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffe082;
+            line-height: 1.2;
+        }
+        .hero-fact .lbl { font-size: 0.9rem; opacity: 0.9; }
+        .hero-cta { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+
+        /* ---------- Structure ---------- */
+        .section { padding: 3.5rem 2rem; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 2.5rem; }
+        .section-title h2 { font-size: 2rem; color: var(--secondary-color); margin-bottom: 0.6rem; }
+        .section-title p { color: #666; max-width: 640px; margin: 0 auto; }
+
+        /* ---------- Encadré tarif ---------- */
+        .prix-card {
+            background: var(--bg-light);
+            border-radius: 12px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.09);
+            max-width: 520px;
+            margin: 0 auto;
+            overflow: hidden;
+            text-align: center;
+            border-top: 6px solid var(--accent-color);
+        }
+        .prix-card .prix-head { padding: 2rem 2rem 0.5rem; }
+        .prix-card .montant {
+            font-size: 4rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            line-height: 1;
+        }
+        .prix-card .par-joueur { color: #777; font-size: 1rem; margin-bottom: 1.2rem; }
+        .prix-card ul {
+            list-style: none;
+            text-align: left;
+            padding: 0 2rem 1.5rem;
+            max-width: 340px;
+            margin: 0 auto;
+        }
+        .prix-card ul li { padding: 0.5rem 0; border-bottom: 1px solid #eee; }
+        .prix-card ul li:last-child { border-bottom: none; }
+        .prix-card ul li::before { content: "✓"; color: var(--primary-color); font-weight: bold; margin-right: 0.7rem; }
+        .prix-card .prix-foot { background: #f9f7f1; padding: 1.2rem 2rem 1.6rem; }
+
+        /* ---------- Déroulé ---------- */
+        .timeline { max-width: 760px; margin: 0 auto; }
+        .timeline-row {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.1rem 1.2rem;
+            border-radius: 8px;
+            align-items: flex-start;
+        }
+        .timeline-row:nth-child(odd) { background: var(--bg-light); }
+        .timeline-row .heure {
+            flex: 0 0 90px;
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.05rem;
+        }
+        .timeline-row .quoi strong { display: block; color: var(--secondary-color); }
+        .timeline-row .quoi span { color: #666; font-size: 0.95rem; }
+        .timeline-row.temps-fort { background: #fff4e6; border-left: 4px solid var(--accent-color); }
+        .timeline-row.temps-fort .heure { color: var(--accent-color); }
+
+        /* ---------- Format ---------- */
+        .format-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+        .format-card {
+            background: var(--bg-light);
+            padding: 1.8rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+            text-align: center;
+        }
+        .format-card .ico { font-size: 2.2rem; display: block; margin-bottom: 0.7rem; }
+        .format-card h3 { color: var(--secondary-color); margin-bottom: 0.5rem; font-size: 1.15rem; }
+        .format-card p { color: #666; font-size: 0.95rem; }
+
+        /* ---------- Infos pratiques ---------- */
+        .infos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.2rem;
+        }
+        .info-item {
+            background: var(--bg-light);
+            padding: 1.3rem 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+        .info-item strong { display: block; color: var(--secondary-color); margin-bottom: 0.2rem; }
+        .info-item span { color: #666; font-size: 0.95rem; }
+
+        /* ---------- Bloc inscription ---------- */
+        .inscription {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: #fff;
+            text-align: center;
+            padding: 3.5rem 2rem;
+        }
+        .inscription h2 { font-size: 2rem; margin-bottom: 0.8rem; }
+        .inscription p { max-width: 620px; margin: 0 auto 1.8rem; opacity: 0.95; }
+        .tel-highlight {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            border: 2px solid rgba(255,255,255,0.4);
+            border-radius: 10px;
+            padding: 1rem 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .tel-highlight span { display: block; font-size: 0.9rem; opacity: 0.85; }
+        .tel-highlight a {
+            color: #fff;
+            font-size: 1.9rem;
+            font-weight: bold;
+            text-decoration: none;
+            letter-spacing: 0.02em;
+        }
+        .places-restantes {
+            display: inline-block;
+            background: var(--accent-color);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ---------- FAQ ---------- */
+        .faq-item {
+            background: var(--bg-light);
+            border-radius: 8px;
+            margin-bottom: 0.9rem;
+            padding: 1.2rem 1.5rem;
+        }
+        .faq-item h3 { color: var(--secondary-color); font-size: 1.05rem; margin-bottom: 0.4rem; }
+        .faq-item p { color: #666; font-size: 0.97rem; }
+
+        @media (max-width: 768px) {
+            .tournoi-hero { padding: 3rem 1.2rem 2.5rem; }
+            .tournoi-hero h1 { font-size: 2rem; }
+            .tournoi-hero p.lead { font-size: 1.05rem; }
+            .hero-facts { gap: 1.5rem; }
+            .hero-fact .num { font-size: 1.6rem; }
+            .section { padding: 2.5rem 1.2rem; }
+            .timeline-row { flex-direction: column; gap: 0.3rem; padding: 1rem; }
+            .timeline-row .heure { flex: none; }
+            .prix-card .montant { font-size: 3.2rem; }
+            .tel-highlight a { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <img src="images/logolaserbay.png" alt="LaserBay Logo" class="logo">
+            <button class="mobile-menu-btn">☰</button>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="experience.html">Notre Expérience</a></li>
+                    <li><a href="formules.html">Formules &amp; Tarifs</a></li>
+                    <li><a href="tournoi.html" class="active">Tournoi 14 août</a></li>
+                    <li><a href="evenements.html">Événements</a></li>
+                    <li><a href="reservation.html">Réservation</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="tournoi-hero">
+        <span class="date-pill">🎯 Vendredi 14 août</span>
+        <h1>Le Grand Tournoi LaserBay</h1>
+        <p class="lead">
+            Une après-midi entière de LaserTag en plein air, par équipes de 5.
+            En famille, entre amis ou entre voisins : formez votre équipe et venez
+            décrocher la coupe sur notre terrain d'Agon-Coutainville.
+        </p>
+        <div class="hero-facts">
+            <div class="hero-fact"><span class="num">13h30</span><span class="lbl">Accueil sur place</span></div>
+            <div class="hero-fact"><span class="num">3 matchs</span><span class="lbl">minimum garantis</span></div>
+            <div class="hero-fact"><span class="num">12&nbsp;€</span><span class="lbl">par joueur</span></div>
+            <div class="hero-fact"><span class="num">40</span><span class="lbl">places seulement</span></div>
+        </div>
+        <div class="hero-cta">
+            <a href="#inscription" class="btn">Je m'inscris</a>
+            <a href="#deroulement" class="btn btn-outline">Voir le déroulement</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Comment ça se passe</h2>
+                <p>
+                    Huit équipes de cinq joueurs, réparties en deux groupes. Dans chaque groupe,
+                    votre équipe affronte les trois autres — soit trois matchs garantis pour tout
+                    le monde. Les deux meilleures équipes s'affrontent ensuite en finale.
+                </p>
+            </div>
+            <div class="format-grid">
+                <div class="format-card">
+                    <span class="ico">👥</span>
+                    <h3>Des équipes équilibrées</h3>
+                    <p>Nous composons les équipes sur place, en mélangeant les âges et les niveaux. Personne ne se retrouve face à plus fort que lui.</p>
+                </div>
+                <div class="format-card">
+                    <span class="ico">🎮</span>
+                    <h3>Tout le monde joue</h3>
+                    <p>Pas d'élimination : même si votre équipe perd son premier match, elle joue les suivants. On vient pour s'amuser, pas pour regarder.</p>
+                </div>
+                <div class="format-card">
+                    <span class="ico">🏆</span>
+                    <h3>Une vraie finale</h3>
+                    <p>Le classement est affiché et mis à jour tout au long de l'après-midi. La tension monte jusqu'au dernier match.</p>
+                </div>
+                <div class="format-card">
+                    <span class="ico">🎁</span>
+                    <h3>Des lots à gagner</h3>
+                    <p>Coupe pour l'équipe gagnante, médailles pour les finalistes, et un prix spécial « meilleur esprit d'équipe » décerné par l'organisateur.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="deroulement" style="background:#efece1;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Le déroulement de l'après-midi</h2>
+                <p>De 13h30 à 18h00, sur le terrain extérieur de LaserBay.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-row">
+                    <div class="heure">13h30</div>
+                    <div class="quoi">
+                        <strong>Accueil et constitution des équipes</strong>
+                        <span>Inscription sur place, répartition des joueurs, choix du nom d'équipe.</span>
+                    </div>
+                </div>
+                <div class="timeline-row">
+                    <div class="heure">14h00</div>
+                    <div class="quoi">
+                        <strong>Briefing et remise du matériel</strong>
+                        <span>Règles du jeu, consignes de sécurité, équipement de chaque joueur et photo de groupe.</span>
+                    </div>
+                </div>
+                <div class="timeline-row">
+                    <div class="heure">14h15</div>
+                    <div class="quoi">
+                        <strong>Premiers matchs de qualification</strong>
+                        <span>Les équipes s'affrontent à tour de rôle sur le terrain.</span>
+                    </div>
+                </div>
+                <div class="timeline-row temps-fort">
+                    <div class="heure">15h45</div>
+                    <div class="quoi">
+                        <strong>Pause goûter et classement</strong>
+                        <span>Boissons et goûter offerts, affichage du classement provisoire.</span>
+                    </div>
+                </div>
+                <div class="timeline-row">
+                    <div class="heure">16h00</div>
+                    <div class="quoi">
+                        <strong>Suite des qualifications</strong>
+                        <span>Derniers matchs de groupe : tout peut encore basculer.</span>
+                    </div>
+                </div>
+                <div class="timeline-row temps-fort">
+                    <div class="heure">17h30</div>
+                    <div class="quoi">
+                        <strong>La grande finale</strong>
+                        <span>Les deux meilleures équipes s'affrontent devant tout le monde.</span>
+                    </div>
+                </div>
+                <div class="timeline-row">
+                    <div class="heure">17h50</div>
+                    <div class="quoi">
+                        <strong>Remise des prix</strong>
+                        <span>Coupe, médailles et photos avec les vainqueurs.</span>
+                    </div>
+                </div>
+                <div class="timeline-row">
+                    <div class="heure">18h00</div>
+                    <div class="quoi">
+                        <strong>Fin du tournoi</strong>
+                        <span>Le terrain reste ouvert en soirée pour ceux qui veulent rejouer.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Le tarif</h2>
+                <p>Un prix unique pour l'après-midi complet, sans supplément.</p>
+            </div>
+            <div class="prix-card">
+                <div class="prix-head">
+                    <div class="montant">12 €</div>
+                    <div class="par-joueur">par joueur — après-midi complet</div>
+                </div>
+                <ul>
+                    <li>Tout le matériel fourni</li>
+                    <li>3 matchs minimum garantis</li>
+                    <li>Goûter et boissons inclus</li>
+                    <li>Encadrement par un animateur</li>
+                    <li>Lots pour les vainqueurs</li>
+                </ul>
+                <div class="prix-foot">
+                    <p style="font-size:0.92rem; color:#666; margin:0;">
+                        Règlement sur place le jour du tournoi, en espèces ou par carte bancaire.
+                        L'inscription préalable par téléphone est fortement conseillée.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="inscription" id="inscription">
+        <div class="container">
+            <span class="places-restantes">⚠️ Places limitées à 40 joueurs</span>
+            <h2>Réservez votre place</h2>
+            <p>
+                Appelez-nous pour inscrire votre équipe ou vous inscrire seul —
+                nous vous placerons dans une équipe le jour J. Précisez le nombre
+                de joueurs et l'âge des enfants.
+            </p>
+            <div class="tel-highlight">
+                <span>Inscription par téléphone</span>
+                <a href="tel:0244849996">02 44 84 99 96</a>
+            </div>
+            <p style="font-size:0.95rem; opacity:0.9;">
+                Vous pouvez aussi nous écrire à
+                <a href="mailto:laserbayagon@gmail.com" style="color:#ffe082;">laserbayagon@gmail.com</a>
+                ou nous envoyer un message sur Facebook.
+            </p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Bon à savoir</h2>
+            </div>
+            <div class="infos-grid" style="margin-bottom:2.5rem;">
+                <div class="info-item">
+                    <strong>📍 Où</strong>
+                    <span>56 Charrière du Commerce, 50230 Agon-Coutainville</span>
+                </div>
+                <div class="info-item">
+                    <strong>🕒 Quand</strong>
+                    <span>Vendredi 14 août, de 13h30 à 18h00</span>
+                </div>
+                <div class="info-item">
+                    <strong>🎯 Âge minimum</strong>
+                    <span>À partir de 8 ans, sans limite d'âge maximum</span>
+                </div>
+                <div class="info-item">
+                    <strong>👕 Tenue</strong>
+                    <span>Vêtements confortables et chaussures fermées</span>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <h3>Je n'ai pas d'équipe, puis-je venir quand même ?</h3>
+                <p>Bien sûr, et c'est même une bonne façon de participer. Nous constituons les équipes sur place en mélangeant les joueurs — vous serez intégré à une équipe complète.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Mes enfants peuvent-ils jouer avec moi ?</h3>
+                <p>Oui. Chaque équipe compte au moins un adulte et un enfant : le tournoi est pensé pour que les familles jouent ensemble, pas séparément.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Que se passe-t-il en cas de pluie ?</h3>
+                <p>Le tournoi se déroule en extérieur et est maintenu par temps couvert ou léger crachin. En cas d'intempéries importantes, nous préviendrons les inscrits par téléphone et proposerons un report.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Les accompagnateurs peuvent-ils rester ?</h3>
+                <p>Oui, et c'est même conseillé. Une zone ombragée avec sièges est prévue pour suivre les matchs. L'accès est libre et gratuit pour les spectateurs.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Peut-on s'inscrire le jour même ?</h3>
+                <p>Uniquement s'il reste des places, et nous ne pouvons pas le garantir. Le nombre de participants étant limité à 40, mieux vaut réserver par téléphone.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>LaserBay</h3>
+                <p>Le LaserTag en plein air à Agon-Coutainville. Une aventure laser en bord de mer accessible dès 7 ans, sans projectiles, sans douleur et 100% adrénaline !</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/profile.php?id=61576019151172&locale=fr_FR" class="social-icon" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Navigation</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="experience.html">Notre Expérience</a></li>
+                    <li><a href="formules.html">Formules &amp; Tarifs</a></li>
+                    <li><a href="tournoi.html">Tournoi 14 août</a></li>
+                    <li><a href="evenements.html">Événements</a></li>
+                    <li><a href="reservation.html">Réservation</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-contact">
+                <h3>Contact</h3>
+                <p><span class="footer-contact-icon">📍</span> 56 Charrière du Commerce, 50230 Agon-Coutainville</p>
+                <p><span class="footer-contact-icon">📞</span> 02 44 84 99 96</p>
+                <p><span class="footer-contact-icon">📧</span> <a href="mailto:laserbayagon@gmail.com">laserbayagon@gmail.com</a></p>
+                <p><span class="footer-contact-icon">🕒</span> Mercredi - Vendredi: 14h - 19h<br>Samedi - Dimanche: 10h - 19h<br>Tous les jours pendant les vacances scolaires</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 LaserBay. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(function (lien) {
+            lien.addEventListener('click', function (e) {
+                var cible = document.querySelector(this.getAttribute('href'));
+                if (cible) {
+                    e.preventDefault();
+                    window.scrollTo({ top: cible.offsetTop - 90, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
