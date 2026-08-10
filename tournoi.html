@@ -198,6 +198,134 @@
             margin-bottom: 1.5rem;
         }
 
+        /* ---------- Formulaire d'inscription ---------- */
+        .form-tournoi {
+            max-width: 720px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: left;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.1rem;
+        }
+        .champ { margin-bottom: 1.1rem; }
+        .champ-full { grid-column: 1 / -1; }
+        .form-grid .champ { margin-bottom: 0; }
+        .champ label {
+            display: block;
+            font-weight: bold;
+            font-size: 0.93rem;
+            margin-bottom: 0.35rem;
+        }
+        .req { color: #ffb3a3; }
+        .champ input[type="text"],
+        .champ input[type="tel"],
+        .champ input[type="email"],
+        .champ select,
+        .champ textarea {
+            width: 100%;
+            padding: 0.75rem 0.9rem;
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 6px;
+            background: rgba(255,255,255,0.95);
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+        .champ textarea { resize: vertical; }
+        .champ input:focus, .champ select:focus, .champ textarea:focus {
+            outline: 2px solid #ffe082;
+            outline-offset: 1px;
+        }
+        .champ input.erreur, .champ select.erreur, .champ textarea.erreur {
+            outline: 2px solid #ff8a70;
+            outline-offset: 1px;
+        }
+        .champ small {
+            display: block;
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-top: 0.3rem;
+        }
+        .radio-groupe { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 6px;
+            padding: 0.6rem 1rem;
+            cursor: pointer;
+            font-weight: normal;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        .radio-option input { accent-color: #ffe082; }
+        .total-encart {
+            background: rgba(255,255,255,0.16);
+            border-radius: 8px;
+            padding: 1rem 1.3rem;
+            margin: 1.3rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.3rem 0.9rem;
+        }
+        .total-encart span { font-size: 0.95rem; opacity: 0.9; }
+        .total-encart strong { font-size: 1.8rem; color: #ffe082; }
+        .total-encart small { font-size: 0.88rem; opacity: 0.8; width: 100%; }
+        .consentement {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            font-size: 0.9rem;
+            margin-bottom: 1.3rem;
+            cursor: pointer;
+        }
+        .consentement input { margin-top: 0.25rem; accent-color: #ffe082; }
+        .btn-submit {
+            width: 100%;
+            font-size: 1.05rem;
+            padding: 0.9rem 1rem;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-submit:disabled { opacity: 0.65; cursor: wait; }
+        .message-form {
+            margin-top: 1.1rem;
+            padding: 1rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            display: none;
+        }
+        .message-form.succes {
+            display: block;
+            background: #d4edda;
+            color: #155724;
+            border-left: 4px solid #28a745;
+        }
+        .message-form.erreur {
+            display: block;
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 4px solid #dc3545;
+        }
+        .message-form a { color: inherit; font-weight: bold; }
+        .secours { margin-top: 2rem; }
+        .secours p { margin-bottom: 0.5rem; font-size: 0.95rem; opacity: 0.9; }
+        .tel-secours {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 2px solid rgba(255,255,255,0.4);
+        }
+
         /* ---------- FAQ ---------- */
         .faq-item {
             background: var(--bg-light);
@@ -219,6 +347,11 @@
             .timeline-row .heure { flex: none; }
             .prix-card .montant { font-size: 3.2rem; }
             .tel-highlight a { font-size: 1.5rem; }
+            .form-tournoi { padding: 1.3rem; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-grid .champ { margin-bottom: 0.4rem; }
+            .radio-groupe { flex-direction: column; gap: 0.5rem; }
+            .total-encart strong { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -395,21 +528,91 @@
     <section class="inscription" id="inscription">
         <div class="container">
             <span class="places-restantes">⚠️ Places limitées à 40 joueurs</span>
-            <h2>Réservez votre place</h2>
+            <h2>Inscrivez votre équipe</h2>
             <p>
-                Appelez-nous pour inscrire votre équipe ou vous inscrire seul —
-                nous vous placerons dans une équipe le jour J. Précisez le nombre
-                de joueurs et l'âge des enfants.
+                Remplissez le formulaire ci-dessous : nous vous rappelons pour confirmer
+                votre inscription. Vous pouvez venir en équipe constituée ou vous inscrire
+                seul, nous vous placerons dans une équipe le jour J.
             </p>
-            <div class="tel-highlight">
-                <span>Inscription par téléphone</span>
-                <a href="tel:0244849996">02 44 84 99 96</a>
+
+            <form id="form-tournoi" class="form-tournoi" novalidate>
+                <div class="form-grid">
+                    <div class="champ">
+                        <label for="nom">Nom et prénom <span class="req">*</span></label>
+                        <input type="text" id="nom" name="nom" required autocomplete="name" placeholder="Marie Dupont">
+                    </div>
+                    <div class="champ">
+                        <label for="telephone">Téléphone <span class="req">*</span></label>
+                        <input type="tel" id="telephone" name="telephone" required autocomplete="tel" placeholder="06 12 34 56 78">
+                    </div>
+                    <div class="champ">
+                        <label for="email">Email <span class="req">*</span></label>
+                        <input type="email" id="email" name="email" required autocomplete="email" placeholder="marie.dupont@email.fr">
+                    </div>
+                    <div class="champ">
+                        <label for="nbJoueurs">Nombre de joueurs <span class="req">*</span></label>
+                        <select id="nbJoueurs" name="nbJoueurs" required>
+                            <option value="1">1 joueur</option>
+                            <option value="2">2 joueurs</option>
+                            <option value="3">3 joueurs</option>
+                            <option value="4">4 joueurs</option>
+                            <option value="5" selected>5 joueurs (équipe complète)</option>
+                            <option value="6">6 joueurs</option>
+                            <option value="7">7 joueurs</option>
+                            <option value="8">8 joueurs</option>
+                            <option value="9">9 joueurs</option>
+                            <option value="10">10 joueurs et plus</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="champ champ-full">
+                    <label>Vous venez… <span class="req">*</span></label>
+                    <div class="radio-groupe">
+                        <label class="radio-option">
+                            <input type="radio" name="typeEquipe" value="Équipe déjà constituée" checked>
+                            <span>Avec une équipe déjà formée</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="typeEquipe" value="À placer dans une équipe">
+                            <span>À placer dans une équipe</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="champ champ-full">
+                    <label for="participants">Prénoms et âges des participants</label>
+                    <textarea id="participants" name="participants" rows="3"
+                        placeholder="Ex : Marie 38 ans, Lucas 12 ans, Emma 9 ans…"></textarea>
+                    <small>Cela nous aide à composer des équipes équilibrées. Rappel : à partir de 8 ans.</small>
+                </div>
+
+                <div class="champ champ-full">
+                    <label for="remarques">Remarques ou questions</label>
+                    <textarea id="remarques" name="remarques" rows="2"
+                        placeholder="Allergie alimentaire pour le goûter, arrivée tardive…"></textarea>
+                </div>
+
+                <div class="total-encart">
+                    <span>Total à régler sur place</span>
+                    <strong id="totalPrix">60 €</strong>
+                    <small id="detailPrix">5 joueurs × 12 €</small>
+                </div>
+
+                <label class="consentement">
+                    <input type="checkbox" id="consentement" required>
+                    <span>J'accepte d'être recontacté par LaserBay au sujet de cette inscription.</span>
+                </label>
+
+                <button type="submit" class="btn btn-submit" id="btnEnvoyer">Envoyer mon inscription</button>
+
+                <div id="messageForm" class="message-form" role="status" aria-live="polite"></div>
+            </form>
+
+            <div class="secours">
+                <p>Vous préférez le téléphone&nbsp;? Appelez-nous directement :</p>
+                <a href="tel:0244849996" class="tel-secours">02 44 84 99 96</a>
             </div>
-            <p style="font-size:0.95rem; opacity:0.9;">
-                Vous pouvez aussi nous écrire à
-                <a href="mailto:laserbayagon@gmail.com" style="color:#ffe082;">laserbayagon@gmail.com</a>
-                ou nous envoyer un message sur Facebook.
-            </p>
         </div>
     </section>
 
@@ -495,7 +698,141 @@
     </footer>
 
     <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
+        // ============================================
+        // Configuration EmailJS
+        // ============================================
+        // serviceId et publicKey sont ceux déjà utilisés par l'application
+        // de réservation. Il reste à créer UN template dédié au tournoi
+        // dans le tableau de bord EmailJS et à coller son identifiant
+        // ci-dessous (il commence par "template_").
+        var EMAILJS_SERVICE_ID  = 'service_yv02dnf';
+        var EMAILJS_PUBLIC_KEY  = 'NDZ3UQiorhMdJfkEb';
+        var EMAILJS_TEMPLATE_ID = 'template_A_REMPLACER';
+
+        var TARIF_PAR_JOUEUR = 12;
+
+        if (window.emailjs) {
+            emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+        }
+
+        // ---------- Calcul du total en direct ----------
+        var selectJoueurs = document.getElementById('nbJoueurs');
+        var totalPrix     = document.getElementById('totalPrix');
+        var detailPrix    = document.getElementById('detailPrix');
+
+        function majTotal() {
+            var nb = parseInt(selectJoueurs.value, 10) || 1;
+            totalPrix.textContent  = (nb * TARIF_PAR_JOUEUR) + ' €';
+            detailPrix.textContent = nb + (nb > 1 ? ' joueurs' : ' joueur') + ' × ' + TARIF_PAR_JOUEUR + ' €';
+        }
+        selectJoueurs.addEventListener('change', majTotal);
+        majTotal();
+
+        // ---------- Envoi du formulaire ----------
+        var formulaire = document.getElementById('form-tournoi');
+        var bouton     = document.getElementById('btnEnvoyer');
+        var message    = document.getElementById('messageForm');
+
+        function afficherMessage(texte, type) {
+            message.className = 'message-form ' + type;
+            message.innerHTML = texte;
+            message.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function marquerErreur(champ, enErreur) {
+            champ.classList.toggle('erreur', enErreur);
+        }
+
+        formulaire.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            var nom          = document.getElementById('nom');
+            var telephone    = document.getElementById('telephone');
+            var email        = document.getElementById('email');
+            var consentement = document.getElementById('consentement');
+
+            // Validation simple, champ par champ
+            var erreurs = [];
+            marquerErreur(nom, !nom.value.trim());
+            if (!nom.value.trim()) erreurs.push('votre nom');
+
+            var telNettoye = telephone.value.replace(/[\s.\-()]/g, '');
+            var telValide  = /^(\+33|0)[1-9][0-9]{8}$/.test(telNettoye);
+            marquerErreur(telephone, !telValide);
+            if (!telValide) erreurs.push('un numéro de téléphone valide');
+
+            var emailValide = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
+            marquerErreur(email, !emailValide);
+            if (!emailValide) erreurs.push('une adresse email valide');
+
+            if (erreurs.length > 0) {
+                afficherMessage('Merci d\'indiquer ' + erreurs.join(', ') + '.', 'erreur');
+                return;
+            }
+            if (!consentement.checked) {
+                afficherMessage('Merci de cocher la case d\'autorisation pour que nous puissions vous rappeler.', 'erreur');
+                return;
+            }
+
+            var nbJoueurs = parseInt(selectJoueurs.value, 10) || 1;
+            var typeEquipe = document.querySelector('input[name="typeEquipe"]:checked').value;
+
+            var donnees = {
+                nom:          nom.value.trim(),
+                telephone:    telephone.value.trim(),
+                email:        email.value.trim(),
+                nb_joueurs:   nbJoueurs,
+                type_equipe:  typeEquipe,
+                participants: document.getElementById('participants').value.trim() || 'Non précisé',
+                remarques:    document.getElementById('remarques').value.trim() || 'Aucune',
+                total:        (nbJoueurs * TARIF_PAR_JOUEUR) + ' €',
+                evenement:    'Grand Tournoi du 14 août',
+                date_demande: new Date().toLocaleString('fr-FR')
+            };
+
+            var texteOrigine = bouton.textContent;
+            bouton.disabled = true;
+            bouton.textContent = 'Envoi en cours…';
+            message.className = 'message-form';
+
+            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, donnees)
+                .then(function () {
+                    formulaire.reset();
+                    majTotal();
+                    afficherMessage(
+                        '<strong>Inscription bien reçue !</strong><br>' +
+                        'Nous vous rappelons sous 24 h au ' + donnees.telephone +
+                        ' pour confirmer votre place. À vendredi !',
+                        'succes'
+                    );
+                    if (window.dataLayer) {
+                        window.dataLayer.push({
+                            event: 'inscription_tournoi',
+                            nb_joueurs: nbJoueurs,
+                            value: nbJoueurs * TARIF_PAR_JOUEUR,
+                            currency: 'EUR'
+                        });
+                    }
+                })
+                .catch(function (err) {
+                    console.error('Erreur envoi inscription:', err);
+                    afficherMessage(
+                        '<strong>L\'envoi n\'a pas abouti.</strong><br>' +
+                        'Merci de nous appeler directement au ' +
+                        '<a href="tel:0244849996">02 44 84 99 96</a> ' +
+                        'pour valider votre inscription.',
+                        'erreur'
+                    );
+                })
+                .finally(function () {
+                    bouton.disabled = false;
+                    bouton.textContent = texteOrigine;
+                });
+        });
+
+        // ---------- Défilement doux des ancres ----------
         document.querySelectorAll('a[href^="#"]').forEach(function (lien) {
             lien.addEventListener('click', function (e) {
                 var cible = document.querySelector(this.getAttribute('href'));
